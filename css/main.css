@@ -29,8 +29,8 @@
 }
 .lede--on-dark { color: var(--text-on-dark-muted); }
 
-.section-head { max-width: 72ch; margin-bottom: var(--space-8); }
-.section-head p { margin-top: var(--space-5); }
+.section-head { max-width: 72ch; margin-bottom: var(--space-6); }
+.section-head p { margin-top: var(--space-4); }
 
 .text-accent { color: var(--accent); }
 
@@ -312,7 +312,7 @@
 /* Hairline-ruled cell. Borders collapse via negative offsets. */
 .cell {
   position: relative;
-  padding: var(--space-6) var(--space-6) var(--space-7);
+  padding: var(--space-5) var(--space-5) var(--space-6);
   border-top: 1px solid var(--border);
   border-left: 1px solid var(--border-soft);
   transition: background var(--duration) var(--ease);
@@ -434,7 +434,7 @@
 /* Capability matrix */
 .matrix-wrap { margin-top: var(--space-8); overflow-x: auto; }
 .matrix { width: 100%; border-collapse: collapse; text-align: left; min-width: 760px; }
-.matrix th, .matrix td { padding: var(--space-5) var(--space-4); font-size: var(--text-sm); }
+.matrix th, .matrix td { padding: var(--space-4); font-size: var(--text-sm); vertical-align: top; }
 .matrix thead th {
   color: var(--text-strong);
   font-weight: 600;
@@ -448,6 +448,11 @@
 .matrix tbody th { font-weight: 500; color: var(--text-strong); }
 .matrix tbody td { color: var(--text-muted); }
 
+/* Sentence content reads better ranged left than centred. */
+.matrix--prose thead th:not(:first-child),
+.matrix--prose tbody td:not(:first-child) { text-align: left; }
+.matrix--prose thead th:first-child { min-width: 150px; width: 18%; }
+
 /* --------------------------------------------------------------------------
    Steps
    -------------------------------------------------------------------------- */
@@ -457,7 +462,7 @@
   grid-template-columns: 68px 1fr;
   gap: var(--space-5);
   align-items: start;
-  padding-block: var(--space-6);
+  padding-block: var(--space-5);
   border-top: 1px solid var(--border-soft);
 }
 .step:first-child { border-top: 1px solid var(--border); }
@@ -746,7 +751,7 @@
    Interior page header
    -------------------------------------------------------------------------- */
 .page-head {
-  padding-block: clamp(3.5rem, 2rem + 5vw, 6.5rem) clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  padding-block: clamp(2.5rem, 1.75rem + 3.5vw, 4.5rem) clamp(1.75rem, 1.25rem + 1.5vw, 2.75rem);
   border-bottom: 1px solid var(--border-soft);
 }
 .page-head h1 { max-width: 18ch; }
