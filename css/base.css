@@ -48,8 +48,8 @@ p, li, h1, h2, h3, h4 { overflow-wrap: break-word; }
 /* --- Headings ------------------------------------------------------------ */
 h1, h2, h3, h4 {
   color: var(--text-strong);
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-weight: 600;
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
@@ -57,25 +57,24 @@ h1, h2, h3, h4 {
 
 h1 { font-size: var(--text-4xl); letter-spacing: var(--tracking-tighter); }
 h2 { font-size: var(--text-3xl); letter-spacing: var(--tracking-tighter); }
-h3 { font-size: var(--text-xl); line-height: var(--leading-snug); }
+h3 { font-size: var(--text-xl); line-height: var(--leading-snug); letter-spacing: var(--tracking-tight); }
 h4 { font-size: var(--text-lg); }
 
 p { text-wrap: pretty; }
 
 /* --- Links --------------------------------------------------------------- */
 a {
-  color: var(--accent);
+  color: var(--text-strong);
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.15em;
+  text-underline-offset: 0.2em;
   transition: color var(--duration-fast) var(--ease);
 }
 a:hover { color: var(--accent-strong); }
 
 /* --- Focus --------------------------------------------------------------- */
 :focus-visible {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
 }
 :focus:not(:focus-visible) { outline: none; }
 

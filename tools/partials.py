@@ -30,7 +30,7 @@ HEAD = '''<!DOCTYPE html>
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/main.css">
@@ -66,14 +66,16 @@ def header():
 
 CTA = '''<section class="cta">
   <div class="container">
-    <p class="eyebrow eyebrow--on-dark" style="justify-content:center">Not sure if it's the right fit?</p>
-    <h2>A short conversation is the easiest way to find out.</h2>
-    <p>If we're not the right partner, we'll tell you. Inquiries are read personally
-       and treated in confidence.</p>
-    <div class="cta__actions">
-      <a class="btn btn--accent" href="contact.html">Request a Financing Readiness Review
-        <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
-      <a class="btn btn--on-dark" href="tel:+14168790969">+1 (416) 879-0969</a>
+    <div class="cta__inner">
+      <p class="eyebrow">Not sure if it's the right fit?</p>
+      <h2>A short conversation is the easiest way to find out.</h2>
+      <p>If we're not the right partner, we'll tell you. Inquiries are read personally
+         and treated in confidence.</p>
+      <div class="cta__actions">
+        <a class="btn btn--accent" href="contact.html">Request a Financing Readiness Review
+          <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn--on-dark" href="tel:+14168790969">+1 (416) 879-0969</a>
+      </div>
     </div>
   </div>
 </section>

@@ -86,8 +86,13 @@ properties. The palette carries over from the previous site: navy `#1a2947`,
 amber `#c89c51`, cream `#f2ede3`. Components reference the variables rather than
 hard-coded values, so a rebrand is a one-file change.
 
-Typography is Fraunces (serif headings) and Geist (body), loaded from Google
-Fonts, matching the previous site.
+Typography is Geist throughout, loaded from Google Fonts — one grotesque at
+several weights rather than a serif/sans pairing. Headlines are set large, at
+tight leading with negative tracking.
+
+The visual register is institutional: white ground with light-grey bands, square
+corners, hairline rules instead of drop shadows, flat surfaces, and a single
+amber accent used sparingly for rules, markers and the primary action.
 
 ## Contact form
 

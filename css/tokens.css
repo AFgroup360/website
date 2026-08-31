@@ -1,14 +1,15 @@
 /* ==========================================================================
    Design tokens — AmeriFinancial
-   Brand palette carried over from the previous site: navy, cream, amber.
-   Every component reads from these variables.
+   Institutional/consultancy register: white ground, near-black text, a single
+   accent, square corners, hairline rules instead of shadows.
+   Brand navy and amber carry over from the previous site.
    ========================================================================== */
 
 :root {
   /* --- Brand ------------------------------------------------------------- */
-  --navy-900: #101a2e;
-  --navy-800: #16223b;
-  --navy-700: #1a2947;   /* primary */
+  --navy-900: #0b1220;
+  --navy-800: #101a2e;
+  --navy-700: #1a2947;
   --navy-600: #253556;
   --navy-500: #33456b;
   --navy-400: #4d618c;
@@ -16,75 +17,76 @@
   --navy-200: #b6c0d3;
   --navy-100: #dde2ec;
 
-  --amber-700: #96702f;
-  --amber-600: #b0873c;
-  --amber-500: #c89c51;  /* accent */
+  --amber-700: #8a651f;
+  --amber-600: #a67d2e;
+  --amber-500: #c89c51;   /* accent */
   --amber-400: #d6b276;
   --amber-300: #e4cba1;
-  --amber-200: #efdfc6;
   --amber-100: #f7efe1;
 
-  --cream-500: #e9e3d8;
-  --cream-400: #f2ede3;  /* page ground */
-  --cream-300: #f8f6f2;  /* raised card */
-  --cream-200: #fcfbf8;
-
-  --ink-900: #1c2531;
-  --ink-800: #2d3c4d;    /* body text */
-  --ink-600: #5b667b;    /* muted text */
-  --ink-400: #8d97a8;
-
-  --line-300: #ded9ce;   /* borders on cream */
-  --line-200: #e9e5dc;
+  /* --- Neutrals: cool greys on white, not cream ---------------------------- */
+  --white:      #ffffff;
+  --grey-50:    #fafafa;
+  --grey-100:   #f4f4f5;
+  --grey-200:   #e8e8ea;
+  --grey-300:   #d9d9dd;
+  --grey-400:   #a1a1aa;
+  --grey-500:   #71717a;
+  --grey-600:   #52525b;
+  --grey-700:   #3f3f46;
+  --grey-800:   #27272a;
+  --grey-900:   #131316;
+  --black:      #000000;
 
   /* --- Semantic ---------------------------------------------------------- */
-  --surface:         var(--cream-400);
-  --surface-sunken:  var(--cream-500);
-  --surface-raised:  var(--cream-300);
-  --surface-bright:  var(--cream-200);
+  --surface:         var(--white);
+  --surface-sunken:  var(--grey-100);
+  --surface-raised:  var(--white);
   --surface-inverse: var(--navy-700);
   --surface-deep:    var(--navy-900);
 
-  --text-strong:  var(--navy-700);
-  --text:         var(--ink-800);
-  --text-muted:   var(--ink-600);
-  --text-inverse: var(--cream-400);
+  --text-strong:  var(--grey-900);
+  --text:         var(--grey-700);
+  --text-muted:   var(--grey-500);
+  --text-inverse: var(--white);
   --text-on-dark-muted: var(--navy-200);
 
-  --border:        var(--line-300);
-  --border-soft:   var(--line-200);
-  --border-dark:   rgb(255 255 255 / 0.14);
+  --border:       var(--grey-300);
+  --border-soft:  var(--grey-200);
+  --border-dark:  rgb(255 255 255 / 0.16);
 
   --accent:        var(--amber-500);
   --accent-strong: var(--amber-600);
   --accent-soft:   var(--amber-100);
 
-  --focus-ring: var(--amber-600);
+  --focus-ring: var(--navy-500);
 
-  /* --- Type -------------------------------------------------------------- */
-  --font-serif: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
-  --font-sans:  "Geist", system-ui, -apple-system, "Segoe UI", Roboto,
-                "Helvetica Neue", Arial, sans-serif;
+  /* --- Type: one grotesque, no serif -------------------------------------- */
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-sans);
 
   --text-xs:   0.75rem;
   --text-sm:   0.875rem;
   --text-base: 1rem;
   --text-lg:   clamp(1.0625rem, 1rem + 0.3vw,  1.1875rem);
   --text-xl:   clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
-  --text-2xl:  clamp(1.4375rem, 1.3rem + 0.7vw, 1.875rem);
-  --text-3xl:  clamp(1.75rem,   1.5rem + 1.25vw, 2.625rem);
-  --text-4xl:  clamp(2.125rem,  1.7rem + 2.1vw,  3.5rem);
-  --text-5xl:  clamp(2.5rem,    1.9rem + 3vw,    4.5rem);
+  --text-2xl:  clamp(1.5rem,    1.35rem + 0.75vw, 2rem);
+  --text-3xl:  clamp(1.875rem,  1.55rem + 1.6vw,  3rem);
+  --text-4xl:  clamp(2.25rem,   1.7rem + 2.7vw,   4rem);
+  --text-5xl:  clamp(2.75rem,   1.9rem + 4.2vw,   5.5rem);
 
-  --leading-tight:  1.08;
-  --leading-snug:   1.25;
+  /* Tight, the way large institutional headlines are set. */
+  --leading-tight:  1.02;
+  --leading-snug:   1.18;
   --leading-normal: 1.6;
   --leading-loose:  1.75;
 
-  --tracking-tighter: -0.03em;
-  --tracking-tight:   -0.015em;
-  --tracking-wide:     0.08em;
-  --tracking-wider:    0.16em;
+  --tracking-tighter: -0.035em;
+  --tracking-tight:   -0.022em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.1em;
+  --tracking-wider:    0.18em;
 
   /* --- Spacing ----------------------------------------------------------- */
   --space-1: 0.25rem;  --space-2: 0.5rem;   --space-3: 0.75rem;
@@ -92,32 +94,31 @@
   --space-7: 3rem;     --space-8: 4rem;     --space-9: 6rem;
   --space-10: 8rem;
 
-  --section-y: clamp(4rem, 2.75rem + 6vw, 8rem);
+  --section-y: clamp(4rem, 2.5rem + 6.5vw, 8.5rem);
 
   /* --- Layout ------------------------------------------------------------ */
-  --container:        1180px;
-  --container-wide:   1360px;
-  --container-narrow: 720px;
-  --gutter: clamp(1.25rem, 0.85rem + 2vw, 2.75rem);
+  --container:        1280px;
+  --container-wide:   1480px;
+  --container-narrow: 760px;
+  --gutter: clamp(1.25rem, 0.6rem + 2.6vw, 3.5rem);
 
-  /* --- Radii & elevation -------------------------------------------------- */
-  --radius-sm: 6px;
-  --radius:    10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 999px;
+  /* --- Shape: square. Hairlines, not shadows. ----------------------------- */
+  --radius-sm: 0;
+  --radius:    0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-full: 999px;   /* reserved for dots and pills only */
 
-  --shadow-sm: 0 1px 2px rgb(26 41 71 / 0.05),
-               0 2px 6px rgb(26 41 71 / 0.04);
-  --shadow:    0 2px 6px rgb(26 41 71 / 0.05),
-               0 10px 28px rgb(26 41 71 / 0.07);
-  --shadow-lg: 0 6px 14px rgb(26 41 71 / 0.06),
-               0 24px 60px rgb(26 41 71 / 0.11);
+  --hairline: 1px solid var(--border-soft);
+
+  --shadow-sm: none;
+  --shadow:    none;
+  --shadow-lg: 0 18px 48px rgb(19 19 22 / 0.13);
 
   /* --- Motion ------------------------------------------------------------ */
   --ease:      cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 130ms;
   --duration:      240ms;
-  --duration-slow: 620ms;
+  --duration-slow: 560ms;
 }
