@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Base — modern reset plus default element styling.
+   Loads after tokens.css.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  scroll-behavior: smooth;
+}
+
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd, ul, ol {
+  margin: 0;
+}
+
+ul[role="list"], ol[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+body {
+  min-height: 100svh;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Inherit fonts for form controls */
+input, button, textarea, select { font: inherit; color: inherit; }
+
+/* Avoid orphan-prone long words breaking layout */
+p, li, h1, h2, h3, h4 { overflow-wrap: break-word; }
+
+/* --- Headings ------------------------------------------------------------ */
+h1, h2, h3, h4 {
+  color: var(--text-strong);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-xl); line-height: var(--leading-snug); }
+h4 { font-size: var(--text-lg); font-weight: var(--weight-semibold); }
+
+p { text-wrap: pretty; }
+
+/* --- Links --------------------------------------------------------------- */
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  transition: color var(--duration-fast) var(--ease);
+}
+a:hover { color: var(--accent-hover); }
+
+/* --- Focus --------------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* --- Layout helpers ------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--section-y); }
+.section--sunken { background: var(--surface-sunken); }
+
+/* Screen-reader-only text */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Skip link — first focusable element on every page */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 999;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  color: var(--text-strong);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  transform: translateY(-150%);
+  transition: transform var(--duration) var(--ease);
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* --- Motion preferences -------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
