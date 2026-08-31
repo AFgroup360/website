@@ -143,7 +143,10 @@
     // segment (a bare directory URL) means index.
     function leaf(url) {
       var last = url.split('#')[0].split('?')[0].split('/').pop();
-      return last === '' ? 'index.html' : last;
+      // Apache also serves these pages without the extension, so compare
+      // on the bare name.
+      last = last.replace(/\.html$/, '');
+      return last === '' ? 'index' : last;
     }
 
     var here = leaf(window.location.pathname);

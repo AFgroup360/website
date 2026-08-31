@@ -284,7 +284,7 @@
   padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
 }
 .strip__inner { max-width: 100%; }
-.strip p {
+.strip__statement {
   font-size: var(--text-3xl);
   font-weight: 600;
   line-height: var(--leading-snug);
@@ -292,7 +292,8 @@
   color: var(--white);
   max-width: 18ch;
 }
-.strip p em { font-style: normal; color: var(--amber-400); }
+.strip__statement em { font-style: normal; color: var(--amber-400); }
+.strip .lede { font-size: var(--text-lg); max-width: 56ch; }
 .strip .eyebrow { color: var(--navy-200); border-bottom-color: var(--amber-400); }
 
 /* --------------------------------------------------------------------------

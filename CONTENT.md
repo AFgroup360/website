@@ -274,6 +274,34 @@ indirect/consequential loss; governed by the laws of Ontario.
 | `photo-team.jpeg`, `photo-the-one.png` | Team photos |
 | `opengraph.jpg` | Social share card |
 
+---
+
+## For Lenders (new page — not from the previous site)
+
+Everything above this line is recovered copy. This page is new, written to a
+four-block brief from Farid. Flagged so it is clear which copy is original to
+the business and which was drafted here.
+
+**H1:** The financial picture behind the borrower — before you fund, and every
+month after.
+
+1. **What we check before they fund** — forecast built from actual cash timing,
+   debt and obligation schedule including off-balance-sheet items, working
+   capital, quality of the underlying records, customer and supplier
+   concentration, covenant headroom.
+2. **What we watch every month after they fund** — rolling 13-week forecast,
+   covenant position tracked against the agreement, AR/AP ageing, actual vs the
+   forecast that supported the request, obligations coming due.
+3. **Why the borrower's own bookkeeper cannot do this** — different direction
+   (backward vs forward), different scope (records vs forecasts and covenants),
+   different output (records are an input, not a substitute). Framed as a
+   difference in job, not a criticism.
+4. **Independence** — "We work for neither side of the table."
+
+> Open question for Farid: AmeriFinancial is engaged and paid by the borrower,
+> so a credit officer may push on "neither side." A more defensible phrasing is
+> noted in the handover if that line needs to change.
+
 ## Type on the current site
 
 Fraunces (serif, headings) + Geist (sans, body), via Google Fonts.

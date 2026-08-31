@@ -4,6 +4,7 @@ NAV = [
     ("index.html", "Home"),
     ("services.html", "Services"),
     ("who-we-serve.html", "Who We Serve"),
+    ("for-lenders.html", "For Lenders"),
     ("about.html", "About"),
     ("contact.html", "Contact"),
 ]
@@ -97,6 +98,7 @@ FOOTER = '''</main>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="who-we-serve.html">Who We Serve</a></li>
+          <li><a href="for-lenders.html">For Lenders</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>

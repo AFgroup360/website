@@ -50,6 +50,17 @@ PAGES = {
         ),
         "cta": True,
     },
+    "for-lenders": {
+        "out": "for-lenders.html",
+        "canonical": "/for-lenders",
+        "title": f"For Lenders — {BRAND}",
+        "description": (
+            "What AmeriFinancial checks before a lender funds an owner-led borrower, "
+            "and what it monitors every month after — prepared independently of the "
+            "lending decision."
+        ),
+        "cta": True,
+    },
     "about": {
         "out": "about.html",
         "canonical": "/about",
