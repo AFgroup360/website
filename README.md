@@ -38,6 +38,21 @@ CONTENT.md       Source copy, recovered from the previous site
 tools/           Optional page generator (see below)
 ```
 
+## Previewing on GitHub Pages
+
+Pages is enabled on the working branch, so the site is live at
+**https://afgroup360.github.io/website/** for review.
+
+That is a project page served from a `/website/` subpath, which is why every
+internal link and asset path in this repo is relative rather than root-absolute.
+The same relative paths work unchanged when the site sits at the domain root on
+GoDaddy, so nothing needs adjusting between preview and production.
+
+`.nojekyll` stops GitHub from running the files through Jekyll.
+
+Turn Pages off under Settings → Pages once the site is live on the real domain,
+so the preview copy doesn't linger in search results.
+
 ## Local preview
 
 ```sh
@@ -105,6 +120,8 @@ portal depends on.
 
 Get the FTP host, username and password from GoDaddy's hosting dashboard,
 connect with any FTP client, and upload into `public_html`.
+
+Note that `.htaccess` is ignored by GitHub Pages — it only applies on GoDaddy.
 
 `.htaccess` needs Apache with `mod_rewrite`, which GoDaddy shared hosting has on
 by default. If clean URLs 404 after deploying, confirm the file uploaded —

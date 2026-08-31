@@ -139,14 +139,19 @@
 
   /* --- Mark the current page in the nav ------------------------------------ */
   function initCurrent() {
-    var path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
-    if (path.length > 1) path = path.replace(/\/$/, '');
+    // Paths are relative, so compare the final path segment. An empty
+    // segment (a bare directory URL) means index.
+    function leaf(url) {
+      var last = url.split('#')[0].split('?')[0].split('/').pop();
+      return last === '' ? 'index.html' : last;
+    }
+
+    var here = leaf(window.location.pathname);
 
     document.querySelectorAll('.nav__link').forEach(function (link) {
-      var href = link.getAttribute('href') || '';
-      var target = href.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
-      if (target.length > 1) target = target.replace(/\/$/, '');
-      if (target === path) link.setAttribute('aria-current', 'page');
+      if (leaf(link.getAttribute('href') || '') === here) {
+        link.setAttribute('aria-current', 'page');
+      }
     });
   }
 

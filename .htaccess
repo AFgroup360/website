@@ -8,11 +8,8 @@ ErrorDocument 404 /404.html
   RewriteEngine On
   RewriteBase /
 
-  # Redirect /page.html -> /page (one canonical URL per page)
-  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
-  RewriteRule ^ /%1 [R=301,L]
-
-  # Serve /page from page.html
+  # Also serve /page from page.html, so clean URLs keep working for anyone
+  # who types one or follows an old link. Internal links use .html directly.
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.+?)/?$ $1.html [L]
