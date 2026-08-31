@@ -55,9 +55,9 @@ PAGES = {
         "canonical": "/for-lenders",
         "title": f"For Lenders — {BRAND}",
         "description": (
-            "What AmeriFinancial checks before a lender funds an owner-led borrower, "
-            "and what it monitors every month after — prepared independently of the "
-            "lending decision."
+            "Independent financial diagnostic before a lender funds an owner-led "
+            "business, and monthly oversight for the life of the facility. "
+            "Bank-statement-led analysis, not bookkeeping-led."
         ),
         "cta": True,
     },

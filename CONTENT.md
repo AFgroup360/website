@@ -278,29 +278,48 @@ indirect/consequential loss; governed by the laws of Ontario.
 
 ## For Lenders (new page — not from the previous site)
 
-Everything above this line is recovered copy. This page is new, written to a
-four-block brief from Farid. Flagged so it is clear which copy is original to
+Everything above this line is recovered copy. This page is new, written from the
+Farid/Adel working session. Flagged so it stays clear which copy is original to
 the business and which was drafted here.
 
-**H1:** The financial picture behind the borrower — before you fund, and every
-month after.
+**Framing:** the lender initiates and is the reader. The borrower is the subject
+of the analysis, not the audience.
 
-1. **What we check before they fund** — forecast built from actual cash timing,
-   debt and obligation schedule including off-balance-sheet items, working
-   capital, quality of the underlying records, customer and supplier
-   concentration, covenant headroom.
-2. **What we watch every month after they fund** — rolling 13-week forecast,
-   covenant position tracked against the agreement, AR/AP ageing, actual vs the
-   forecast that supported the request, obligations coming due.
-3. **Why the borrower's own bookkeeper cannot do this** — different direction
-   (backward vs forward), different scope (records vs forecasts and covenants),
-   different output (records are an input, not a substitute). Framed as a
-   difference in job, not a criticism.
-4. **Independence** — "We work for neither side of the table."
+**H1:** Know what you are funding — and what happens to it after.
 
-> Open question for Farid: AmeriFinancial is engaged and paid by the borrower,
-> so a credit officer may push on "neither side." A more defensible phrasing is
-> noted in the handover if that line needs to change.
+1. **What we check before you fund** — source records (bank, credit card and
+   operating line statements; accounting and bookkeeping data; filed returns and
+   CRA position; balance sheet, income statement, debt structure), analysed
+   bank-statement-led rather than bookkeeping-led: 24 months of trending cash
+   flow, balance sheet depth, the business modelled against its own industry.
+   Output: financeable or not, the amount that actually closes the gap,
+   conditions to attach before funding, repayable structure and terms, a
+   valuation view.
+2. **What we watch every month after you fund** — rolling cash forecast,
+   obligations coming due, AR/AP ageing, actuals against the supporting
+   forecast, deal conditions tracked against the agreement.
+3. **Most firms hand over a model and leave** — the continuity differentiator.
+   Diagnostic → structure → oversight, across the life cycle.
+4. **Independence** — "We take no position in whether the deal gets done."
+
+Plus a section on the Financing Readiness Report as the deliverable.
+
+### Open items
+
+- **Who engages and pays**, for the FRR and for the ongoing service — lender,
+  borrower, or lender first then borrower? The independence wording depends on
+  it, and the transcript does not settle it.
+- **Any success or contingent fee?** If AmeriFinancial earns anything tied to a
+  deal closing, "we take no position in whether the deal gets done" has to
+  change.
+- **FRR sample PDF** — the four-page public version is not built yet. The page
+  currently routes "Request a sample report" to the contact form; swap to a
+  direct download once the file exists.
+- **Case example** — the right-sizing and intercompany-debt conditions are
+  written as capabilities, not as a named case. Deliberate: see the handover
+  note on client confidentiality.
+- **Lender portal** — raised in the session, parked. Phase 2 alongside the
+  client portal.
 
 ## Type on the current site
 
