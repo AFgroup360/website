@@ -355,6 +355,20 @@ Four blocks, mostly visual rather than prose:
 4. **How it runs.** Four steps: find the drivers, close the leaks, make it
    bankable, keep it visible.
 
+### Removed at review
+
+- **Personal profiles and photographs.** Neither principal is presented on the
+  site for now. About becomes about the company, and the founder's track record
+  will be carried as the company's track record when About is rewritten.
+- **Pricing.** The three package tiers keep their names and the capability
+  matrix, but the monthly fees are off. The footnote now says scope and pricing
+  are confirmed after an introductory call.
+- **Zero-padded numbering.** Markers read 1, 2, 3 rather than 01, 02, 03.
+
+Open: the Services intro still describes "transparent monthly packages", which
+is recovered copy written when fees were shown. Worth revisiting now that they
+are not.
+
 ### Decisions taken at review
 
 - The three phases were specific to one engagement. They are now three areas of

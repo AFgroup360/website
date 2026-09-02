@@ -74,9 +74,9 @@ PAGES = {
         "canonical": "/about",
         "title": f"About — {BRAND}",
         "description": (
-            "Why AmeriFinancial exists, the approach behind the work, and the people "
-            "running it — founded by Farid Ameri to close the gap between bookkeeping "
-            "and financial visibility."
+            "Why AmeriFinancial exists and the approach behind the work: closing the "
+            "gap between bookkeeping and financial decision-making for owner-led "
+            "businesses."
         ),
         "cta": True,
     },
