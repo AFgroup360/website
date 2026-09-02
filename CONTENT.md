@@ -323,6 +323,41 @@ front of the lender and quantified.
   portal.
 - **Independence block.** Removed at review. Read as defensive.
 
+## For Owners (new page, not from the previous site)
+
+Built from the North Pole engagement material. The page is deliberately
+anonymised.
+
+**H1:** Your business outgrew your finance setup.
+
+Four blocks, mostly visual rather than prose:
+
+1. **The timing gap.** An SVG timeline: money out on day 0, money in on day 30
+   to 45, the owner funding the window between. Framed as a timing gap, not a
+   weak business.
+2. **Symptom to cause table.** What you notice / what it usually is / what we
+   do about it. Five rows.
+3. **Illustrative engagement.** The shape of the North Pole work with every
+   identifying detail removed. No name, no sector, no exact figures.
+4. **How it runs.** Four steps: find the drivers, close the leaks, make it
+   bankable, keep it visible.
+
+### Confidentiality note
+
+The source material (`AmeriFinancial_NPH_Advisory_Review.docx`) is marked
+PRIVILEGED & CONFIDENTIAL, names the client and its owner, carries exact
+figures, and states that the owner's represented revenue does not reconcile to
+the filed statements. None of that is on the site, and none of it should be:
+publishing it would breach the confidentiality undertaking in AmeriFinancial's
+own privacy policy, and the revenue point is an allegation about an identifiable
+third party.
+
+What is published is the pattern only, with rounded and non-specific figures.
+
+To run it as a named case study, get the client's written sign-off first. With
+that in hand the real name, sector and numbers can be swapped in, and it becomes
+a considerably stronger page.
+
 ## Type on the current site
 
 Fraunces (serif, headings) + Geist (sans, body), via Google Fonts.
