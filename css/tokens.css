@@ -39,32 +39,39 @@
   --black:      #000000;
 
   /* --- Semantic ---------------------------------------------------------- */
-  --surface:         var(--white);
-  --surface-sunken:  var(--grey-100);
-  --surface-raised:  var(--white);
+  --cream-500: #e9e3d8;
+  --cream-400: #f2ede3;
+  --cream-300: #f8f6f2;
+  --cream-200: #fcfbf8;
+  --line-300:  #ded9ce;
+  --line-200:  #e9e5dc;
+
+  --surface:         var(--cream-400);
+  --surface-sunken:  var(--cream-500);
+  --surface-raised:  var(--cream-300);
   --surface-inverse: var(--navy-700);
   --surface-deep:    var(--navy-900);
 
-  --text-strong:  var(--grey-900);
-  --text:         var(--grey-700);
-  --text-muted:   var(--grey-500);
+  --text-strong:  var(--navy-700);
+  --text:         #3d4753;
+  --text-muted:   #5b667b;
   --text-inverse: var(--white);
   --text-on-dark-muted: var(--navy-200);
 
-  --border:       var(--grey-300);
-  --border-soft:  var(--grey-200);
+  --border:       var(--line-300);
+  --border-soft:  var(--line-200);
   --border-dark:  rgb(255 255 255 / 0.16);
 
   --accent:        var(--amber-500);
   --accent-strong: var(--amber-600);
   --accent-soft:   var(--amber-100);
 
-  --focus-ring: var(--navy-500);
+  --focus-ring: var(--amber-600);
 
   /* --- Type: one grotesque, no serif -------------------------------------- */
   --font-sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
-  --font-serif: var(--font-sans);
+  --font-serif: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
 
   --text-xs:   0.75rem;
   --text-sm:   0.875rem;
@@ -77,7 +84,7 @@
   --text-5xl:  clamp(2.75rem,   1.9rem + 4.2vw,   5.5rem);
 
   /* Tight, the way large institutional headlines are set. */
-  --leading-tight:  1.02;
+  --leading-tight:  1.08;
   --leading-snug:   1.18;
   --leading-normal: 1.6;
   --leading-loose:  1.75;
@@ -103,16 +110,16 @@
   --gutter: clamp(1.25rem, 0.6rem + 2.6vw, 3.5rem);
 
   /* --- Shape: square. Hairlines, not shadows. ----------------------------- */
-  --radius-sm: 0;
-  --radius:    0;
-  --radius-lg: 0;
-  --radius-xl: 0;
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 999px;   /* reserved for dots and pills only */
 
   --hairline: 1px solid var(--border-soft);
 
-  --shadow-sm: none;
-  --shadow:    none;
+  --shadow-sm: 0 1px 2px rgb(26 41 71 / 0.04);
+  --shadow:    0 2px 8px rgb(26 41 71 / 0.06);
   --shadow-lg: 0 18px 48px rgb(19 19 22 / 0.13);
 
   /* --- Motion ------------------------------------------------------------ */
