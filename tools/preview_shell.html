@@ -1,0 +1,244 @@
+<title>AmeriFinancial Preview</title>
+<style>
+  /* Preview chrome only. The site inside the frame keeps its own styles.
+     Neutrals carry a faint cool bias so the warm amber site sits forward. */
+  :root {
+    --p-ground:  #f2f3f5;
+    --p-surface: #ffffff;
+    --p-line:    #dcdee3;
+    --p-ink:     #16181d;
+    --p-muted:   #6b7280;
+    --p-accent:  #b0873c;
+    --p-shadow:  0 1px 2px rgb(16 18 24 / .06), 0 12px 32px rgb(16 18 24 / .10);
+    --p-font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --p-ground:  #0f1115;
+      --p-surface: #191c22;
+      --p-line:    #2c3038;
+      --p-ink:     #e8e9ec;
+      --p-muted:   #969ba5;
+      --p-accent:  #d6b276;
+      --p-shadow:  0 1px 2px rgb(0 0 0 / .5), 0 12px 32px rgb(0 0 0 / .45);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --p-ground:  #0f1115;
+    --p-surface: #191c22;
+    --p-line:    #2c3038;
+    --p-ink:     #e8e9ec;
+    --p-muted:   #969ba5;
+    --p-accent:  #d6b276;
+    --p-shadow:  0 1px 2px rgb(0 0 0 / .5), 0 12px 32px rgb(0 0 0 / .45);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--p-ground);
+    color: var(--p-ink);
+    font-family: var(--p-font);
+    font-size: 13px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .bar {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 9px 14px;
+    background: var(--p-surface);
+    border-bottom: 1px solid var(--p-line);
+    flex-wrap: wrap;
+  }
+
+  .bar__title {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .bar__title span { color: var(--p-accent); }
+
+  .tabs { display: flex; gap: 2px; flex-wrap: wrap; flex: 1; min-width: 0; }
+
+  .tab {
+    padding: 5px 10px;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--p-muted);
+    font: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .15s, color .15s;
+  }
+  .tab:hover { color: var(--p-ink); background: color-mix(in srgb, var(--p-ink) 7%, transparent); }
+  .tab[aria-selected="true"] {
+    background: color-mix(in srgb, var(--p-accent) 18%, transparent);
+    color: var(--p-ink);
+    font-weight: 600;
+  }
+
+  .widths { display: flex; gap: 2px; padding: 2px; background: var(--p-ground); border-radius: 6px; }
+  .width {
+    padding: 4px 9px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--p-muted);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .width[aria-pressed="true"] { background: var(--p-surface); color: var(--p-ink); font-weight: 600; box-shadow: 0 1px 2px rgb(0 0 0 / .12); }
+
+  .size { color: var(--p-muted); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 12px; }
+
+  .stage {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+  }
+  .frame-wrap {
+    position: relative;
+    background: #fff;
+    box-shadow: var(--p-shadow);
+    overflow: hidden;
+  }
+  iframe { display: block; border: 0; background: #fff; }
+
+  :focus-visible { outline: 2px solid var(--p-accent); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="bar">
+  <div class="bar__title">Ameri<span>Financial</span></div>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="widths" id="widths">
+    <button class="width" type="button" data-w="1280" aria-pressed="true">Desktop</button>
+    <button class="width" type="button" data-w="834" aria-pressed="false">Tablet</button>
+    <button class="width" type="button" data-w="390" aria-pressed="false">Mobile</button>
+  </div>
+  <div class="size" id="size"></div>
+</div>
+
+<div class="stage" id="stage">
+  <div class="frame-wrap" id="wrap">
+    <iframe id="frame" title="Site preview"></iframe>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var ASSETS = /*__ASSETS__*/;
+  var PAGES  = /*__PAGES__*/;
+  var NAV    = /*__NAV__*/;
+
+  var frame = document.getElementById('frame');
+  var wrap  = document.getElementById('wrap');
+  var stage = document.getElementById('stage');
+  var tabs  = document.getElementById('tabs');
+  var sizeEl = document.getElementById('size');
+
+  var current = NAV[0].file;
+  var width = 1280;
+  var blobUrl = null;
+
+  // Each page is rebuilt with its images swapped for inlined data, then
+  // served from a blob so the frame behaves like a real document.
+  function documentFor(file) {
+    var html = PAGES[file];
+    Object.keys(ASSETS).forEach(function (path) {
+      html = html.split(path).join(ASSETS[path]);
+    });
+    return html;
+  }
+
+  function layout() {
+    var avail = stage.clientWidth - 28;
+    var scale = Math.min(1, avail / width);
+    var h = (stage.clientHeight - 28) / scale;
+
+    frame.style.width = width + 'px';
+    frame.style.height = h + 'px';
+    frame.style.transformOrigin = 'top left';
+    frame.style.transform = 'scale(' + scale + ')';
+
+    wrap.style.width = (width * scale) + 'px';
+    wrap.style.height = (h * scale) + 'px';
+
+    sizeEl.textContent = width + 'px' + (scale < 1 ? '  \u00B7  ' + Math.round(scale * 100) + '%' : '');
+  }
+
+  function show(file) {
+    current = file;
+
+    Array.prototype.forEach.call(tabs.children, function (btn) {
+      btn.setAttribute('aria-selected', String(btn.dataset.file === file));
+    });
+
+    if (blobUrl) URL.revokeObjectURL(blobUrl);
+    blobUrl = URL.createObjectURL(new Blob([documentFor(file)], { type: 'text/html' }));
+    frame.src = blobUrl;
+  }
+
+  // Links inside the preview drive the tabs rather than dead-ending.
+  frame.addEventListener('load', function () {
+    var doc;
+    try { doc = frame.contentDocument; } catch (e) { return; }
+    if (!doc) return;
+
+    doc.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a');
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (href.charAt(0) === '#' || /^(https?:|mailto:|tel:)/.test(href)) return;
+
+      var file = href.split('#')[0].split('/').pop();
+      e.preventDefault();
+      show(PAGES[file] ? file : '404.html');
+    });
+  });
+
+  NAV.forEach(function (item) {
+    var b = document.createElement('button');
+    b.className = 'tab';
+    b.type = 'button';
+    b.textContent = item.label;
+    b.dataset.file = item.file;
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-selected', String(item.file === current));
+    b.addEventListener('click', function () { show(item.file); });
+    tabs.appendChild(b);
+  });
+
+  document.getElementById('widths').addEventListener('click', function (e) {
+    var btn = e.target.closest('.width');
+    if (!btn) return;
+    width = parseInt(btn.dataset.w, 10);
+    Array.prototype.forEach.call(this.children, function (b) {
+      b.setAttribute('aria-pressed', String(b === btn));
+    });
+    layout();
+  });
+
+  window.addEventListener('resize', layout);
+
+  layout();
+  show(current);
+})();
+</script>

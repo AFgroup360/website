@@ -53,6 +53,25 @@ GoDaddy, so nothing needs adjusting between preview and production.
 Turn Pages off under Settings → Pages once the site is live on the real domain,
 so the preview copy doesn't linger in search results.
 
+## Live preview panel
+
+`tools/build_preview.py` bundles the whole site into a single self-contained
+HTML file at `preview/preview.html`: every page, with the stylesheets, script
+and images inlined. That file is published as an Artifact so the site can be
+viewed alongside a chat while changes are being made.
+
+```sh
+python3 tools/build_preview.py
+```
+
+Each page is reconstructed at runtime as a blob URL and shown in an iframe, so
+sticky headers and width media queries behave exactly as they do on the real
+site. The toolbar switches pages and viewport width. Links inside the preview
+drive the tabs rather than dead-ending.
+
+The bundle is generated output and is not committed. Rebuild it after changing
+any page, then republish to the same artifact URL to keep the link stable.
+
 ## Local preview
 
 ```sh
