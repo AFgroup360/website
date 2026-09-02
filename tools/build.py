@@ -45,19 +45,30 @@ PAGES = {
         "canonical": "/who-we-serve",
         "title": f"Who We Serve — {BRAND}",
         "description": (
-            "Built for owner-led businesses that have grown beyond basic bookkeeping "
-            "but don't yet need a full internal finance department."
+            "Owners and capital providers ask the same question from opposite chairs. "
+            "Can the business carry the money. The same numbers answer both."
         ),
         "cta": True,
     },
-    "for-lenders": {
-        "out": "for-lenders.html",
-        "canonical": "/for-lenders",
-        "title": f"For Lenders — {BRAND}",
+    "for-owners": {
+        "out": "for-owners.html",
+        "canonical": "/for-owners",
+        "title": f"For Owners — {BRAND}",
         "description": (
-            "Independent financial diagnostic before a lender funds an owner-led "
-            "business, and monthly oversight for the life of the facility. "
-            "Bank-statement-led analysis, not bookkeeping-led."
+            "For owner-led businesses that outgrew bookkeeping. Current numbers, a "
+            "forward view of cash, and a clear answer on what the business can carry "
+            "before taking on financing."
+        ),
+        "cta": True,
+    },
+    "for-capital-providers": {
+        "out": "for-capital-providers.html",
+        "canonical": "/for-capital-providers",
+        "title": f"For Capital Providers — {BRAND}",
+        "description": (
+            "Independent financial diagnostic before a lender or investor funds an "
+            "owner-led business, and monthly oversight for the life of the facility. "
+            "Bank statement led analysis, not bookkeeping led."
         ),
         "cta": True,
     },

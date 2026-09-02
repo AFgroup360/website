@@ -160,6 +160,83 @@
 .nav__link[aria-current="page"] { color: var(--text-strong); font-weight: 600; }
 @media (min-width: 901px) { .nav__link--portal { display: none; } }
 
+/* --- Nav submenu ---------------------------------------------------------- */
+.nav__group { position: relative; }
+
+.nav__caret {
+  display: inline-block;
+  width: 6px; height: 6px;
+  margin-left: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform var(--duration) var(--ease);
+}
+
+.nav__menu {
+  position: absolute;
+  top: 100%;
+  left: -14px;
+  min-width: 250px;
+  padding: var(--space-2) 0;
+  background: var(--white);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease),
+              visibility var(--duration-fast);
+}
+.nav__group:hover .nav__menu,
+.nav__group:focus-within .nav__menu,
+.nav__menu.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav__group:hover .nav__caret,
+.nav__group:focus-within .nav__caret { transform: translateY(-4px) rotate(225deg); }
+
+.nav__sub {
+  display: block;
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: background var(--duration-fast) var(--ease),
+              color var(--duration-fast) var(--ease),
+              border-color var(--duration-fast) var(--ease);
+}
+.nav__sub:hover,
+.nav__sub[aria-current="page"] {
+  background: var(--grey-50);
+  color: var(--text-strong);
+  border-left-color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  /* Stacked and always open on mobile: a hover menu has nothing to hover. */
+  .nav__group { display: contents; }
+  .nav__menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  .nav__caret { display: none; }
+  .nav__sub {
+    padding: var(--space-4) 0 var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--border-soft);
+    border-left: 2px solid var(--accent);
+    font-size: var(--text-base);
+  }
+}
+
 .header__actions { display: flex; align-items: center; gap: var(--space-4); }
 
 .nav-toggle {

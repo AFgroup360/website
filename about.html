@@ -33,8 +33,13 @@
     <nav class="nav" id="primary-nav" aria-label="Primary">
         <a class="nav__link" href="index.html">Home</a>
         <a class="nav__link" href="services.html">Services</a>
-        <a class="nav__link" href="who-we-serve.html">Who We Serve</a>
-        <a class="nav__link" href="for-lenders.html">For Lenders</a>
+        <div class="nav__group">
+          <a class="nav__link nav__link--parent" href="who-we-serve.html" aria-expanded="false" aria-controls="menu-who-we-serve">Who We Serve<span class="nav__caret" aria-hidden="true"></span></a>
+          <div class="nav__menu" id="menu-who-we-serve">
+            <a class="nav__sub" href="for-owners.html">For Owners</a>
+            <a class="nav__sub" href="for-capital-providers.html">For Capital Providers</a>
+          </div>
+        </div>
         <a class="nav__link" href="about.html">About</a>
         <a class="nav__link" href="contact.html">Contact</a>
         <a class="nav__link nav__link--portal" href="portal.html">Client Portal</a>
@@ -209,8 +214,8 @@
         <ul>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="who-we-serve.html">Who We Serve</a></li>
-          <li><a href="for-lenders.html">For Lenders</a></li>
+          <li><a href="for-owners.html">For Owners</a></li>
+          <li><a href="for-capital-providers.html">For Capital Providers</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>

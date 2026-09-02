@@ -137,6 +137,48 @@
     });
   }
 
+  /* --- Nav submenu: keyboard and touch ------------------------------------- */
+  function initSubmenus() {
+    var groups = document.querySelectorAll('.nav__group');
+    if (!groups.length) return;
+
+    var fine = window.matchMedia('(hover: hover) and (min-width: 901px)');
+
+    groups.forEach(function (group) {
+      var parent = group.querySelector('.nav__link--parent');
+      var menu = group.querySelector('.nav__menu');
+      if (!parent || !menu) return;
+
+      // On touch the first tap opens the menu rather than following the link.
+      parent.addEventListener('click', function (e) {
+        if (!fine.matches) return;
+        if (window.matchMedia('(hover: none)').matches &&
+            parent.getAttribute('aria-expanded') !== 'true') {
+          e.preventDefault();
+          parent.setAttribute('aria-expanded', 'true');
+          menu.classList.add('is-open');
+        }
+      });
+
+      group.addEventListener('focusout', function (e) {
+        if (!group.contains(e.relatedTarget)) {
+          parent.setAttribute('aria-expanded', 'false');
+          menu.classList.remove('is-open');
+        }
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      groups.forEach(function (group) {
+        var parent = group.querySelector('.nav__link--parent');
+        var menu = group.querySelector('.nav__menu');
+        if (parent) parent.setAttribute('aria-expanded', 'false');
+        if (menu) menu.classList.remove('is-open');
+      });
+    });
+  }
+
   /* --- Mark the current page in the nav ------------------------------------ */
   function initCurrent() {
     // Paths are relative, so compare the final path segment. An empty
@@ -151,9 +193,15 @@
 
     var here = leaf(window.location.pathname);
 
-    document.querySelectorAll('.nav__link').forEach(function (link) {
+    document.querySelectorAll('.nav__link, .nav__sub').forEach(function (link) {
       if (leaf(link.getAttribute('href') || '') === here) {
         link.setAttribute('aria-current', 'page');
+        // A child page also lights up its parent in the nav.
+        var group = link.closest('.nav__group');
+        if (group && link.classList.contains('nav__sub')) {
+          var parent = group.querySelector('.nav__link--parent');
+          if (parent) parent.classList.add('is-active');
+        }
       }
     });
   }
@@ -162,6 +210,7 @@
     initNav();
     initHeader();
     initFaq();
+    initSubmenus();
     initReveal();
     initContactForm();
     initCurrent();

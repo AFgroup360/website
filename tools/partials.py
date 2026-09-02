@@ -1,12 +1,18 @@
 # Shared chrome for the static pages. Run tools/build.py to regenerate.
 
 NAV = [
-    ("index.html", "Home"),
-    ("services.html", "Services"),
-    ("who-we-serve.html", "Who We Serve"),
-    ("for-lenders.html", "For Lenders"),
-    ("about.html", "About"),
-    ("contact.html", "Contact"),
+    {"file": "index.html", "label": "Home"},
+    {"file": "services.html", "label": "Services"},
+    {
+        "file": "who-we-serve.html",
+        "label": "Who We Serve",
+        "children": [
+            {"file": "for-owners.html", "label": "For Owners"},
+            {"file": "for-capital-providers.html", "label": "For Capital Providers"},
+        ],
+    },
+    {"file": "about.html", "label": "About"},
+    {"file": "contact.html", "label": "Contact"},
 ]
 
 HEAD = '''<!DOCTYPE html>
@@ -41,9 +47,28 @@ HEAD = '''<!DOCTYPE html>
 '''
 
 def header():
-    links = "\n".join(
-        '        <a class="nav__link" href="{}">{}</a>'.format(h, l) for h, l in NAV
-    )
+    items = []
+    for item in NAV:
+        if not item.get("children"):
+            items.append(
+                '        <a class="nav__link" href="{file}">{label}</a>'.format(**item)
+            )
+            continue
+
+        subs = "\n".join(
+            '            <a class="nav__sub" href="{file}">{label}</a>'.format(**c)
+            for c in item["children"]
+        )
+        items.append(
+            '        <div class="nav__group">\n'
+            '          <a class="nav__link nav__link--parent" href="{file}"'
+            ' aria-expanded="false" aria-controls="menu-{id}">{label}'
+            '<span class="nav__caret" aria-hidden="true"></span></a>\n'
+            '          <div class="nav__menu" id="menu-{id}">\n{subs}\n          </div>\n'
+            '        </div>'.format(id=item["file"].replace(".html", ""), subs=subs, **item)
+        )
+
+    links = "\n".join(items)
     return '''<header class="site-header">
   <div class="container site-header__inner">
     <a class="brand" href="index.html">Ameri<em>Financial</em></a>
@@ -64,6 +89,7 @@ def header():
 </header>
 <main id="main">
 '''.format(links=links)
+
 
 CTA = '''<section class="cta">
   <div class="container">
@@ -97,8 +123,8 @@ FOOTER = '''</main>
         <ul>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="who-we-serve.html">Who We Serve</a></li>
-          <li><a href="for-lenders.html">For Lenders</a></li>
+          <li><a href="for-owners.html">For Owners</a></li>
+          <li><a href="for-capital-providers.html">For Capital Providers</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>

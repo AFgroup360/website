@@ -8,6 +8,9 @@ ErrorDocument 404 /404.html
   RewriteEngine On
   RewriteBase /
 
+  # The lenders page was renamed.
+  RewriteRule ^for-lenders(\.html)?/?$ /for-capital-providers.html [R=301,L]
+
   # Also serve /page from page.html, so clean URLs keep working for anyone
   # who types one or follows an old link. Internal links use .html directly.
   RewriteCond %{REQUEST_FILENAME} !-d
