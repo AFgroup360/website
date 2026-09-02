@@ -163,6 +163,15 @@
 /* --- Nav submenu ---------------------------------------------------------- */
 .nav__group { position: relative; }
 
+button.nav__link--parent {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
 .nav__caret {
   display: inline-block;
   width: 6px; height: 6px;
@@ -215,10 +224,20 @@
 }
 
 @media (max-width: 900px) {
-  /* Stacked and always open on mobile: a hover menu has nothing to hover. */
   .nav__group { display: contents; }
+  button.nav__link--parent {
+    width: 100%;
+    justify-content: space-between;
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    color: var(--text);
+  }
   .nav__menu {
     position: static;
+    display: none;
     opacity: 1;
     visibility: visible;
     transform: none;
@@ -228,7 +247,10 @@
     box-shadow: none;
     background: transparent;
   }
-  .nav__caret { display: none; }
+  .nav__menu.is-open { display: block; }
+  .nav__caret { margin-left: 0; width: 8px; height: 8px; }
+  .nav-toggle[aria-expanded] ~ * .nav__caret { transition: transform var(--duration) var(--ease); }
+  button.nav__link--parent[aria-expanded="true"] .nav__caret { transform: translateY(1px) rotate(225deg); }
   .nav__sub {
     padding: var(--space-4) 0 var(--space-4) var(--space-5);
     border-bottom: 1px solid var(--border-soft);

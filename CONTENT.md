@@ -323,6 +323,19 @@ front of the lender and quantified.
   portal.
 - **Independence block.** Removed at review. Read as defensive.
 
+## Who We Serve (removed)
+
+Retired at review. It was a fork page whose only job was to send the reader to
+one of two audience pages, which is exactly what the nav submenu already does.
+Keeping it added a click and repeated both pages in miniature.
+
+"Who We Serve" is now a dropdown label rather than a link. The old URL 301s to
+For Owners.
+
+The one idea worth keeping from it was "two sides of the same table": owners and
+capital providers asking the same question from opposite chairs. Unused for now.
+It would sit well on the home page if that framing is wanted.
+
 ## For Owners (new page, not from the previous site)
 
 Built from the North Pole engagement material. The page is deliberately

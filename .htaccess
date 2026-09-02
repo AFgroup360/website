@@ -8,7 +8,8 @@ ErrorDocument 404 /404.html
   RewriteEngine On
   RewriteBase /
 
-  # The lenders page was renamed.
+  # Retired pages.
+  RewriteRule ^who-we-serve(\.html)?/?$ /for-owners.html [R=301,L]
   RewriteRule ^for-lenders(\.html)?/?$ /for-capital-providers.html [R=301,L]
 
   # Also serve /page from page.html, so clean URLs keep working for anyone

@@ -4,7 +4,7 @@ NAV = [
     {"file": "index.html", "label": "Home"},
     {"file": "services.html", "label": "Services"},
     {
-        "file": "who-we-serve.html",
+        "id": "who-we-serve",
         "label": "Who We Serve",
         "children": [
             {"file": "for-owners.html", "label": "For Owners"},
@@ -61,11 +61,11 @@ def header():
         )
         items.append(
             '        <div class="nav__group">\n'
-            '          <a class="nav__link nav__link--parent" href="{file}"'
+            '          <button class="nav__link nav__link--parent" type="button"'
             ' aria-expanded="false" aria-controls="menu-{id}">{label}'
-            '<span class="nav__caret" aria-hidden="true"></span></a>\n'
+            '<span class="nav__caret" aria-hidden="true"></span></button>\n'
             '          <div class="nav__menu" id="menu-{id}">\n{subs}\n          </div>\n'
-            '        </div>'.format(id=item["file"].replace(".html", ""), subs=subs, **item)
+            '        </div>'.format(subs=subs, **item)
         )
 
     links = "\n".join(items)

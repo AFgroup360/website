@@ -21,7 +21,6 @@ OUT = ROOT / "preview" / "preview.html"
 PAGES = [
     ("index.html", "Home"),
     ("services.html", "Services"),
-    ("who-we-serve.html", "Who We Serve"),
     ("for-owners.html", "For Owners"),
     ("for-capital-providers.html", "Capital Providers"),
     ("about.html", "About"),

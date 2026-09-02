@@ -40,16 +40,6 @@ PAGES = {
         ),
         "cta": True,
     },
-    "who-we-serve": {
-        "out": "who-we-serve.html",
-        "canonical": "/who-we-serve",
-        "title": f"Who We Serve — {BRAND}",
-        "description": (
-            "Owners and capital providers ask the same question from opposite chairs. "
-            "Can the business carry the money. The same numbers answer both."
-        ),
-        "cta": True,
-    },
     "for-owners": {
         "out": "for-owners.html",
         "canonical": "/for-owners",
