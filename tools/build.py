@@ -52,9 +52,9 @@ PAGES = {
         "cta": {
             "eyebrow": "Where it starts",
             "heading": "One call. We tell you what we would look at first.",
-            "body": ("A short conversation about the business, the numbers you have, and "
-                     "what is actually pressing. If we're not the right partner, we'll "
-                     "tell you on that call."),
+            "body": ("Twenty minutes on the business, whatever numbers you've got, and "
+                     "what's actually keeping you up. If we're not the right fit, we'll "
+                     "say so on that call."),
             "action": "Book an introductory call",
         },
     },
