@@ -778,7 +778,7 @@
 .cta {
   background: var(--surface-deep);
   color: var(--white);
-  padding-block: clamp(4rem, 2.5rem + 6vw, 7rem);
+  padding-block: clamp(3rem, 2rem + 4vw, 5rem);
 }
 .cta__inner { max-width: 100%; }
 .cta h2 { color: var(--white); max-width: 16ch; }
@@ -799,8 +799,8 @@
 .site-footer__grid {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--space-7) var(--space-6);
-  padding-bottom: var(--space-8);
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
 }
 .site-footer h4 {
   color: var(--text-strong);
@@ -828,7 +828,7 @@
    Interior page header
    -------------------------------------------------------------------------- */
 .page-head {
-  padding-block: clamp(2.5rem, 1.75rem + 3.5vw, 4.5rem) clamp(1.75rem, 1.25rem + 1.5vw, 2.75rem);
+  padding-block: clamp(2.25rem, 1.5rem + 3vw, 4rem) clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
   border-bottom: 1px solid var(--border-soft);
 }
 .page-head h1 { max-width: 18ch; }
@@ -862,11 +862,11 @@
 .gap-figure {
   border: 1px solid var(--border);
   background: var(--white);
-  padding: var(--space-6) var(--space-5) var(--space-5);
+  padding: var(--space-5);
 }
 .gap-figure svg { width: 100%; height: auto; display: block; }
 .gap-figure figcaption {
-  margin-top: var(--space-5);
+  margin-top: var(--space-4);
   padding-top: var(--space-4);
   border-top: 1px solid var(--border-soft);
   font-size: var(--text-sm);
@@ -1102,3 +1102,39 @@
   margin-bottom: var(--space-3);
 }
 .cadence dd { margin: 0; font-size: var(--text-sm); color: var(--text-muted); line-height: var(--leading-loose); }
+
+
+/* --------------------------------------------------------------------------
+   Outcome arc: a compact progression instead of four card paragraphs
+   -------------------------------------------------------------------------- */
+.arc {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--space-4);
+}
+.arc li {
+  flex: 1 1 170px;
+  padding-top: var(--space-4);
+  border-top: 2px solid rgb(255 255 255 / 0.22);
+  font-size: var(--text-base);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  color: var(--white);
+}
+.arc li:last-child { border-top-color: var(--accent); color: var(--amber-400); }
+.arc li span {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--navy-200);
+  margin-bottom: var(--space-2);
+}
+
+/* Tighter cells where a section is dense with short items */
+.cell--tight { padding: var(--space-4) var(--space-5) var(--space-5); }
