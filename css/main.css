@@ -980,3 +980,28 @@
 }
 .engagement dd { margin: 0; font-size: var(--text-sm); color: var(--text-muted); line-height: var(--leading-loose); }
 .engagement dd strong { color: var(--text-strong); font-weight: 600; }
+
+
+/* --------------------------------------------------------------------------
+   The decisions an owner actually arrives with
+   -------------------------------------------------------------------------- */
+.decisions {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5) var(--space-6);
+}
+.decisions li {
+  position: relative;
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--accent);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+  flex: 1 1 210px;
+  max-width: 300px;
+}
+@media (max-width: 560px) { .decisions li { flex-basis: 100%; max-width: none; } }
