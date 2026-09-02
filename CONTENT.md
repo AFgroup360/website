@@ -342,6 +342,20 @@ Four blocks, mostly visual rather than prose:
 4. **How it runs.** Four steps: find the drivers, close the leaks, make it
    bankable, keep it visible.
 
+### Decisions taken at review
+
+- The three phases were specific to one engagement. They are now three areas of
+  work with no timeline attached, since the sequence is not the same for every
+  business.
+- The anonymised case study was removed. With no name and no real figures it was
+  not carrying its space, and the real ones cannot be published.
+- Proof now rests on credentials rather than on a case: the restructuring work,
+  Woodcross, CFA training, and Adel's enterprise operations background. None of
+  that needs a client's permission.
+- No pricing on this page, per Farid and Adel.
+- The closing ask is page specific. Owners get an introductory call rather than
+  a Financing Readiness Review, which this page never explains.
+
 ### Confidentiality note
 
 The source material (`AmeriFinancial_NPH_Advisory_Review.docx`) is marked

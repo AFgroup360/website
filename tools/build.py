@@ -59,7 +59,14 @@ PAGES = {
             "forward view of cash, and a clear answer on what the business can carry "
             "before taking on financing."
         ),
-        "cta": True,
+        "cta": {
+            "eyebrow": "Where it starts",
+            "heading": "One call. We tell you what we would look at first.",
+            "body": ("A short conversation about the business, the numbers you have, and "
+                     "what is actually pressing. If we're not the right partner, we'll "
+                     "tell you on that call."),
+            "action": "Book an introductory call",
+        },
     },
     "for-capital-providers": {
         "out": "for-capital-providers.html",
@@ -138,7 +145,8 @@ def build():
 
         html = head + header + body
         if meta.get("cta"):
-            html += partials.CTA
+            over = meta["cta"] if isinstance(meta["cta"], dict) else None
+            html += partials.cta(over)
         html += footer
 
         (ROOT / meta["out"]).write_text(html)

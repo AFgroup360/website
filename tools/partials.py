@@ -91,22 +91,35 @@ def header():
 '''.format(links=links)
 
 
-CTA = '''<section class="cta">
+CTA_DEFAULT = {
+    "eyebrow": "Not sure if it's the right fit?",
+    "heading": "A short conversation is the easiest way to find out.",
+    "body": ("If we're not the right partner, we'll tell you. Inquiries are read "
+             "personally and treated in confidence."),
+    "action": "Request a Financing Readiness Review",
+}
+
+
+def cta(over=None):
+    c = dict(CTA_DEFAULT)
+    if over:
+        c.update(over)
+    return '''<section class="cta">
   <div class="container">
     <div class="cta__inner">
-      <p class="eyebrow">Not sure if it's the right fit?</p>
-      <h2>A short conversation is the easiest way to find out.</h2>
-      <p>If we're not the right partner, we'll tell you. Inquiries are read personally
-         and treated in confidence.</p>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2>{heading}</h2>
+      <p>{body}</p>
       <div class="cta__actions">
-        <a class="btn btn--accent" href="contact.html">Request a Financing Readiness Review
+        <a class="btn btn--accent" href="contact.html">{action}
           <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
         <a class="btn btn--on-dark" href="tel:+14168790969">+1 (416) 879-0969</a>
       </div>
     </div>
   </div>
 </section>
-'''
+'''.format(**c)
+
 
 FOOTER = '''</main>
 <footer class="site-footer">
