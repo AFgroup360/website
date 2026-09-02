@@ -399,6 +399,35 @@ To run it as a named case study, get the client's written sign-off first. With
 that in hand the real name, sector and numbers can be swapped in, and it becomes
 a considerably stronger page.
 
+## About (rewritten)
+
+Carries the firm's track record as three anonymised engagements, presented as
+the company's record rather than as personal profiles.
+
+**H1:** What we've actually done.
+
+1. **A food producer, Tunisia.** "It was in trouble. We steadied it." Cash out of
+   control, lenders wanting answers, no reliable number in the building. Farid
+   held the chief restructuring officer seat. Claims stop at: it held, cash under
+   control, lenders knew where things stood, reporting landed.
+2. **A family business, Uganda.** "Suppliers got paid when customers paid."
+   Finance department built from nothing, then supplier terms renegotiated so
+   payment out lined up with payment in. Closed the cash conversion gap and
+   brought the interest bill down. No figures.
+3. **Owner-led businesses, Toronto.** The current practice, using the two
+   patterns already anonymised on For Owners.
+
+No client names, no numbers, no headcounts. Countries only, which Farid already
+uses on his own deck. "Cash conversion gap" is explained in the sentence before
+it is named.
+
+### Still open
+
+- The Uganda engagement was run with Farid's brother. That detail is left off,
+  since the site carries no personal profiles for now.
+- The Services intro still says "transparent monthly packages", wording written
+  when fees were shown. Worth revisiting.
+
 ## Type on the current site
 
 Fraunces (serif, headings) + Geist (sans, body), via Google Fonts.
