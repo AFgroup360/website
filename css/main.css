@@ -1461,3 +1461,66 @@ button.nav__link--parent {
 /* Section openers that are just a heading need no eyebrow scaffolding. */
 .section-head--plain { max-width: 26ch; }
 .section-head--plain h2 { font-size: var(--text-3xl); }
+
+
+/* ==========================================================================
+   Showcase band. Photograph running to the page edge, copy beside it.
+   Replaces the comparison tables, which were reading as spreadsheets.
+   ========================================================================== */
+.showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  background: var(--surface-raised);
+}
+@media (max-width: 880px) { .showcase { grid-template-columns: 1fr; } }
+
+.showcase__media { position: relative; min-height: 420px; }
+.showcase__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 880px) {
+  .showcase__media { min-height: 300px; }
+}
+
+.showcase__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.5rem, 1.5rem + 4vw, 5rem) clamp(1.5rem, 1rem + 3vw, 4rem);
+}
+.showcase__body > div { max-width: 46ch; }
+
+/* Image on the right instead. */
+.showcase--flip .showcase__media { order: 2; }
+
+/* Copy on navy, so the band reads as a single dark object with the photo. */
+.showcase--dark { background: var(--navy-700); }
+.showcase--dark h2, .showcase--dark .showcase__item strong { color: var(--white); }
+.showcase--dark .eyebrow { color: var(--amber-400); border-bottom-color: var(--amber-400); }
+.showcase--dark .showcase__item { border-top-color: rgb(255 255 255 / 0.16); }
+.showcase--dark .showcase__item span { color: var(--navy-200); }
+
+/* A short list that is not a table: rule, label, one line. */
+.showcase__list { list-style: none; padding: 0; margin-top: var(--space-6); }
+.showcase__item {
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+.showcase__item strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+  margin-bottom: var(--space-1);
+}
+.showcase__item span {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
