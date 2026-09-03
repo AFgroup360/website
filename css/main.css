@@ -1391,3 +1391,73 @@ button.nav__link--parent {
   border-radius: 50%;
   background: var(--accent);
 }
+
+
+/* ==========================================================================
+   Layout variation. The page was seven identical stacks: eyebrow, heading,
+   lede, box. These give sections different shapes so the eye keeps moving.
+   ========================================================================== */
+
+/* Heading sits in a left rail, content runs beside it. */
+.section--rail > .container {
+  display: grid;
+  grid-template-columns: minmax(0, 250px) minmax(0, 1fr);
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .section--rail > .container { grid-template-columns: 1fr; gap: var(--space-5); }
+}
+.section--rail .section-head { margin-bottom: 0; max-width: none; }
+.rail__body { min-width: 0; }
+.rail__body > * + * { margin-top: var(--space-5); }
+.section--rail .section-head h2 { font-size: var(--text-2xl); }
+.section--rail .section-head .lede { font-size: var(--text-base); margin-top: var(--space-3); }
+
+/* A quiet typographic moment. No box, no rules, just air and scale. */
+.statement {
+  padding-block: clamp(3.5rem, 2rem + 5vw, 6.5rem);
+}
+.statement p {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.statement p em { font-style: italic; color: var(--amber-700); }
+.statement footer {
+  margin-top: var(--space-6);
+  max-width: 46ch;
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  line-height: var(--leading-loose);
+}
+
+/* Escape the container for one element. */
+.bleed {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
+/* Panels sitting inside panels flattened the hierarchy. These sit on the
+   page itself, held by rules alone. */
+.matrix-wrap--bare {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--text-strong);
+}
+.matrix-wrap--bare .matrix thead th { background: transparent; }
+.gap-figure--bare {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+.gap-figure--bare figcaption { border-top: 1px solid var(--border); }
+
+/* Section openers that are just a heading need no eyebrow scaffolding. */
+.section-head--plain { max-width: 26ch; }
+.section-head--plain h2 { font-size: var(--text-3xl); }
