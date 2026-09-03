@@ -20,12 +20,11 @@ PAGES = {
     "index": {
         "out": "index.html",
         "canonical": "/",
-        "title": f"{BRAND} — Finance control for owner-led businesses",
+        "title": f"{BRAND} — Numbers you can act on",
         "description": (
-            "AmeriFinancial gives owner-led businesses a clear forward view of their "
-            "finances — cash visibility, monthly reporting, collections and payments "
-            "discipline, and financing readiness. The finance-control layer between "
-            "your bookkeeper and accountant."
+            "AmeriFinancial builds the real financial position from source records and "
+            "keeps it current, for owner-led businesses and for the lenders and "
+            "investors funding them. Toronto / GTA."
         ),
         "cta": True,
     },
