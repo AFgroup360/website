@@ -81,6 +81,19 @@
     transition: background .15s, color .15s;
   }
   .tab:hover { color: var(--p-ink); background: color-mix(in srgb, var(--p-ink) 7%, transparent); }
+  .tab[data-file^="old-"] {
+    color: var(--p-muted);
+    opacity: .85;
+  }
+  .tab[data-file^="old-"]::before {
+    content: "";
+    display: inline-block;
+    width: 5px; height: 5px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: var(--p-muted);
+    vertical-align: middle;
+  }
   .tab[aria-selected="true"] {
     background: color-mix(in srgb, var(--p-accent) 18%, transparent);
     color: var(--p-ink);

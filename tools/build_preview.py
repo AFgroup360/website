@@ -30,6 +30,33 @@ PAGES = [
     ("404.html", "404"),
 ]
 
+# Captures of the previous live site, so the two can be compared in one place.
+OLD = [
+    ("old-home.html", "OLD Home", "OLD-home.png"),
+    ("old-services.html", "OLD Services", "OLD-services.png"),
+    ("old-who.html", "OLD Who We Serve", "OLD-who.png"),
+    ("old-about.html", "OLD About", "OLD-about.png"),
+]
+SHOTS = pathlib.Path("/tmp/claude-0/-home-user-website/695de150-7e25-5986-84fb-0afdad09310c/scratchpad/shots")
+
+
+def old_page(label: str, shot: str) -> str:
+    """A capture of the previous site, shown at its own width."""
+    img = SHOTS / shot
+    if not img.exists():
+        return None
+    return (
+        "<!DOCTYPE html><html><head><meta charset='utf-8'>"
+        "<style>html,body{margin:0;background:#f2ede3}"
+        "img{display:block;width:100%;height:auto}"
+        ".tag{position:sticky;top:0;z-index:2;background:#1a2947;color:#fff;"
+        "font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;"
+        "text-transform:uppercase;padding:10px 16px}</style></head><body>"
+        f"<div class='tag'>Previous live site &middot; {label}</div>"
+        f"<img src='{data_uri(img)}' alt='{label} on the previous site'>"
+        "</body></html>"
+    )
+
 
 def js_literal(value) -> str:
     """JSON for embedding inside a <script> tag.
@@ -71,10 +98,17 @@ def build() -> None:
 
     pages = {name: inline_page(name) for name, _ in PAGES}
 
+    nav = [{"file": f, "label": l} for f, l in PAGES]
+    for file, label, shot in OLD:
+        html = old_page(label.replace("OLD ", ""), shot)
+        if html:
+            pages[file] = html
+            nav.append({"file": file, "label": label})
+
     shell = (ROOT / "tools" / "preview_shell.html").read_text()
     shell = shell.replace("/*__ASSETS__*/", js_literal(assets))
     shell = shell.replace("/*__PAGES__*/", js_literal(pages))
-    shell = shell.replace("/*__NAV__*/", js_literal([{"file": f, "label": l} for f, l in PAGES]))
+    shell = shell.replace("/*__NAV__*/", js_literal(nav))
 
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(shell)
