@@ -1196,30 +1196,11 @@ button.nav__link--parent {
   max-width: 16ch;
 }
 
-.record__cols {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-5);
-}
-@media (max-width: 640px) { .record__cols { grid-template-columns: 1fr; } }
-
-.record__cols dt {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--text-muted);
-  padding-bottom: var(--space-3);
-  margin-bottom: var(--space-3);
-  border-bottom: 1px solid var(--border-soft);
-}
-.record__cols dd {
-  margin: 0;
-  font-size: var(--text-sm);
+.record > p {
+  max-width: 62ch;
   color: var(--text);
   line-height: var(--leading-loose);
 }
-.record__cols div:last-child dd { color: var(--text-strong); font-weight: 500; }
 
 .record__closing {
   margin-top: var(--space-6);
@@ -1520,9 +1501,15 @@ button.nav__link--parent {
   margin-bottom: var(--space-1);
 }
 .showcase__item span {
+  display: block;
   font-size: var(--text-sm);
   color: var(--text-muted);
   line-height: var(--leading-normal);
+}
+/* Keep the follow-on link on its own line whatever the copy length. */
+.showcase__item .link-inline {
+  display: inline-block;
+  margin-top: var(--space-3);
 }
 
 
@@ -1562,3 +1549,23 @@ button.nav__link--parent {
     linear-gradient(180deg, rgb(16 26 46 / 0.30) 0%, rgb(16 26 46 / 0.62) 100%);
 }
 .hero--art .hero__inner { z-index: 2; }
+
+
+/* Inline link inside a showcase line. */
+.link-inline {
+  display: inline-block;
+  margin-top: var(--space-2);
+  color: var(--amber-400);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.link-inline:hover { color: var(--white); }
+
+
+/* Service areas as a disclosure list. Titles visible, detail on demand. */
+.faq--areas .faq__q {
+  font-size: var(--text-xl);
+  padding-block: var(--space-5);
+}
+.faq--areas .faq__a p { max-width: 62ch; }
