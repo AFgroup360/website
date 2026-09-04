@@ -1418,14 +1418,18 @@ button.nav__link--parent {
   line-height: var(--leading-loose);
 }
 
-/* The four areas as tiles. Click one, its detail opens underneath the row. */
+/* The four areas as tiles. Click one, its detail opens underneath the row.
+   Kept deliberately small so the tiles and the detail share one screen. */
 .areas__tiles {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.75rem, 0.25rem + 1.6vw, 1.75rem);
+  gap: clamp(0.5rem, 0.25rem + 0.8vw, 1rem);
   align-items: start;
+  max-width: 660px;
 }
-@media (max-width: 760px) { .areas__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .areas__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 340px; }
+}
 
 .area {
   padding: 0;
@@ -1433,31 +1437,32 @@ button.nav__link--parent {
   background: none;
   cursor: pointer;
   line-height: 0;
-  border-radius: var(--radius-md);
-  transition: transform .18s ease, opacity .18s ease;
+  opacity: 0.38;
+  transition: opacity .18s ease, transform .18s ease;
 }
 .area img { width: 100%; height: auto; }
-/* Unselected tiles step back once something is open, so the choice reads. */
-.area { opacity: 0.62; }
-.areas[data-open] .area[aria-selected="true"] { opacity: 1; transform: translateY(-4px); }
-.areas:not([data-open]) .area { opacity: 0.92; }
-.area:hover, .area:focus-visible { opacity: 1; transform: translateY(-4px); }
-.area:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.area:hover, .area:focus-visible { opacity: 0.75; }
+.areas:not([data-open]) .area { opacity: 0.85; }
+.areas:not([data-open]) .area:hover { opacity: 1; }
+.areas[data-open] .area[aria-selected="true"] { opacity: 1; transform: translateY(-3px); }
+.area:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 
 .areas__hint {
-  margin-top: var(--space-5);
+  margin-top: var(--space-4);
   font-size: var(--text-sm);
   color: var(--text-muted);
 }
 .areas[data-open] .areas__hint { display: none; }
 
+/* A fixed slot for the detail so opening one does not shove the page around. */
+.areas__detail { min-height: 7.5rem; }
 .area-panel {
-  margin-top: var(--space-5);
-  padding-top: var(--space-5);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
   border-top: 1px solid var(--border);
 }
 .area-panel p {
-  max-width: 62ch;
+  max-width: 60ch;
   font-size: var(--text-lg);
   line-height: var(--leading-loose);
   color: var(--text-strong);
@@ -1465,7 +1470,7 @@ button.nav__link--parent {
 
 @media (prefers-reduced-motion: reduce) {
   .area { transition: none; }
-  .area:hover, .area:focus-visible, .areas[data-open] .area[aria-selected="true"] { transform: none; }
+  .areas[data-open] .area[aria-selected="true"] { transform: none; }
 }
 
 /* Escape the container for one element. */
