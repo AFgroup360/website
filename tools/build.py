@@ -24,7 +24,7 @@ PAGES = {
         "description": (
             "AmeriFinancial builds the real financial position from source records and "
             "keeps it current, for owner-led businesses and for the lenders and "
-            "investors funding them. Toronto / GTA."
+            "investors funding them."
         ),
         "cta": True,
     },
@@ -85,7 +85,7 @@ PAGES = {
         "title": f"Contact — {BRAND}",
         "description": (
             "Start with an introductory conversation. Inquiries are read personally and "
-            "treated in confidence. Toronto / GTA, Canada."
+            "treated in confidence."
         ),
         "cta": False,
     },

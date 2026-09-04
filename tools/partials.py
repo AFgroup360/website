@@ -129,7 +129,7 @@ FOOTER = '''</main>
         <a class="brand" href="index.html">Ameri<em>Financial</em></a>
         <p class="site-footer__blurb">AmeriFinancial works with owner-led businesses on
           cash-flow visibility, management reporting, financial control and financing
-          readiness. Toronto / GTA, Canada.</p>
+          readiness. Canada.</p>
       </div>
       <div>
         <h4>Company</h4>
@@ -160,7 +160,7 @@ FOOTER = '''</main>
       </div>
     </div>
     <div class="site-footer__base">
-      <span>&copy; {year} AmeriFinancial. Toronto / GTA &middot; Canada.</span>
+      <span>&copy; {year} AmeriFinancial &middot; Canada.</span>
       <span><a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Service</a></span>
     </div>
   </div>
