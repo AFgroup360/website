@@ -1418,6 +1418,56 @@ button.nav__link--parent {
   line-height: var(--leading-loose);
 }
 
+/* The four areas as tiles. Click one, its detail opens underneath the row. */
+.areas__tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.75rem, 0.25rem + 1.6vw, 1.75rem);
+  align-items: start;
+}
+@media (max-width: 760px) { .areas__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.area {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+  border-radius: var(--radius-md);
+  transition: transform .18s ease, opacity .18s ease;
+}
+.area img { width: 100%; height: auto; }
+/* Unselected tiles step back once something is open, so the choice reads. */
+.area { opacity: 0.62; }
+.areas[data-open] .area[aria-selected="true"] { opacity: 1; transform: translateY(-4px); }
+.areas:not([data-open]) .area { opacity: 0.92; }
+.area:hover, .area:focus-visible { opacity: 1; transform: translateY(-4px); }
+.area:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+
+.areas__hint {
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+.areas[data-open] .areas__hint { display: none; }
+
+.area-panel {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+.area-panel p {
+  max-width: 62ch;
+  font-size: var(--text-lg);
+  line-height: var(--leading-loose);
+  color: var(--text-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .area { transition: none; }
+  .area:hover, .area:focus-visible, .areas[data-open] .area[aria-selected="true"] { transform: none; }
+}
+
 /* Escape the container for one element. */
 .bleed {
   width: 100vw;

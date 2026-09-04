@@ -208,10 +208,42 @@
     });
   }
 
+  /* Service areas: tiles act as tabs, the open one shows its detail below the row.
+     Clicking the open tile closes it again. */
+  function initAreas() {
+    var group = document.querySelector('.areas');
+    if (!group) return;
+    var tabs = Array.prototype.slice.call(group.querySelectorAll('.area'));
+    if (!tabs.length) return;
+
+    function show(tab) {
+      var isOpen = tab && tab.getAttribute('aria-selected') === 'true';
+      tabs.forEach(function (t) {
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        var on = t === tab && !isOpen;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        if (panel) panel.hidden = !on;
+      });
+      if (tab && !isOpen) group.setAttribute('data-open', '');
+      else group.removeAttribute('data-open');
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { show(tab); });
+      tab.addEventListener('keydown', function (e) {
+        var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        tabs[(i + step + tabs.length) % tabs.length].focus();
+      });
+    });
+  }
+
   function init() {
     initNav();
     initHeader();
     initFaq();
+    initAreas();
     initSubmenus();
     initReveal();
     initContactForm();
