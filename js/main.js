@@ -1,14 +1,13 @@
-/* AmeriFinancial — site behaviour. No dependencies. */
+/* AmeriFinancial site behaviour. No dependencies. */
 (function () {
   'use strict';
 
-  /* --- Endpoint the contact form posts to. -------------------------------
-     Currently matches the previous site. If the site is served from static
-     hosting with no backend, swap this for a form service endpoint
-     (Formspree, Web3Forms) — nothing else needs to change.            */
-  var CONTACT_ENDPOINT = '/api/contact';
+  /* TODO Farid. Set this to a form service endpoint before going live.
+     Formspree looks like https://formspree.io/f/xxxxxxxx and Web3Forms like
+     https://api.web3forms.com/submit (with an access_key field added to the
+     form). Until it is set, the form explains where to send the message. */
+  var CONTACT_ENDPOINT = '';
 
-  /* --- Mobile navigation -------------------------------------------------- */
   function initNav() {
     var toggle = document.querySelector('.nav-toggle');
     var nav = document.getElementById('primary-nav');
@@ -19,86 +18,34 @@
       nav.classList.toggle('is-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     }
-
     toggle.addEventListener('click', function () {
       setOpen(toggle.getAttribute('aria-expanded') !== 'true');
     });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
 
-    nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) setOpen(false);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') setOpen(false);
-    });
-
-    // Reset when the layout returns to desktop.
     var mq = window.matchMedia('(min-width: 901px)');
     var onChange = function (e) { if (e.matches) setOpen(false); };
     if (mq.addEventListener) mq.addEventListener('change', onChange);
     else if (mq.addListener) mq.addListener(onChange);
   }
 
-  /* --- Header shadow on scroll -------------------------------------------- */
-  function initHeader() {
-    var header = document.querySelector('.site-header');
-    if (!header) return;
-    var ticking = false;
-
-    function update() {
-      header.classList.toggle('is-stuck', window.scrollY > 8);
-      ticking = false;
+  function initCurrent() {
+    function leaf(url) {
+      var last = url.split('#')[0].split('?')[0].split('/').pop().replace(/\.html$/, '');
+      return last === '' ? 'index' : last;
     }
-
-    window.addEventListener('scroll', function () {
-      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-
-    update();
-  }
-
-  /* --- FAQ accordion ------------------------------------------------------ */
-  function initFaq() {
-    document.querySelectorAll('.faq__q').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var item = btn.closest('.faq__item');
-        var open = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!open));
-        item.classList.toggle('is-open', !open);
-      });
+    var here = leaf(window.location.pathname);
+    // Story pages sit under Our work.
+    if (here.indexOf('our-work-') === 0) here = 'about';
+    document.querySelectorAll('.nav__link').forEach(function (link) {
+      if (leaf(link.getAttribute('href') || '') === here) link.setAttribute('aria-current', 'page');
     });
   }
 
-  /* --- Scroll reveal ------------------------------------------------------- */
-  function initReveal() {
-    var items = document.querySelectorAll('.reveal');
-    if (!items.length) return;
-
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced || !('IntersectionObserver' in window)) {
-      items.forEach(function (el) { el.classList.add('is-in'); });
-      return;
-    }
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-in');
-        io.unobserve(entry.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-
-    items.forEach(function (el, i) {
-      el.style.transitionDelay = Math.min(i % 4, 3) * 70 + 'ms';
-      io.observe(el);
-    });
-  }
-
-  /* --- Contact form -------------------------------------------------------- */
   function initContactForm() {
     var form = document.getElementById('contact-form');
     if (!form) return;
-
     var status = form.querySelector('.form-status');
     var submit = form.querySelector('[type="submit"]');
     var submitLabel = submit ? submit.textContent : '';
@@ -111,22 +58,25 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
       if (!form.reportValidity()) return;
 
-      var payload = Object.fromEntries(new FormData(form).entries());
+      if (!CONTACT_ENDPOINT) {
+        show('err', 'The form is not connected yet. Please email hello@ameri-group.ca or call +1 (416) 879-0969.');
+        return;
+      }
 
-      if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
+      var payload = Object.fromEntries(new FormData(form).entries());
+      if (submit) { submit.disabled = true; submit.textContent = 'Sending'; }
 
       fetch(CONTACT_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       })
         .then(function (res) {
           if (!res.ok) throw new Error('Request failed');
           form.reset();
-          show('ok', 'Thank you — Farid will follow up shortly. If urgent, call +1 (416) 879-0969.');
+          show('ok', 'Thank you. Farid will follow up shortly. If it is urgent, call +1 (416) 879-0969.');
         })
         .catch(function () {
           show('err', 'Something went wrong sending your message. Please email hello@ameri-group.ca or call +1 (416) 879-0969.');
@@ -137,191 +87,12 @@
     });
   }
 
-  /* --- Nav submenu ---------------------------------------------------------- */
-  function initSubmenus() {
-    var groups = document.querySelectorAll('.nav__group');
-    if (!groups.length) return;
-
-    function closeAll(except) {
-      groups.forEach(function (group) {
-        if (group === except) return;
-        var parent = group.querySelector('.nav__link--parent');
-        var menu = group.querySelector('.nav__menu');
-        if (parent) parent.setAttribute('aria-expanded', 'false');
-        if (menu) menu.classList.remove('is-open');
-      });
-    }
-
-    groups.forEach(function (group) {
-      var parent = group.querySelector('.nav__link--parent');
-      var menu = group.querySelector('.nav__menu');
-      if (!parent || !menu) return;
-
-      parent.addEventListener('click', function () {
-        var open = parent.getAttribute('aria-expanded') === 'true';
-        closeAll(group);
-        parent.setAttribute('aria-expanded', String(!open));
-        menu.classList.toggle('is-open', !open);
-      });
-
-      group.addEventListener('focusout', function (e) {
-        if (!group.contains(e.relatedTarget)) {
-          parent.setAttribute('aria-expanded', 'false');
-          menu.classList.remove('is-open');
-        }
-      });
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('.nav__group')) closeAll(null);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeAll(null);
-    });
-  }
-
-  /* --- Mark the current page in the nav ------------------------------------ */
-  function initCurrent() {
-    // Paths are relative, so compare the final path segment. An empty
-    // segment (a bare directory URL) means index.
-    function leaf(url) {
-      var last = url.split('#')[0].split('?')[0].split('/').pop();
-      // Apache also serves these pages without the extension, so compare
-      // on the bare name.
-      last = last.replace(/\.html$/, '');
-      return last === '' ? 'index' : last;
-    }
-
-    var here = leaf(window.location.pathname);
-
-    document.querySelectorAll('.nav__link, .nav__sub').forEach(function (link) {
-      if (leaf(link.getAttribute('href') || '') === here) {
-        link.setAttribute('aria-current', 'page');
-        // A child page also lights up its parent in the nav.
-        var group = link.closest('.nav__group');
-        if (group) {
-          var parent = group.querySelector('.nav__link--parent');
-          if (parent) parent.classList.add('is-active');
-        }
-      }
-    });
-  }
-
-  /* Service areas: tiles act as tabs, the open one shows its detail below the row.
-     Clicking the open tile closes it again. */
-  function initAreas() {
-    var group = document.querySelector('.areas');
-    if (!group) return;
-    var tabs = Array.prototype.slice.call(group.querySelectorAll('.area'));
-    if (!tabs.length) return;
-
-    function show(tab) {
-      tabs.forEach(function (t) {
-        var panel = document.getElementById(t.getAttribute('aria-controls'));
-        var on = t === tab;
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        if (panel) panel.hidden = !on;
-      });
-    }
-
-    /* The four cycle on their own. A click picks a tile and restarts the
-       countdown from there rather than stopping the cycle. */
-    var PERIOD = 3000;
-    var timer = null;
-    var hovering = false;
-    var focused = false;
-    var onScreen = false;
-    var reduce = window.matchMedia
-      && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function currentIndex() {
-      for (var i = 0; i < tabs.length; i++) {
-        if (tabs[i].getAttribute('aria-selected') === 'true') return i;
-      }
-      return 0;
-    }
-    function canPlay() {
-      return !reduce && onScreen && !hovering && !focused && !document.hidden;
-    }
-    function play() {
-      if (timer || !canPlay()) return;
-      timer = setInterval(function () {
-        show(tabs[(currentIndex() + 1) % tabs.length]);
-      }, PERIOD);
-    }
-    function pause() {
-      if (!timer) return;
-      clearInterval(timer);
-      timer = null;
-    }
-    /* Put a full period back on the clock. */
-    function restart() {
-      pause();
-      play();
-    }
-
-    /* Only pause on hover where there is a real pointer, so a tap on a
-       touch screen does not leave the cycle stopped. */
-    if (!window.matchMedia || window.matchMedia('(hover: hover)').matches) {
-      group.addEventListener('mouseenter', function () { hovering = true; pause(); });
-      group.addEventListener('mouseleave', function () { hovering = false; play(); });
-    }
-    /* Only a keyboard focus should hold the cycle. A mouse click also
-       focuses the button, and that must not stop it resuming. */
-    function keyboardFocus(el) {
-      try { return !!(el && el.matches && el.matches(':focus-visible')); }
-      catch (err) { return false; }
-    }
-    group.addEventListener('focusin', function (e) {
-      focused = keyboardFocus(e.target);
-      if (focused) pause();
-    });
-    group.addEventListener('focusout', function () { focused = false; play(); });
-
-    /* Do not cycle while the section is off screen. */
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        onScreen = entries[0].isIntersecting;
-        onScreen ? play() : pause();
-      }, { threshold: 0.25 }).observe(group);
-    } else {
-      onScreen = true;
-      play();
-    }
-    document.addEventListener('visibilitychange', function () {
-      document.hidden ? pause() : play();
-    });
-
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { show(tab); restart(); });
-      tab.addEventListener('keydown', function (e) {
-        var step = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1
-                 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
-        if (!step) return;
-        e.preventDefault();
-        var next = tabs[(i + step + tabs.length) % tabs.length];
-        show(next);
-        next.focus();
-        restart();
-      });
-    });
-  }
-
   function init() {
     initNav();
-    initHeader();
-    initFaq();
-    initAreas();
-    initSubmenus();
-    initReveal();
-    initContactForm();
     initCurrent();
+    initContactForm();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();

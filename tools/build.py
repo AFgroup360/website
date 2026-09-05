@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Assemble the static pages from tools/pages/*.html plus the shared chrome.
 
-Output is plain, standalone HTML in the repo root — the server needs nothing but
-these files. Re-run this only when the shared header/footer changes:
-
     python3 tools/build.py
+
+Output is standalone HTML in the repo root. Edit tools/pages and this file,
+never the built pages.
 """
 import datetime
 import pathlib
@@ -16,91 +16,80 @@ import partials  # noqa: E402
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BRAND = "AmeriFinancial"
 
+
+def t(page):
+    return f"{page} | {BRAND}"
+
+
 PAGES = {
     "index": {
-        "out": "index.html",
-        "canonical": "/",
-        "title": f"{BRAND} — Numbers you can act on",
-        "description": (
-            "AmeriFinancial builds the real financial position from source records and "
-            "keeps it current, for owner-led businesses and for the lenders and "
-            "investors funding them."
-        ),
-        "cta": False,
+        "out": "index.html", "canonical": "/",
+        "title": f"{BRAND} | Financial control and financing readiness",
+        "description": ("Monthly financial control and the Financing Readiness Review for "
+                        "owner led businesses, and for the lenders and investors who fund them."),
     },
     "services": {
-        "out": "services.html",
-        "canonical": "/services",
-        "title": f"Services — {BRAND}",
-        "description": (
-            "Four pillars of financial control delivered through transparent monthly "
-            "packages: cash flow control, monthly reporting, working-capital discipline "
-            "and financing readiness."
-        ),
-        "cta": False,
+        "out": "services.html", "canonical": "/services",
+        "title": t("What we do"),
+        "description": ("Four areas of financial control, the Financing Readiness Review, "
+                        "and how a month runs with AmeriFinancial."),
     },
     "for-owners": {
-        "out": "for-owners.html",
-        "canonical": "/for-owners",
-        "title": f"For Owners — {BRAND}",
-        "description": (
-            "For owner-led businesses that outgrew bookkeeping. Current numbers, a "
-            "forward view of cash, and a clear answer on what the business can carry "
-            "before taking on financing."
-        ),
+        "out": "for-owners.html", "canonical": "/for-owners",
+        "title": t("For owners"),
+        "description": ("For owner led businesses that outgrew bookkeeping. Current numbers, "
+                        "a forward view of cash, and a review a lender can act on."),
     },
     "for-capital-providers": {
-        "out": "for-capital-providers.html",
-        "canonical": "/for-capital-providers",
-        "title": f"For Capital Providers — {BRAND}",
-        "description": (
-            "Independent financial diagnostic before a lender or investor funds an "
-            "owner-led business, and monthly oversight for the life of the facility. "
-            "Bank statement led analysis, not bookkeeping led."
-        ),
-        "cta": False,
+        "out": "for-capital-providers.html", "canonical": "/for-capital-providers",
+        "title": t("For lenders and investors"),
+        "description": ("An independent Financing Readiness Review before you fund an owner "
+                        "led business, and monthly financial control for as long as the "
+                        "engagement runs."),
     },
     "about": {
-        "out": "about.html",
-        "canonical": "/about",
-        "title": f"About — {BRAND}",
-        "description": (
-            "Why AmeriFinancial exists and the approach behind the work: closing the "
-            "gap between bookkeeping and financial decision-making for owner-led "
-            "businesses."
-        ),
-        "cta": True,
+        "out": "about.html", "canonical": "/about",
+        "title": t("Our work"),
+        "description": ("What AmeriFinancial has done for owner led businesses and the "
+                        "people who fund them."),
+    },
+    "our-work-systems-supplier": {
+        "out": "our-work-systems-supplier.html", "canonical": "/our-work-systems-supplier",
+        "title": t("A systems supplier preparing for private financing"),
+        "description": ("Twenty four months of bank activity rebuilt and a verdict on page one "
+                        "for an owner led systems supplier."),
+    },
+    "our-work-food-producer": {
+        "out": "our-work-food-producer.html", "canonical": "/our-work-food-producer",
+        "title": t("A food producer under lender pressure"),
+        "description": ("Cash brought under control and monthly reporting landed for a food "
+                        "producer under lender pressure."),
+    },
+    "our-work-family-business": {
+        "out": "our-work-family-business.html", "canonical": "/our-work-family-business",
+        "title": t("A family business with no finance function"),
+        "description": ("A finance department built from nothing and supplier terms realigned "
+                        "so money out matched money in."),
     },
     "contact": {
-        "out": "contact.html",
-        "canonical": "/contact",
-        "title": f"Contact — {BRAND}",
-        "description": (
-            "Start with an introductory conversation. Inquiries are read personally and "
-            "treated in confidence."
-        ),
-        "cta": False,
+        "out": "contact.html", "canonical": "/contact",
+        "title": t("Contact"),
+        "description": "Book an introductory call with AmeriFinancial in Mississauga, Ontario.",
     },
     "privacy": {
-        "out": "privacy.html",
-        "canonical": "/privacy",
-        "title": f"Privacy Policy — {BRAND}",
+        "out": "privacy.html", "canonical": "/privacy",
+        "title": t("Privacy policy"),
         "description": "How AmeriFinancial collects, uses and protects client information.",
-        "cta": False,
     },
     "terms": {
-        "out": "terms.html",
-        "canonical": "/terms",
-        "title": f"Terms of Service — {BRAND}",
-        "description": "Terms governing use of the AmeriFinancial website and client portal.",
-        "cta": False,
+        "out": "terms.html", "canonical": "/terms",
+        "title": t("Terms of service"),
+        "description": "Terms governing use of the AmeriFinancial website.",
     },
     "404": {
-        "out": "404.html",
-        "canonical": "/404",
-        "title": f"Page not found — {BRAND}",
+        "out": "404.html", "canonical": "/404",
+        "title": t("Page not found"),
         "description": "The page you were looking for could not be found.",
-        "cta": False,
         "noindex": True,
     },
 }
@@ -109,32 +98,22 @@ PAGES = {
 def build():
     year = datetime.date.today().year
     header = partials.header()
-    footer = partials.FOOTER.format(year=year)
+    footer = partials.FOOTER.replace("{year}", str(year))
 
     for name, meta in PAGES.items():
         body = (ROOT / "tools" / "pages" / f"{name}.html").read_text()
+        body = partials.expand(body)
         head = partials.HEAD.format(
-            title=meta["title"],
-            description=meta["description"],
-            canonical=meta["canonical"],
+            title=meta["title"], description=meta["description"], canonical=meta["canonical"],
         )
         if meta.get("noindex"):
-            head = head.replace(
-                '<meta name="robots" content="index, follow">',
-                '<meta name="robots" content="noindex, follow">',
-            )
-
-        html = head + header + body
-        if meta.get("cta"):
-            over = meta["cta"] if isinstance(meta["cta"], dict) else None
-            html += partials.cta(over)
-        html += footer
-
+            head = head.replace('content="index, follow"', 'content="noindex, follow"')
+        html = head + header + body + footer
         (ROOT / meta["out"]).write_text(html)
-        print(f"  wrote {meta['out']:<20} {len(html):>7,} bytes")
+        print(f"  wrote {meta['out']:<36} {len(html):>7,} bytes")
 
 
 if __name__ == "__main__":
-    print("Building pages…")
+    print("Building pages")
     build()
     print("Done.")

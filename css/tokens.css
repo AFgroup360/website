@@ -1,131 +1,98 @@
 /* ==========================================================================
-   Design tokens — AmeriFinancial
-   Institutional/consultancy register: white ground, near-black text, a single
-   accent, square corners, hairline rules instead of shadows.
-   Brand navy and amber carry over from the previous site.
+   Design tokens. AmeriFinancial.
+   White ground. Navy for the hero, the footer and body text. Amber for arrow
+   links, the active nav underline, overline labels and one primary button.
+   Cream is a card background only. Square corners. No shadows. One typeface.
    ========================================================================== */
 
 :root {
-  /* --- Brand ------------------------------------------------------------- */
+  /* Brand */
   --navy-900: #0b1220;
   --navy-800: #101a2e;
   --navy-700: #1a2947;
   --navy-600: #253556;
   --navy-500: #33456b;
-  --navy-400: #4d618c;
   --navy-300: #7f90b0;
   --navy-200: #b6c0d3;
-  --navy-100: #dde2ec;
 
   --amber-700: #8a651f;
   --amber-600: #a67d2e;
-  --amber-500: #c89c51;   /* accent */
-  --amber-400: #d6b276;
-  --amber-300: #e4cba1;
-  --amber-100: #f7efe1;
+  --amber-500: #c89c51;
 
-  /* --- Neutrals: cool greys on white, not cream ---------------------------- */
-  --white:      #ffffff;
-  --grey-50:    #fafafa;
-  --grey-100:   #f4f4f5;
-  --grey-200:   #e8e8ea;
-  --grey-300:   #d9d9dd;
-  --grey-400:   #a1a1aa;
-  --grey-500:   #71717a;
-  --grey-600:   #52525b;
-  --grey-700:   #3f3f46;
-  --grey-800:   #27272a;
-  --grey-900:   #131316;
-  --black:      #000000;
-
-  /* --- Semantic ---------------------------------------------------------- */
-  --cream-500: #e9e3d8;
   --cream-400: #f2ede3;
   --cream-300: #f8f6f2;
-  --cream-200: #fcfbf8;
-  --line-300:  #ded9ce;
-  --line-200:  #e9e5dc;
 
-  --surface:         var(--cream-400);
-  --surface-sunken:  var(--cream-500);
-  --surface-raised:  var(--cream-300);
-  --surface-inverse: var(--navy-700);
-  --surface-deep:    var(--navy-900);
+  --white:    #ffffff;
+  --grey-100: #f4f4f4;
+  --grey-200: #e4e4e4;
+  --grey-400: #9a9a9a;
+  --grey-600: #5f6672;
 
-  --text-strong:  var(--navy-700);
-  --text:         #3d4753;
-  --text-muted:   #5b667b;
-  --text-inverse: var(--white);
-  --text-on-dark-muted: var(--navy-200);
+  /* Semantic */
+  --ground:        var(--white);
+  --card:          var(--cream-400);
+  --card-alt:      var(--white);
+  --inverse:       var(--navy-700);
+  --inverse-deep:  var(--navy-900);
 
-  --border:       var(--line-300);
-  --border-soft:  var(--line-200);
-  --border-dark:  rgb(255 255 255 / 0.16);
+  --text-strong:   var(--navy-700);
+  --text:          var(--navy-700);
+  --text-muted:    var(--grey-600);
+  --text-inverse:  var(--white);
+  --text-inverse-muted: var(--navy-200);
+
+  --rule:          var(--grey-200);
+  --rule-dark:     rgb(255 255 255 / 0.18);
 
   --accent:        var(--amber-500);
   --accent-strong: var(--amber-600);
-  --accent-soft:   var(--amber-100);
+  --accent-text:   var(--amber-700);
 
-  --focus-ring: var(--amber-600);
+  --focus-ring:    var(--amber-600);
 
-  /* --- Type: one grotesque, no serif -------------------------------------- */
-  --font-sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+  /* Type. One family. */
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
 
-  --text-xs:   0.75rem;
-  --text-sm:   0.875rem;
-  --text-base: 1rem;
-  --text-lg:   clamp(1.0625rem, 1rem + 0.3vw,  1.1875rem);
-  --text-xl:   clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
-  --text-2xl:  clamp(1.5rem,    1.35rem + 0.75vw, 2rem);
-  --text-3xl:  clamp(1.875rem,  1.55rem + 1.6vw,  3rem);
-  --text-4xl:  clamp(2.25rem,   1.7rem + 2.7vw,   4rem);
-  --text-5xl:  clamp(2.75rem,   1.9rem + 4.2vw,   5.5rem);
+  --text-h1:   clamp(3.5rem, 2.6rem + 1.6vw, 4.5rem);   /* 56 to 72 */
+  --text-h2:   clamp(2.25rem, 1.9rem + 0.7vw, 2.75rem);  /* 36 to 44 */
+  --text-h3:   1.5rem;                                   /* 24 */
+  --text-h4:   1.25rem;                                  /* 20 */
+  --text-body: 1.125rem;                                 /* 18 */
+  --text-sm:   1rem;                                     /* 16 */
+  --text-xs:   0.875rem;                                 /* 14 */
+  --text-overline: 0.6875rem;                            /* 11 */
 
-  /* Tight, the way large institutional headlines are set. */
-  --leading-tight:  1.08;
-  --leading-snug:   1.18;
-  --leading-normal: 1.6;
-  --leading-loose:  1.75;
+  --lh-h1:   1.05;
+  --lh-h2:   1.1;
+  --lh-h3:   1.25;
+  --lh-body: 1.6;
 
-  --tracking-tighter: -0.035em;
-  --tracking-tight:   -0.022em;
-  --tracking-normal:   0;
-  --tracking-wide:     0.1em;
-  --tracking-wider:    0.18em;
+  --track-tight: -0.02em;
+  --track-overline: 0.12em;
 
-  /* --- Spacing ----------------------------------------------------------- */
+  /* Spacing */
   --space-1: 0.25rem;  --space-2: 0.5rem;   --space-3: 0.75rem;
   --space-4: 1rem;     --space-5: 1.5rem;   --space-6: 2rem;
   --space-7: 3rem;     --space-8: 4rem;     --space-9: 6rem;
   --space-10: 8rem;
 
-  --section-y: clamp(2.5rem, 1.75rem + 3vw, 4.5rem);
+  /* 96 to 128 on desktop, tighter on phones. */
+  --section-y: clamp(4rem, 2rem + 5.5vw, 8rem);
 
-  /* --- Layout ------------------------------------------------------------ */
-  --container:        1280px;
-  --container-wide:   1480px;
+  /* Layout */
+  --container: 1280px;
   --container-narrow: 760px;
-  --gutter: clamp(1.25rem, 0.6rem + 2.6vw, 3.5rem);
+  --gutter: clamp(1.25rem, 0.5rem + 2.4vw, 2.5rem);
+  --grid-gap: clamp(1.25rem, 0.75rem + 1.6vw, 2rem);
 
-  /* --- Shape: square. Hairlines, not shadows. ----------------------------- */
-  --radius-sm: 4px;
-  --radius:    8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-full: 999px;   /* reserved for dots and pills only */
+  /* Shape. Square. */
+  --radius-sm: 0;
+  --radius:    0;
+  --radius-lg: 0;
+  --radius-xl: 0;
 
-  --hairline: 1px solid var(--border-soft);
-
-  --shadow-sm: 0 1px 2px rgb(26 41 71 / 0.04);
-  --shadow:    0 2px 8px rgb(26 41 71 / 0.06);
-  --shadow-lg: 0 18px 48px rgb(19 19 22 / 0.13);
-
-  /* --- Motion ------------------------------------------------------------ */
-  --ease:      cubic-bezier(0.22, 0.61, 0.36, 1);
-  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-fast: 130ms;
-  --duration:      240ms;
-  --duration-slow: 560ms;
+  /* Motion. Link underline only. */
+  --duration-fast: 120ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }

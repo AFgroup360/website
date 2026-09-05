@@ -7,3 +7,6 @@ node_modules/
 
 # Generated preview bundle (4.5 MB, rebuilt by tools/build_preview.py)
 preview/
+
+# Python
+__pycache__/
