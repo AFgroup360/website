@@ -11,16 +11,17 @@
 import re
 
 NAV = [
-    {"file": "services.html", "label": "What we do"},
-    {"file": "for-owners.html", "label": "For owners"},
-    {"file": "for-capital-providers.html", "label": "For lenders and investors"},
-    {"file": "about.html", "label": "Our work"},
-    {"file": "contact.html", "label": "Contact"},
+    {"file": "who-we-are.html", "label": "Who We Are"},
+    {"file": "our-thinking.html", "label": "Our Thinking"},
+    {"file": "what-we-do.html", "label": "What We Do"},
+    {"file": "our-approach.html", "label": "Our Approach"},
+    {"file": "contact.html", "label": "Contact Us"},
 ]
 
 PARENTS = {
-    "Our work": "about.html",
-    "What we do": "services.html",
+    "Our Thinking": "our-thinking.html",
+    "Who We Are": "who-we-are.html",
+    "What We Do": "what-we-do.html",
 }
 
 EMAIL = "hello@ameri-group.ca"
@@ -66,14 +67,12 @@ def header():
     )
     return '''<header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href="index.html">Ameri<em>Financial</em></a>
+    <a class="brand" href="index.html" aria-label="AmeriFinancial, back to home">Ameri<em>Financial</em></a>
     <nav class="nav" id="primary-nav" aria-label="Primary">
 {links}
-        <a class="link-arrow" href="contact.html">Let's connect</a>
-        <a class="btn btn--navy" href="contact.html">Book an introductory call</a>
+        <a class="btn btn--navy nav__cta" href="contact.html">Book an introductory call</a>
     </nav>
     <div class="header__actions">
-      <a class="link-arrow" href="contact.html">Let's connect</a>
       <a class="btn btn--navy" href="contact.html">Book an introductory call</a>
       <button class="nav-toggle" type="button" aria-expanded="false"
               aria-controls="primary-nav" aria-label="Toggle menu">
@@ -224,21 +223,21 @@ FOOTER = f'''</main>
       <div>
         <h4>Pages</h4>
         <ul role="list">
-          <li><a href="services.html">What we do</a></li>
-          <li><a href="for-owners.html">For owners</a></li>
-          <li><a href="for-capital-providers.html">For lenders and investors</a></li>
-          <li><a href="about.html">Our work</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="who-we-are.html">Who We Are</a></li>
+          <li><a href="our-thinking.html">Our Thinking</a></li>
+          <li><a href="what-we-do.html">What We Do</a></li>
+          <li><a href="our-approach.html">Our Approach</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </div>
       <div>
-        <h4>Services</h4>
+        <h4>What we do</h4>
         <ul role="list">
-          <li><a href="services.html#cash-flow">Cash flow control</a></li>
-          <li><a href="services.html#reporting">Monthly reporting</a></li>
-          <li><a href="services.html#working-capital">Working capital</a></li>
-          <li><a href="services.html#financing">Financing readiness</a></li>
-          <li><a href="services.html#review">The Financing Readiness Review</a></li>
+          <li><a href="what-we-do.html#cash-flow">Cash flow control</a></li>
+          <li><a href="what-we-do.html#reporting">Management reporting</a></li>
+          <li><a href="what-we-do.html#working-capital">Working capital</a></li>
+          <li><a href="what-we-do.html#financing">Financing readiness</a></li>
+          <li><a href="what-we-do.html#review">The Financing Readiness Review</a></li>
         </ul>
       </div>
       <div>

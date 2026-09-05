@@ -1,15 +1,17 @@
-<section class="page-head">
+<section class="page-top">
   <div class="container">
-    <p class="eyebrow">Contact</p>
-    <h1>Start with an introductory conversation.</h1>
-    <p class="lede">Review the business, financial information and immediate priorities.
-      Inquiries are read personally and treated in confidence.</p>
+    {{BREADCRUMB: Contact Us}}
+    <div class="page-title">
+      <h1>Start with an introductory conversation.</h1>
+      <p class="lede lede--lead">Tell us where the pressure is. We will tell you
+        honestly whether this is work we should be doing.</p>
+    </div>
   </div>
 </section>
 
-<section class="section" style="padding-top:var(--space-6)">
+<section class="section">
   <div class="container contact-grid">
-    <div class="reveal">
+    <div>
       <form id="contact-form" novalidate>
         <div class="field">
           <label for="name">Name</label>
@@ -24,18 +26,18 @@
           <input type="text" id="company" name="company" autocomplete="organization">
         </div>
         <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required
-                    placeholder="Where is the pressure right now?"></textarea>
+          <label for="message">Where is the pressure right now?</label>
+          <textarea id="message" name="message" required></textarea>
         </div>
-        <button class="btn btn--primary" type="submit">Send a message
-          <span class="btn__arrow" aria-hidden="true">&rarr;</span></button>
+        <div class="form-actions">
+          <button class="btn btn--navy" type="submit">Send a message</button>
+          <a class="btn btn--primary" href="#" data-placeholder="calendar">Pick a time</a>
+        </div>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
 
-    <aside class="contact-aside reveal">
-      <h3>Direct</h3>
+    <aside class="contact-aside">
       <dl>
         <div>
           <dt>Email</dt>
@@ -47,7 +49,7 @@
         </div>
         <div>
           <dt>Location</dt>
-          <dd>Canada</dd>
+          <dd>Mississauga, Ontario</dd>
         </div>
       </dl>
       <p class="contact-aside__note">Inquiries are read personally and treated in

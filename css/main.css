@@ -27,6 +27,7 @@
 .on-dark .lede { color: var(--text-inverse-muted); }
 
 .muted { color: var(--text-muted); }
+.lede--lead { font-size: var(--text-lead); line-height: 1.45; max-width: 34ch; }
 .on-dark { background: var(--inverse); color: var(--text-inverse); }
 .on-dark h1, .on-dark h2, .on-dark h3, .on-dark h4 { color: var(--text-inverse); }
 
@@ -247,58 +248,108 @@
 }
 
 /* A card is a link. Block on top, title, one line, arrow. */
-.card {
-  display: flex;
-  flex-direction: column;
-  background: var(--card);
-  color: var(--text);
-}
-.card:hover { text-decoration: none; }
-.card__block {
-  height: 12px;
-  background: var(--inverse);
-}
-.card--white { background: var(--card-alt); border: 1px solid var(--rule); }
-.card--navy { background: var(--inverse); color: var(--text-inverse); }
-.card--navy .card__block { background: var(--navy-900); }
-.card__block--cream { background: var(--card); }
-.card--navy h3 { color: var(--text-inverse); }
-.card--navy p { color: var(--text-inverse-muted); }
-.card--navy .link-arrow { color: var(--accent); }
-.card__body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: var(--space-3);
-  padding: var(--space-6);
-}
-.card__body h3 { font-size: var(--text-h4); }
-.card__body p { font-size: var(--text-sm); color: var(--text-muted); }
-.card__body .link-arrow { margin-top: auto; padding-top: var(--space-4); }
-.card:hover .link-arrow { text-decoration: underline; text-underline-offset: 0.2em; }
+/* ==========================================================================
+   Section archetypes. Eight of them. No section may repeat the archetype of
+   the section directly above it. That rule is what stops a page reading as a
+   template. There is deliberately no generic card.
+   ========================================================================== */
 
-/* Cards that are not links do not exist here. Story cards get a taller block. */
-.card--story .card__block { height: 160px; }
+/* --- Statement. One sentence, nothing else on screen. -------------------- */
+.statement { padding-block: var(--section-y); }
+.statement p:not(.statement__note) {
+  font-size: var(--text-display);
+  font-weight: 600;
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-tight);
+  color: var(--text-strong);
+  max-width: 22ch;
+}
+.statement--wide p:not(.statement__note) { max-width: 30ch; }
+.statement__note { margin-top: var(--space-6); font-size: var(--text-body); font-weight: 400; line-height: var(--lh-body); letter-spacing: 0; color: var(--text-muted); max-width: 48ch; }
+.statement.on-dark p:not(.statement__note) { color: var(--text-inverse); }
+.statement.on-dark .statement__note { color: var(--text-inverse-muted); }
 
-/* Plain feature list. Title and one line, no box. */
+/* --- Indexed list. Numbered rows running down the page. No boxes. -------- */
+.index-list { border-top: 1px solid var(--rule); }
+.index-row {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 20rem) minmax(0, 1fr);
+  gap: var(--space-4) var(--space-6);
+  align-items: baseline;
+  padding-block: var(--space-7);
+  border-bottom: 1px solid var(--rule);
+}
+.index-row__num { font-size: var(--text-sm); font-weight: 600; font-variant-numeric: tabular-nums; color: var(--accent-text); }
+.index-row__title { font-size: var(--text-h3); font-weight: 600; letter-spacing: var(--track-tight); color: var(--text-strong); line-height: var(--lh-h3); }
+.index-row__body { max-width: 46ch; }
+.index-row__body p { color: var(--text-muted); }
+.index-row__body p + p { margin-top: var(--space-3); }
+@media (max-width: 900px) {
+  .index-row { grid-template-columns: 2.5rem minmax(0, 1fr); padding-block: var(--space-6); }
+  .index-row__body { grid-column: 2; }
+}
+
+/* --- Offset split. Heading in the narrow column, content in the wide. ---- */
+.offset { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--grid-gap); align-items: start; }
+.offset--flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.offset__aside .lede { margin-top: var(--space-4); }
+.offset__body > * + * { margin-top: var(--space-5); }
+.offset__body p { max-width: 56ch; }
+@media (max-width: 900px) { .offset, .offset--flip { grid-template-columns: 1fr; gap: var(--space-6); } }
+
+/* --- Band. Navy, edge to edge. ------------------------------------------- */
+.band { background: var(--inverse); color: var(--text-inverse); padding-block: clamp(4rem, 2rem + 4vw, 6rem); margin-block: var(--section-y); }
+.band h2, .band h3 { color: var(--text-inverse); }
+.band p, .band .lede { color: var(--text-inverse-muted); }
+.band .link-arrow { color: var(--accent); }
+
+/* --- Long form prose. A real measure for reading. ------------------------ */
+.longform { max-width: 40rem; }
+.longform > p { margin-top: var(--space-5); }
+.longform h2 { margin-top: var(--space-8); font-size: var(--text-h3); }
+.longform h2 + p { margin-top: var(--space-4); }
+.longform ul { margin-top: var(--space-4); display: grid; gap: var(--space-3); padding-left: var(--space-5); }
+.longform li { color: var(--text-muted); }
+.longform blockquote {
+  margin-top: var(--space-7);
+  padding-left: var(--space-6);
+  border-left: 2px solid var(--accent);
+  font-size: var(--text-lead);
+  font-weight: 500;
+  color: var(--text-strong);
+}
+
+/* --- Two perspectives. One philosophy above, two readings below. --------- */
+.perspectives { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: var(--space-8); border-top: 1px solid var(--rule); }
+.perspective { padding-block: var(--space-7); padding-right: var(--grid-gap); }
+.perspective + .perspective { padding-left: var(--grid-gap); padding-right: 0; border-left: 1px solid var(--rule); }
+.perspective__who { font-size: var(--text-overline); font-weight: 600; letter-spacing: var(--track-overline); text-transform: uppercase; color: var(--accent-text); }
+.perspective h3 { margin-top: var(--space-4); font-size: var(--text-h3); }
+.perspective > p { margin-top: var(--space-4); color: var(--text-muted); max-width: 40ch; }
+.perspective ul { margin-top: var(--space-6); display: grid; gap: 0; }
+.perspective li { padding-block: var(--space-3); border-top: 1px solid var(--rule); color: var(--text); font-size: var(--text-sm); }
+@media (max-width: 780px) {
+  .perspectives { grid-template-columns: 1fr; }
+  .perspective { padding-right: 0; }
+  .perspective + .perspective { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }
+}
+
+/* --- Link index. A directory, the way a firm lists its writing. ---------- */
+.link-index { border-top: 1px solid var(--rule); }
+.link-index__item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-5); align-items: baseline; padding-block: var(--space-6); border-bottom: 1px solid var(--rule); }
+.link-index__item:hover { text-decoration: none; }
+.link-index__item:hover .link-index__title { text-decoration: underline; text-underline-offset: 0.2em; }
+.link-index__kicker { font-size: var(--text-overline); font-weight: 600; letter-spacing: var(--track-overline); text-transform: uppercase; color: var(--accent-text); }
+.link-index__title { margin-top: var(--space-3); font-size: var(--text-h3); font-weight: 600; letter-spacing: var(--track-tight); color: var(--text-strong); line-height: var(--lh-h3); max-width: 34ch; }
+.link-index__line { margin-top: var(--space-3); color: var(--text-muted); max-width: 54ch; font-size: var(--text-sm); }
+@media (max-width: 640px) { .link-index__item { grid-template-columns: 1fr; } }
+
+.index-list__more { margin-top: var(--space-6); }
+
+/* --- Feature. Title and one line, no box. Used sparingly. ---------------- */
 .feature { display: flex; flex-direction: column; gap: var(--space-3); }
 .feature h3 { font-size: var(--text-h4); }
 .feature p { font-size: var(--text-sm); color: var(--text-muted); max-width: 36ch; }
-
-/* --------------------------------------------------------------------------
-   Steps. Four across, one line each.
-   -------------------------------------------------------------------------- */
-.steps { counter-reset: step; }
-.step { display: flex; flex-direction: column; gap: var(--space-3); }
-.step__num {
-  font-size: var(--text-overline);
-  font-weight: 600;
-  letter-spacing: var(--track-overline);
-  text-transform: uppercase;
-  color: var(--accent-text);
-}
-.step h3 { font-size: var(--text-h4); }
-.step p { font-size: var(--text-sm); color: var(--text-muted); }
 
 /* --------------------------------------------------------------------------
    Facts. A short list of three.
@@ -307,6 +358,11 @@
 .facts li { display: grid; gap: var(--space-1); }
 .facts strong { font-size: var(--text-h3); font-weight: 600; letter-spacing: var(--track-tight); color: var(--text-strong); line-height: 1.2; }
 .facts span { font-size: var(--text-sm); color: var(--text-muted); }
+.facts--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--grid-gap); max-width: 60rem; }
+.facts--wide span { max-width: 42ch; }
+@media (max-width: 700px) { .facts--wide { grid-template-columns: 1fr; } }
+.band .facts strong { color: var(--text-inverse); }
+.band .facts span { color: var(--text-inverse-muted); }
 
 /* --------------------------------------------------------------------------
    Rendered review page. Navy blocks, white type, fictional data.
@@ -386,6 +442,15 @@
   .cashgap__detail, .cashgap__detail--in { margin-left: 0; max-width: none; }
 }
 
+/* The timeline also runs inside a navy band, where the default greys and the
+   navy end points would both disappear. */
+.band .cashgap figcaption,
+.band .cashgap__detail,
+.band .cashgap__when { color: var(--text-inverse-muted); }
+.band .cashgap__what { color: var(--text-inverse); }
+.band .cashgap__rail::before,
+.band .cashgap__rail::after { background: var(--white); }
+
 /* --------------------------------------------------------------------------
    FAQ. Visible. Question and one line.
    -------------------------------------------------------------------------- */
@@ -455,14 +520,18 @@
 /* --------------------------------------------------------------------------
    Placeholder photo slot. Labelled until Farid supplies the shot.
    -------------------------------------------------------------------------- */
+/* A labelled slot, sized like the photograph that will replace it rather than
+   left as a large empty area. */
 .photo-slot {
   display: grid;
-  place-items: start end;
-  aspect-ratio: 4 / 3;
+  place-items: end start;
+  aspect-ratio: 16 / 9;
+  max-height: 20rem;
   background: var(--card);
   border: 1px dashed var(--grey-400);
   padding: var(--space-4);
   font-size: var(--text-xs);
   color: var(--text-muted);
 }
-.photo-slot span { max-width: 28ch; text-align: right; }
+.photo-slot span { max-width: 30ch; text-align: left; }
+

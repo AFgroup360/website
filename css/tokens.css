@@ -54,15 +54,18 @@
   --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
 
+  --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4rem);   /* 40 to 64, statements */
   --text-h1:   clamp(3.5rem, 2.6rem + 1.6vw, 4.5rem);   /* 56 to 72 */
   --text-h2:   clamp(2.25rem, 1.9rem + 0.7vw, 2.75rem);  /* 36 to 44 */
   --text-h3:   1.5rem;                                   /* 24 */
   --text-h4:   1.25rem;                                  /* 20 */
+  --text-lead: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);   /* 20 to 24, opening lines */
   --text-body: 1.125rem;                                 /* 18 */
   --text-sm:   1rem;                                     /* 16 */
   --text-xs:   0.875rem;                                 /* 14 */
   --text-overline: 0.6875rem;                            /* 11 */
 
+  --lh-display: 1.08;
   --lh-h1:   1.05;
   --lh-h2:   1.1;
   --lh-h3:   1.25;
@@ -77,8 +80,9 @@
   --space-7: 3rem;     --space-8: 4rem;     --space-9: 6rem;
   --space-10: 8rem;
 
-  /* 96 to 128 on desktop, tighter on phones. */
-  --section-y: clamp(4rem, 2rem + 5.5vw, 8rem);
+  /* Half a gap per side, so two adjacent sections give the 96 to 128 the
+     design calls for rather than doubling to 256. */
+  --section-y: clamp(3rem, 1.5rem + 3vw, 4rem);
 
   /* Layout */
   --container: 1280px;

@@ -36,8 +36,8 @@
       return last === '' ? 'index' : last;
     }
     var here = leaf(window.location.pathname);
-    // Story pages sit under Our work.
-    if (here.indexOf('our-work-') === 0) here = 'about';
+    // Articles sit under Our Thinking.
+    if (here.indexOf('thinking-') === 0) here = 'our-thinking';
     document.querySelectorAll('.nav__link').forEach(function (link) {
       if (leaf(link.getAttribute('href') || '') === here) link.setAttribute('aria-current', 'page');
     });

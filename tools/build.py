@@ -24,56 +24,57 @@ def t(page):
 PAGES = {
     "index": {
         "out": "index.html", "canonical": "/",
-        "title": f"{BRAND} | Financial control and financing readiness",
-        "description": ("Monthly financial control and the Financing Readiness Review for "
-                        "owner led businesses, and for the lenders and investors who fund them."),
+        "title": f"{BRAND} | Financial control for owner led businesses",
+        "description": ("The financial control layer between bookkeeping and the decisions "
+                        "you run the business on. For owner led businesses and the people "
+                        "who fund them."),
     },
-    "services": {
-        "out": "services.html", "canonical": "/services",
-        "title": t("What we do"),
-        "description": ("Four areas of financial control, the Financing Readiness Review, "
-                        "and how a month runs with AmeriFinancial."),
+    "who-we-are": {
+        "out": "who-we-are.html", "canonical": "/who-we-are",
+        "title": t("Who We Are"),
+        "description": ("A finance function you can hire by the month, for owner led "
+                        "businesses in Ontario."),
     },
-    "for-owners": {
-        "out": "for-owners.html", "canonical": "/for-owners",
-        "title": t("For owners"),
-        "description": ("For owner led businesses that outgrew bookkeeping. Current numbers, "
-                        "a forward view of cash, and a review a lender can act on."),
+    "our-thinking": {
+        "out": "our-thinking.html", "canonical": "/our-thinking",
+        "title": t("Our Thinking"),
+        "description": ("How we read a set of numbers. Short pieces on cash, working "
+                        "capital and financing readiness."),
     },
-    "for-capital-providers": {
-        "out": "for-capital-providers.html", "canonical": "/for-capital-providers",
-        "title": t("For lenders and investors"),
-        "description": ("An independent Financing Readiness Review before you fund an owner "
-                        "led business, and monthly financial control for as long as the "
-                        "engagement runs."),
+    "thinking-profit-and-cash": {
+        "out": "thinking-profit-and-cash.html", "canonical": "/thinking-profit-and-cash",
+        "title": t("Why a profitable month can still leave you short"),
+        "description": ("Profit is an opinion about timing. Cash is a fact about today. "
+                        "Where the two come apart in an owner led business."),
     },
-    "about": {
-        "out": "about.html", "canonical": "/about",
-        "title": t("Our work"),
-        "description": ("What AmeriFinancial has done for owner led businesses and the "
-                        "people who fund them."),
+    "thinking-working-capital": {
+        "out": "thinking-working-capital.html", "canonical": "/thinking-working-capital",
+        "title": t("Growth does not fail on margin. It fails on timing"),
+        "description": ("Why winning more work can make the bank balance worse, and the "
+                        "three levers that close the gap."),
     },
-    "our-work-systems-supplier": {
-        "out": "our-work-systems-supplier.html", "canonical": "/our-work-systems-supplier",
-        "title": t("A systems supplier preparing for private financing"),
-        "description": ("Twenty four months of bank activity rebuilt and a verdict on page one "
-                        "for an owner led systems supplier."),
+    "thinking-what-lenders-look-for": {
+        "out": "thinking-what-lenders-look-for.html",
+        "canonical": "/thinking-what-lenders-look-for",
+        "title": t("What a lender is actually reading when they say no"),
+        "description": ("Strong businesses get declined on presentation more often than on "
+                        "performance. What a credit file has to survive."),
     },
-    "our-work-food-producer": {
-        "out": "our-work-food-producer.html", "canonical": "/our-work-food-producer",
-        "title": t("A food producer under lender pressure"),
-        "description": ("Cash brought under control and monthly reporting landed for a food "
-                        "producer under lender pressure."),
+    "what-we-do": {
+        "out": "what-we-do.html", "canonical": "/what-we-do",
+        "title": t("What We Do"),
+        "description": ("Cash flow control, management reporting, working capital and "
+                        "financing readiness, run every month."),
     },
-    "our-work-family-business": {
-        "out": "our-work-family-business.html", "canonical": "/our-work-family-business",
-        "title": t("A family business with no finance function"),
-        "description": ("A finance department built from nothing and supplier terms realigned "
-                        "so money out matched money in."),
+    "our-approach": {
+        "out": "our-approach.html", "canonical": "/our-approach",
+        "title": t("Our Approach"),
+        "description": ("One idea read from two sides of the table. Better visibility and "
+                        "stronger financial control make a healthier business."),
     },
     "contact": {
         "out": "contact.html", "canonical": "/contact",
-        "title": t("Contact"),
+        "title": t("Contact Us"),
         "description": "Book an introductory call with AmeriFinancial in Mississauga, Ontario.",
     },
     "privacy": {

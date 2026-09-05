@@ -75,8 +75,10 @@ a:hover { text-decoration: underline; text-underline-offset: 0.2em; text-decorat
   padding-inline: 0;
 }
 
+/* Each section contributes half the gap on each side. Adjacent sections then
+   add up to the intended 96 to 128, with no doubling. */
 .section { padding-block: var(--section-y); }
-.section + .section { padding-top: 0; }
+.page-top { padding-bottom: var(--section-y); }
 
 .visually-hidden {
   position: absolute;
