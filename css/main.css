@@ -123,14 +123,6 @@
   text-decoration: none;
   white-space: nowrap;
 }
-/* The accent mark, in place of a logo lockup. */
-.brand::after {
-  content: "";
-  width: 7px; height: 7px;
-  margin-left: 5px;
-  background: var(--accent);
-  border-radius: 50%;
-}
 .brand em { font-style: normal; font-weight: 400; }
 
 .nav { display: flex; align-items: center; gap: var(--space-6); }
