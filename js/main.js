@@ -225,10 +225,13 @@
       });
     }
 
-    /* The four cycle on their own until someone takes over. */
-    var PERIOD = 4000;
+    /* The four cycle on their own. A click picks a tile and restarts the
+       countdown from there rather than stopping the cycle. */
+    var PERIOD = 3000;
     var timer = null;
-    var takenOver = false;
+    var hovering = false;
+    var focused = false;
+    var onScreen = false;
     var reduce = window.matchMedia
       && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -238,8 +241,11 @@
       }
       return 0;
     }
+    function canPlay() {
+      return !reduce && onScreen && !hovering && !focused && !document.hidden;
+    }
     function play() {
-      if (timer || takenOver || reduce) return;
+      if (timer || !canPlay()) return;
       timer = setInterval(function () {
         show(tabs[(currentIndex() + 1) % tabs.length]);
       }, PERIOD);
@@ -249,22 +255,38 @@
       clearInterval(timer);
       timer = null;
     }
-    function takeOver() {
-      takenOver = true;
+    /* Put a full period back on the clock. */
+    function restart() {
       pause();
+      play();
     }
 
-    group.addEventListener('mouseenter', pause);
-    group.addEventListener('mouseleave', play);
-    group.addEventListener('focusin', pause);
-    group.addEventListener('focusout', play);
+    /* Only pause on hover where there is a real pointer, so a tap on a
+       touch screen does not leave the cycle stopped. */
+    if (!window.matchMedia || window.matchMedia('(hover: hover)').matches) {
+      group.addEventListener('mouseenter', function () { hovering = true; pause(); });
+      group.addEventListener('mouseleave', function () { hovering = false; play(); });
+    }
+    /* Only a keyboard focus should hold the cycle. A mouse click also
+       focuses the button, and that must not stop it resuming. */
+    function keyboardFocus(el) {
+      try { return !!(el && el.matches && el.matches(':focus-visible')); }
+      catch (err) { return false; }
+    }
+    group.addEventListener('focusin', function (e) {
+      focused = keyboardFocus(e.target);
+      if (focused) pause();
+    });
+    group.addEventListener('focusout', function () { focused = false; play(); });
 
     /* Do not cycle while the section is off screen. */
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
-        entries[0].isIntersecting ? play() : pause();
+        onScreen = entries[0].isIntersecting;
+        onScreen ? play() : pause();
       }, { threshold: 0.25 }).observe(group);
     } else {
+      onScreen = true;
       play();
     }
     document.addEventListener('visibilitychange', function () {
@@ -272,16 +294,16 @@
     });
 
     tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { takeOver(); show(tab); });
+      tab.addEventListener('click', function () { show(tab); restart(); });
       tab.addEventListener('keydown', function (e) {
         var step = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1
                  : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
         if (!step) return;
         e.preventDefault();
-        takeOver();
         var next = tabs[(i + step + tabs.length) % tabs.length];
         show(next);
         next.focus();
+        restart();
       });
     });
   }
