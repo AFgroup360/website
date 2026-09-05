@@ -1434,17 +1434,20 @@ button.nav__link--parent {
   line-height: var(--leading-loose);
 }
 
-/* The four areas as tiles. Click one, its detail opens underneath the row.
-   Kept deliberately small so the tiles and the detail share one screen. */
+/* The four areas. Tiles stack down the left, the detail reads beside them. */
+.areas {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: clamp(1.5rem, 0.75rem + 3vw, 4rem);
+  align-items: start;
+}
 .areas__tiles {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.5rem, 0.25rem + 0.8vw, 1rem);
-  align-items: start;
-  max-width: 660px;
+  gap: var(--space-3);
 }
-@media (max-width: 760px) {
-  .areas__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 340px; }
+@media (max-width: 700px) {
+  .areas { grid-template-columns: 1fr; gap: var(--space-5); }
+  .areas__tiles { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
 }
 
 .area {
@@ -1453,41 +1456,92 @@ button.nav__link--parent {
   background: none;
   cursor: pointer;
   line-height: 0;
-  opacity: 0.38;
-  transition: opacity .18s ease, transform .18s ease;
+  opacity: 0.34;
+  transition: opacity .2s ease, transform .2s ease;
 }
 .area img { width: 100%; height: auto; }
-.area:hover, .area:focus-visible { opacity: 0.75; }
-.areas:not([data-open]) .area { opacity: 0.85; }
-.areas:not([data-open]) .area:hover { opacity: 1; }
-.areas[data-open] .area[aria-selected="true"] { opacity: 1; transform: translateY(-3px); }
+.area:hover { opacity: 0.7; }
+.area[aria-selected="true"] { opacity: 1; transform: translateX(6px); }
+@media (max-width: 700px) {
+  .area[aria-selected="true"] { transform: translateY(-4px); }
+}
 .area:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 
-.areas__hint {
-  margin-top: var(--space-4);
-  font-size: var(--text-sm);
-  color: var(--text-muted);
-}
-.areas[data-open] .areas__hint { display: none; }
+/* The detail holds its own height so switching tiles does not jump the page. */
+.areas__detail { min-height: 15rem; }
+@media (max-width: 700px) { .areas__detail { min-height: 12rem; } }
 
-/* A fixed slot for the detail so opening one does not shove the page around. */
-.areas__detail { min-height: 7.5rem; }
-.area-panel {
-  margin-top: var(--space-4);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--border);
+.area-panel__num {
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  font-style: italic;
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent);
+  margin-bottom: var(--space-2);
 }
-.area-panel p {
-  max-width: 60ch;
+.area-panel h3 {
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-4);
+}
+.area-panel p:last-child {
+  max-width: 54ch;
   font-size: var(--text-lg);
   line-height: var(--leading-loose);
-  color: var(--text-strong);
+  color: var(--text-muted);
+}
+/* Each panel arrives rather than snapping in. */
+.area-panel:not([hidden]) > * { animation: areaIn .42s cubic-bezier(.2,.7,.3,1) both; }
+.area-panel:not([hidden]) > *:nth-child(2) { animation-delay: .05s; }
+.area-panel:not([hidden]) > *:nth-child(3) { animation-delay: .1s; }
+@keyframes areaIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .area { transition: none; }
-  .areas[data-open] .area[aria-selected="true"] { transform: none; }
+  .area[aria-selected="true"] { transform: none; }
+  .area-panel:not([hidden]) > * { animation: none; }
 }
+
+/* The monthly rhythm. A loop, so the last step points back to the first. */
+.cycle {
+  list-style: none;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 0.5rem + 1.6vw, 2.25rem);
+  counter-reset: cycle;
+}
+@media (max-width: 900px) { .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .cycle { grid-template-columns: 1fr; } }
+
+.cycle__step {
+  position: relative;
+  padding-top: var(--space-5);
+  border-top: 2px solid var(--amber-500);
+}
+.cycle__when {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  margin-bottom: var(--space-3);
+}
+.cycle__step p {
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--text-muted);
+}
+
+/* Consecutive body paragraphs need air between them. */
+.lede + .lede,
+.split > div > p + p { margin-top: var(--space-4); }
 
 /* The mission line. A quote, so it is set as one. */
 .mission { margin: 0; }

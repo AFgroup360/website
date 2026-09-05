@@ -217,15 +217,12 @@
     if (!tabs.length) return;
 
     function show(tab) {
-      var isOpen = tab && tab.getAttribute('aria-selected') === 'true';
       tabs.forEach(function (t) {
         var panel = document.getElementById(t.getAttribute('aria-controls'));
-        var on = t === tab && !isOpen;
+        var on = t === tab;
         t.setAttribute('aria-selected', on ? 'true' : 'false');
         if (panel) panel.hidden = !on;
       });
-      if (tab && !isOpen) group.setAttribute('data-open', '');
-      else group.removeAttribute('data-open');
     }
 
     tabs.forEach(function (tab, i) {

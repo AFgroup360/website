@@ -10,9 +10,9 @@
 <section class="section" style="padding-top:var(--space-6)">
   <div class="container">
     <div class="areas reveal">
-      <div class="areas__tiles" role="tablist" aria-label="What we cover">
+      <div class="areas__tiles" role="tablist" aria-orientation="vertical" aria-label="What we cover">
         <button class="area" type="button" role="tab" id="tab-cash"
-                aria-controls="panel-cash" aria-selected="false">
+                aria-controls="panel-cash" aria-selected="true">
           <img src="assets/img/area-cash-flow.png" width="480" height="457"
                alt="Cash flow control" loading="lazy">
         </button>
@@ -33,28 +33,72 @@
         </button>
       </div>
 
-      <p class="areas__hint">Tap an area to see what it covers.</p>
-
       <div class="areas__detail">
-      <div class="area-panel" id="panel-cash" role="tabpanel" aria-labelledby="tab-cash" hidden>
-        <p>Forward visibility into cash, obligations and liquidity. Where the money is
-          going, when payments land, and what is coming due before it comes due.</p>
-      </div>
-      <div class="area-panel" id="panel-reporting" role="tabpanel" aria-labelledby="tab-reporting" hidden>
-        <p>A monthly close you can rely on, with performance against what you expected,
-          statements that reconcile, and a review call to go through it.</p>
-      </div>
-      <div class="area-panel" id="panel-capital" role="tabpanel" aria-labelledby="tab-capital" hidden>
-        <p>Who owes you, who you owe, what is sitting in inventory, and how the timing
-          between them is affecting cash.</p>
-      </div>
-      <div class="area-panel" id="panel-readiness" role="tabpanel" aria-labelledby="tab-readiness" hidden>
-        <p>We review the position behind the request, surface what would slow a lender
-          down, and organise the analysis for management. We prepare the package. We
-          don't broker or arrange the financing.</p>
-      </div>
+        <div class="area-panel" id="panel-cash" role="tabpanel" aria-labelledby="tab-cash">
+          <p class="area-panel__num">One</p>
+          <h3>Cash flow control</h3>
+          <p>Forward visibility into cash, obligations and liquidity. Where the money is
+            going, when payments land, and what is coming due before it comes due.</p>
+        </div>
+        <div class="area-panel" id="panel-reporting" role="tabpanel" aria-labelledby="tab-reporting" hidden>
+          <p class="area-panel__num">Two</p>
+          <h3>Management reporting</h3>
+          <p>A monthly close you can rely on, with performance against what you expected,
+            statements that reconcile, and a review call to go through it.</p>
+        </div>
+        <div class="area-panel" id="panel-capital" role="tabpanel" aria-labelledby="tab-capital" hidden>
+          <p class="area-panel__num">Three</p>
+          <h3>Receivables, payables and working capital</h3>
+          <p>Who owes you, who you owe, what is sitting in inventory, and how the timing
+            between them is affecting cash.</p>
+        </div>
+        <div class="area-panel" id="panel-readiness" role="tabpanel" aria-labelledby="tab-readiness" hidden>
+          <p class="area-panel__num">Four</p>
+          <h3>Financing readiness</h3>
+          <p>We review the position behind the request, surface what would slow a lender
+            down, and organise the analysis for management. We prepare the package. We
+            don't broker or arrange the financing.</p>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section section--sunken">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">The ongoing work</p>
+      <h2>It is a monthly job, not a project.</h2>
+      <p class="lede">A one-off report goes stale. Most of what we do is the standing
+        rhythm underneath it, so the numbers are current on the day you need them.</p>
+    </div>
+
+    <ol class="cycle reveal" role="list">
+      <li class="cycle__step">
+        <span class="cycle__when">Through the month</span>
+        <p>We watch the bank as it moves. What cleared, what is about to, and what is
+          coming due before it comes due. If something is going to be tight, you hear it
+          from us with weeks to work with, not on the day.</p>
+      </li>
+      <li class="cycle__step">
+        <span class="cycle__when">At close</span>
+        <p>The books get reconciled and the month gets closed properly. Performance
+          against what you expected, where the margin went, and what moved on the
+          balance sheet.</p>
+      </li>
+      <li class="cycle__step">
+        <span class="cycle__when">The review call</span>
+        <p>We sit down and go through it with you. Not a pack in your inbox. The three
+          or four things that actually need a decision, and what we would do about
+          them.</p>
+      </li>
+      <li class="cycle__step">
+        <span class="cycle__when">Then it starts again</span>
+        <p>The forecast gets rebuilt on what actually happened, receivables and payables
+          get worked, and the file stays current. So when a lender, a buyer or an
+          opportunity turns up, nothing has to be reconstructed.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -63,18 +107,19 @@
     <div class="reveal">
       <p class="eyebrow">The deliverable</p>
       <h2>The Financing Readiness Report.</h2>
-      <p class="lede" style="margin-top:var(--space-4)">So nobody's deciding off
-        whatever the business chose to show them.</p>
+      <p class="lede" style="margin-top:var(--space-4)">One document that says what the
+        business is actually worth backing, and what it would take.</p>
       <p style="margin-top:var(--space-4);color:var(--text-muted);line-height:var(--leading-loose)">
-        Most of what goes wrong in a lending decision was sitting there the whole time.
-        In the bank statements. In a debt nobody mentioned. In the gap between what got
-        reported and what was really going on. The report puts all of it on the table
-        before anyone signs, with a number on it. So the cash gap is something you can
-        price, not something you find out about later.</p>
+        Most owners have never seen their own business written up the way a lender or a
+        buyer sees it. That is the gap this closes. We rebuild the position from the raw
+        records, put it in one document, and hand it to you before anybody else asks for
+        it.</p>
       <p style="margin-top:var(--space-4);color:var(--text-muted);line-height:var(--leading-loose)">
-        Two years of cash flow. Where the balance sheet really stands. What they owe
-        and to whom. How much they actually need. And what we'd want fixed before the
-        money moves.</p>
+        You do not need to be borrowing for it to be worth having. It tells you where
+        the cash actually goes, what the balance sheet really looks like, and which
+        problems are costing you money right now. Then when the day comes that you are
+        raising, refinancing or selling, the work is already done and it is the same
+        number either way.</p>
       <p style="margin-top:var(--space-5)">
         <a class="link-arrow" href="contact.html">Request a sample report
           <span aria-hidden="true">&rarr;</span></a>
@@ -84,6 +129,47 @@
       <img src="assets/img/photo-financial-spreadsheet.jpg"
            alt="Financing readiness analysis and supporting schedules" loading="lazy">
     </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>What is inside it.</h2>
+    </div>
+    <ul class="showcase__list showcase__list--lg reveal" role="list" style="max-width:72ch">
+      <li class="showcase__item">
+        <strong>A verdict, on the first page</strong>
+        <span>Financeable, not financeable, or financeable on conditions. Stated plainly,
+          with the conditions listed, so nobody has to read thirty pages to find the
+          answer.</span>
+      </li>
+      <li class="showcase__item">
+        <strong>Two years of cash flow, month by month</strong>
+        <span>Operating cash separated from owner and related-party movement, so you can
+          see what the business actually produces and what was carrying it.</span>
+      </li>
+      <li class="showcase__item">
+        <strong>The obligations, all of them</strong>
+        <span>Every loan, lease, tax arrear and supplier balance, with amounts, terms and
+          where each one sits in the queue.</span>
+      </li>
+      <li class="showcase__item">
+        <strong>What the money would be used for</strong>
+        <span>Sized against the gap we measured, not against what someone hoped to ask
+          for, and set out so a credit team can follow it.</span>
+      </li>
+      <li class="showcase__item">
+        <strong>What the business is worth, and what changes it</strong>
+        <span>Valuation logic and a pro forma showing the position after the conditions
+          are met. This is the part that matters in a sale.</span>
+      </li>
+    </ul>
+
+    <p class="reveal" style="margin-top:var(--space-6);font-size:var(--text-xl);font-weight:500;letter-spacing:var(--tracking-tight);color:var(--text-strong);max-width:58ch">
+      Every figure is traced back to a bank statement, and every open question is put to
+      management and answered in writing before the report goes out. What cannot be tied
+      out is disclosed rather than smoothed over.</p>
   </div>
 </section>
 
@@ -102,11 +188,6 @@
           <span class="step__num">2</span>
           <div><h3>Build the foundation</h3>
             <p>Build the reporting, cash visibility and controls the business needs.</p></div>
-        </div>
-        <div class="step">
-          <span class="step__num">3</span>
-          <div><h3>Ongoing finance control</h3>
-            <p>Support ongoing decisions and financing requirements as they arise.</p></div>
         </div>
       </div>
       <p class="reveal" style="margin-top:var(--space-6);color:var(--text-muted);font-size:var(--text-sm)">
