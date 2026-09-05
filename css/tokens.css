@@ -6,23 +6,29 @@
    ========================================================================== */
 
 :root {
-  /* Brand */
-  --navy-900: #0b1220;
-  --navy-800: #101a2e;
-  --navy-700: #1a2947;
-  --navy-600: #253556;
-  --navy-500: #33456b;
+  /* Brand. Sampled from the AmeriFinancial logo. Deep navy, warm gold,
+     white and a restrained cool grey. */
+  --navy-900: #071224;
+  --navy-800: #0a1830;
+  --navy-700: #0e1c35;   /* the logo navy, and the site's primary */
+  --navy-600: #16294a;
+  --navy-500: #243a5e;
   --navy-300: #7f90b0;
   --navy-200: #b6c0d3;
 
-  --amber-700: #8a651f;
-  --amber-600: #a67d2e;
-  --amber-500: #c89c51;
+  /* Gold. 700 is the only one that passes on white, so it carries text.
+     400 and 300 are for gold on navy. 500 is the fill. */
+  --gold-700: #8a6420;
+  --gold-600: #a97c22;
+  --gold-500: #c9962f;
+  --gold-400: #dfae4a;
+  --gold-300: #eac974;
 
   --cream-400: #f2ede3;
   --cream-300: #f8f6f2;
 
   --white:    #ffffff;
+  --off-white:#fbfaf8;
   --grey-100: #f4f4f4;
   --grey-200: #e4e4e4;
   --grey-400: #9a9a9a;
@@ -42,13 +48,14 @@
   --text-inverse-muted: var(--navy-200);
 
   --rule:          var(--grey-200);
-  --rule-dark:     rgb(255 255 255 / 0.18);
+  --rule-dark:     rgb(223 174 74 / 0.22);
 
-  --accent:        var(--amber-500);
-  --accent-strong: var(--amber-600);
-  --accent-text:   var(--amber-700);
+  --accent:        var(--gold-500);
+  --accent-strong: var(--gold-600);
+  --accent-text:   var(--gold-700);
+  --accent-on-dark:var(--gold-400);
 
-  --focus-ring:    var(--amber-600);
+  --focus-ring:    var(--gold-600);
 
   /* Type. One family. */
   --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto,
