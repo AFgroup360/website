@@ -6,6 +6,7 @@
 #   {{REVIEW}}                                the rendered sample review page
 #   {{LETS_CONNECT}}                          the closing navy call to action
 
+import pathlib
 import re
 
 NAV = [
@@ -92,6 +93,22 @@ def header():
 </header>
 <main id="main">
 '''.format(links=links, lockup=LOCKUP)
+
+
+def hero_photo():
+    """The hero photograph, if one has been supplied.
+
+    Drop a wide photograph of an operating business at
+    assets/img/hero.jpg and rebuild. Nothing is emitted while the file is
+    absent, so the hero is plain navy rather than a placeholder.
+    """
+    root = pathlib.Path(__file__).resolve().parent.parent
+    for name in ("hero.jpg", "hero.jpeg", "hero.png", "hero.webp"):
+        if (root / "assets" / "img" / name).exists():
+            return (f'<img class="hero__photo" src="assets/img/{name}" alt="" '
+                    'aria-hidden="true" fetchpriority="high">\n'
+                    '    <span class="hero__scrim" aria-hidden="true"></span>')
+    return ""
 
 
 def breadcrumb(spec):
@@ -184,6 +201,7 @@ LETS_CONNECT = f'''<section class="connect-band rays" id="connect">
 def expand(body):
     """Replace the page placeholders with their blocks."""
     body = re.sub(r"\{\{BREADCRUMB:\s*(.+?)\s*\}\}", lambda m: breadcrumb(m.group(1)), body)
+    body = body.replace("{{HERO_PHOTO}}", hero_photo())
     body = body.replace("{{REVIEW}}", REVIEW)
     body = body.replace("{{LETS_CONNECT}}", LETS_CONNECT)
     return body

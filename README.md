@@ -78,8 +78,10 @@ python3 tools/serve.py      # http://localhost:8300
   email or call.
 - `CALENDAR_URL` in `js/main.js` needs a scheduling link. Until it is set, the
   "Pick a time" button is removed rather than left pointing nowhere.
-- Photography of operating businesses (yard, shop floor, site, warehouse) if the
-  site is to carry photographs.
+- Photography of operating businesses. The hero is wired for it: drop a wide
+  photograph at `assets/img/hero.jpg` and run `python3 tools/build.py`. Nothing
+  is emitted while the file is absent, so there is never a placeholder. A navy
+  scrim keeps the heading readable over whatever the picture is.
 - The original logo vector, if one exists. The header lockup is built from the
   supplied raster artwork.
 - Written permission before any client name or logo appears on the site.
