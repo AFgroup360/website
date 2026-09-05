@@ -35,31 +35,6 @@ PAGES = {
         "description": ("A finance function you can hire by the month, for owner led "
                         "businesses in Ontario."),
     },
-    "our-thinking": {
-        "out": "our-thinking.html", "canonical": "/our-thinking",
-        "title": t("Our Thinking"),
-        "description": ("How we read a set of numbers. Short pieces on cash, working "
-                        "capital and financing readiness."),
-    },
-    "thinking-profit-and-cash": {
-        "out": "thinking-profit-and-cash.html", "canonical": "/thinking-profit-and-cash",
-        "title": t("Why a profitable month can still leave you short"),
-        "description": ("Profit is an opinion about timing. Cash is a fact about today. "
-                        "Where the two come apart in an owner led business."),
-    },
-    "thinking-working-capital": {
-        "out": "thinking-working-capital.html", "canonical": "/thinking-working-capital",
-        "title": t("Growth does not fail on margin. It fails on timing"),
-        "description": ("Why winning more work can make the bank balance worse, and the "
-                        "three levers that close the gap."),
-    },
-    "thinking-what-lenders-look-for": {
-        "out": "thinking-what-lenders-look-for.html",
-        "canonical": "/thinking-what-lenders-look-for",
-        "title": t("What a lender is actually reading when they say no"),
-        "description": ("Strong businesses get declined on presentation more often than on "
-                        "performance. What a credit file has to survive."),
-    },
     "what-we-do": {
         "out": "what-we-do.html", "canonical": "/what-we-do",
         "title": t("What We Do"),

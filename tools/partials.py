@@ -5,24 +5,18 @@
 #   {{BREADCRUMB: Parent label > Label}}      two levels, parent links to PARENTS[label]
 #   {{JUMPTO: id=Label | id=Label | ...}}     the in page anchor row
 #   {{REVIEW}}                                the rendered sample review page
-#   {{GET_IN_TOUCH}}                          the contact card section, id="contact"
 #   {{LETS_CONNECT}}                          the details and one button, id="connect"
 
 import re
 
 NAV = [
     {"file": "who-we-are.html", "label": "Who We Are"},
-    {"file": "our-thinking.html", "label": "Our Thinking"},
     {"file": "what-we-do.html", "label": "What We Do"},
     {"file": "our-approach.html", "label": "Our Approach"},
     {"file": "contact.html", "label": "Contact Us"},
 ]
 
-PARENTS = {
-    "Our Thinking": "our-thinking.html",
-    "Who We Are": "who-we-are.html",
-    "What We Do": "what-we-do.html",
-}
+PARENTS = {}
 
 EMAIL = "hello@ameri-group.ca"
 PHONE = "+1 (416) 879-0969"
@@ -161,26 +155,6 @@ REVIEW = '''<figure class="review" role="img"
 </figure>'''
 
 
-GET_IN_TOUCH = f'''<section class="section" id="contact">
-  <div class="container">
-    <span class="overline">Get in touch</span>
-    <div class="contact-card">
-      <img class="contact-card__photo" src="assets/img/photo-farid.jpg" width="160" height="160"
-           alt="Farid Ameri" loading="lazy">
-      <div>
-        <p class="contact-card__name">Farid Ameri</p>
-        <p class="contact-card__role">Founder, AmeriFinancial</p>
-        <ul class="contact-card__list" role="list">
-          <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-          <li><a href="{PHONE_HREF}">{PHONE}</a></li>
-          <li><a href="#" data-placeholder="linkedin">LinkedIn</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>'''
-
-
 LETS_CONNECT = f'''<section class="section" id="connect">
   <div class="container">
     <div class="connect">
@@ -206,7 +180,6 @@ def expand(body):
     body = re.sub(r"\{\{BREADCRUMB:\s*(.+?)\s*\}\}", lambda m: breadcrumb(m.group(1)), body)
     body = re.sub(r"\{\{JUMPTO:\s*(.+?)\s*\}\}", lambda m: jumpto(m.group(1)), body)
     body = body.replace("{{REVIEW}}", REVIEW)
-    body = body.replace("{{GET_IN_TOUCH}}", GET_IN_TOUCH)
     body = body.replace("{{LETS_CONNECT}}", LETS_CONNECT)
     return body
 
@@ -217,14 +190,13 @@ FOOTER = f'''</main>
     <div class="site-footer__grid">
       <div>
         <a class="brand" href="index.html">Ameri<em>Financial</em></a>
-        <p class="site-footer__blurb">Monthly financial control and the Financing
-          Readiness Review, for owner led businesses and the people who fund them.</p>
+        <p class="site-footer__blurb">Financial visibility, reporting and control for
+          owner led businesses and the people who fund them.</p>
       </div>
       <div>
         <h4>Pages</h4>
         <ul role="list">
           <li><a href="who-we-are.html">Who We Are</a></li>
-          <li><a href="our-thinking.html">Our Thinking</a></li>
           <li><a href="what-we-do.html">What We Do</a></li>
           <li><a href="our-approach.html">Our Approach</a></li>
           <li><a href="contact.html">Contact Us</a></li>

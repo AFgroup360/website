@@ -21,10 +21,6 @@ OUT = ROOT / "preview" / "preview.html"
 PAGES = [
     ("index.html", "Home"),
     ("who-we-are.html", "Who We Are"),
-    ("our-thinking.html", "Our Thinking"),
-    ("thinking-profit-and-cash.html", "Profit and cash"),
-    ("thinking-working-capital.html", "Working capital"),
-    ("thinking-what-lenders-look-for.html", "What lenders read"),
     ("what-we-do.html", "What We Do"),
     ("our-approach.html", "Our Approach"),
     ("contact.html", "Contact Us"),
