@@ -593,6 +593,22 @@ button.nav__link--parent {
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+/* A portrait keeps its own proportions and does not fill the column. */
+.split--portrait { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); }
+@media (max-width: 760px) { .split--portrait { grid-template-columns: 1fr; } }
+.split--portrait .split__media img {
+  aspect-ratio: 4 / 5;
+  max-width: 360px;
+  object-position: 50% 22%;
+}
+
+/* Same ruled list, set for reading rather than scanning. */
+.showcase__list--lg .showcase__item { padding-block: var(--space-5); }
+.showcase__list--lg .showcase__item strong { font-size: var(--text-xl); }
+.showcase__list--lg .showcase__item span {
+  font-size: var(--text-base);
+  line-height: var(--leading-loose);
+}
 
 /* Full-bleed band with image on one side */
 .feature-band { display: grid; grid-template-columns: 1fr 1fr; }
@@ -1472,6 +1488,20 @@ button.nav__link--parent {
   .area { transition: none; }
   .areas[data-open] .area[aria-selected="true"] { transform: none; }
 }
+
+/* The mission line. A quote, so it is set as one. */
+.mission { margin: 0; }
+.mission p {
+  position: relative;
+  max-width: 26ch;
+  margin-inline: auto;
+  font-size: clamp(1.35rem, 1rem + 1.5vw, 2.15rem);
+  line-height: 1.32;
+}
+.mission p::before,
+.mission p::after { color: var(--amber-500); }
+.mission p::before { content: '\201C'; }
+.mission p::after  { content: '\201D'; }
 
 /* Escape the container for one element. */
 .bleed {
