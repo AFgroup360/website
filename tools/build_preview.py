@@ -20,24 +20,21 @@ OUT = ROOT / "preview" / "preview.html"
 
 PAGES = [
     ("index.html", "Home"),
-    ("services.html", "Services"),
-    ("for-owners.html", "For Owners"),
-    ("for-capital-providers.html", "Capital Providers"),
-    ("about.html", "About"),
-    ("contact.html", "Contact"),
+    ("who-we-are.html", "Who We Are"),
+    ("our-thinking.html", "Our Thinking"),
+    ("thinking-profit-and-cash.html", "Profit and cash"),
+    ("thinking-working-capital.html", "Working capital"),
+    ("thinking-what-lenders-look-for.html", "What lenders read"),
+    ("what-we-do.html", "What We Do"),
+    ("our-approach.html", "Our Approach"),
+    ("contact.html", "Contact Us"),
     ("privacy.html", "Privacy"),
     ("terms.html", "Terms"),
     ("404.html", "404"),
 ]
 
-# Captures of the previous live site, so the two can be compared in one place.
-OLD = [
-    ("old-home.html", "OLD Home", "OLD-home.png"),
-    ("old-services.html", "OLD Services", "OLD-services.png"),
-    ("old-who.html", "OLD Who We Serve", "OLD-who.png"),
-    ("old-about.html", "OLD About", "OLD-about.png"),
-]
-SHOTS = pathlib.Path("/tmp/claude-0/-home-user-website/695de150-7e25-5986-84fb-0afdad09310c/scratchpad/shots")
+OLD = []
+SHOTS = pathlib.Path("/tmp/none")
 
 
 def old_page(label: str, shot: str) -> str:
