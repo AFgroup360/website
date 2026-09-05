@@ -225,13 +225,63 @@
       });
     }
 
+    /* The four cycle on their own until someone takes over. */
+    var PERIOD = 4000;
+    var timer = null;
+    var takenOver = false;
+    var reduce = window.matchMedia
+      && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function currentIndex() {
+      for (var i = 0; i < tabs.length; i++) {
+        if (tabs[i].getAttribute('aria-selected') === 'true') return i;
+      }
+      return 0;
+    }
+    function play() {
+      if (timer || takenOver || reduce) return;
+      timer = setInterval(function () {
+        show(tabs[(currentIndex() + 1) % tabs.length]);
+      }, PERIOD);
+    }
+    function pause() {
+      if (!timer) return;
+      clearInterval(timer);
+      timer = null;
+    }
+    function takeOver() {
+      takenOver = true;
+      pause();
+    }
+
+    group.addEventListener('mouseenter', pause);
+    group.addEventListener('mouseleave', play);
+    group.addEventListener('focusin', pause);
+    group.addEventListener('focusout', play);
+
+    /* Do not cycle while the section is off screen. */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries[0].isIntersecting ? play() : pause();
+      }, { threshold: 0.25 }).observe(group);
+    } else {
+      play();
+    }
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? pause() : play();
+    });
+
     tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { show(tab); });
+      tab.addEventListener('click', function () { takeOver(); show(tab); });
       tab.addEventListener('keydown', function (e) {
-        var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        var step = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1
+                 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
         if (!step) return;
         e.preventDefault();
-        tabs[(i + step + tabs.length) % tabs.length].focus();
+        takeOver();
+        var next = tabs[(i + step + tabs.length) % tabs.length];
+        show(next);
+        next.focus();
       });
     });
   }
