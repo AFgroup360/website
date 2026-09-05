@@ -1,4 +1,4 @@
-# AmeriFinancial — Apache config for GoDaddy static hosting.
+# AmeriFinancial - Apache config for GoDaddy static hosting.
 
 Options -Indexes
 DirectoryIndex index.html

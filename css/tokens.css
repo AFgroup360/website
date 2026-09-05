@@ -1,85 +1,95 @@
 /* ==========================================================================
    Design tokens. AmeriFinancial.
-   White ground. Navy for the hero, the footer and body text. Amber for arrow
-   links, the active nav underline, overline labels and one primary button.
-   Cream is a card background only. Square corners. No shadows. One typeface.
+
+   The palette is taken from the logo itself. #08162f is the exact navy behind
+   the AmeriFinancial mark; the golds are sampled from the mark's own range.
+   Navy carries the atmosphere, white carries the reading, gold is used only
+   for accents, actives, rules and one button. Square corners. One typeface.
    ========================================================================== */
 
 :root {
-  /* Brand. Sampled from the AmeriFinancial logo. Deep navy, warm gold,
-     white and a restrained cool grey. */
-  --navy-900: #071224;
-  --navy-800: #0a1830;
-  --navy-700: #0e1c35;   /* the logo navy, and the site's primary */
-  --navy-600: #16294a;
-  --navy-500: #243a5e;
-  --navy-300: #7f90b0;
-  --navy-200: #b6c0d3;
+  /* Navy. 800 is the logo navy and the site's primary dark ground. */
+  --navy-900: #050e1f;
+  --navy-800: #08162f;   /* sampled from the logo */
+  --navy-700: #0c1e3d;
+  --navy-600: #14294d;
+  --navy-500: #21395f;
+  --navy-400: #3b537c;
+  --navy-300: #7e8fae;
+  --navy-200: #b0bcd2;
+  --navy-100: #d7dee9;
 
-  /* Gold. 700 is the only one that passes on white, so it carries text.
-     400 and 300 are for gold on navy. 500 is the fill. */
+  /* Gold. 700 is the only value that passes on white, so it carries text
+     there. 400 and 300 are gold on navy. 500 is the fill for buttons. */
+  --gold-800: #6f4f18;
   --gold-700: #8a6420;
   --gold-600: #a97c22;
   --gold-500: #c9962f;
   --gold-400: #dfae4a;
-  --gold-300: #eac974;
-
-  --cream-400: #f2ede3;
-  --cream-300: #f8f6f2;
+  --gold-300: #e8bc55;   /* the highlight tone in the mark */
+  --gold-200: #f2d178;
 
   --white:    #ffffff;
   --off-white:#fbfaf8;
-  --grey-100: #f4f4f4;
-  --grey-200: #e4e4e4;
-  --grey-400: #9a9a9a;
+  --grey-100: #f4f5f7;
+  --grey-200: #e5e7ec;
+  --grey-400: #98a0ad;
   --grey-600: #5f6672;
 
   /* Semantic */
   --ground:        var(--white);
-  --card:          var(--cream-400);
-  --card-alt:      var(--white);
-  --inverse:       var(--navy-700);
+  --ground-soft:   var(--off-white);
+  --inverse:       var(--navy-800);
   --inverse-deep:  var(--navy-900);
+  --inverse-soft:  var(--navy-700);
 
-  --text-strong:   var(--navy-700);
-  --text:          var(--navy-700);
+  --text-strong:   var(--navy-800);
+  --text:          var(--navy-800);
   --text-muted:    var(--grey-600);
   --text-inverse:  var(--white);
   --text-inverse-muted: var(--navy-200);
 
   --rule:          var(--grey-200);
-  --rule-dark:     rgb(223 174 74 / 0.22);
+  --rule-strong:   var(--navy-100);
+  --rule-dark:     rgb(232 188 85 / 0.20);
+  --rule-dark-soft:rgb(255 255 255 / 0.12);
 
   --accent:        var(--gold-500);
   --accent-strong: var(--gold-600);
   --accent-text:   var(--gold-700);
-  --accent-on-dark:var(--gold-400);
+  --accent-on-dark:var(--gold-300);
 
   --focus-ring:    var(--gold-600);
+
+  /* Gold light. Used at very low opacity behind navy sections only. Never
+     as a glow on type, never as a border, never as a metallic fill. */
+  --ray-1: rgb(232 188 85 / 0.075);
+  --ray-2: rgb(232 188 85 / 0.045);
+  --ray-3: rgb(120 165 230 / 0.055);
 
   /* Type. One family. */
   --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
 
-  --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4rem);   /* 40 to 64, statements */
-  --text-h1:   clamp(3.5rem, 2.6rem + 1.6vw, 4.5rem);   /* 56 to 72 */
-  --text-h2:   clamp(2.25rem, 1.9rem + 0.7vw, 2.75rem);  /* 36 to 44 */
-  --text-h3:   1.5rem;                                   /* 24 */
-  --text-h4:   1.25rem;                                  /* 20 */
-  --text-lead: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);   /* 20 to 24, opening lines */
-  --text-body: 1.125rem;                                 /* 18 */
-  --text-sm:   1rem;                                     /* 16 */
-  --text-xs:   0.875rem;                                 /* 14 */
-  --text-overline: 0.6875rem;                            /* 11 */
+  --text-display: clamp(2.25rem, 1.5rem + 3.1vw, 3.5rem);  /* 36 to 56 */
+  --text-h1:   clamp(2.75rem, 2rem + 2.6vw, 4rem);         /* 44 to 64 */
+  --text-h2:   clamp(2rem, 1.7rem + 0.9vw, 2.625rem);      /* 32 to 42 */
+  --text-h3:   1.375rem;                                   /* 22 */
+  --text-h4:   1.125rem;                                   /* 18 */
+  --text-lead: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem); /* 19 to 22 */
+  --text-body: 1.0625rem;                                  /* 17 */
+  --text-sm:   0.9375rem;                                  /* 15 */
+  --text-xs:   0.8125rem;                                  /* 13 */
+  --text-overline: 0.6875rem;                              /* 11 */
 
-  --lh-display: 1.08;
-  --lh-h1:   1.05;
-  --lh-h2:   1.1;
-  --lh-h3:   1.25;
-  --lh-body: 1.6;
+  --lh-display: 1.1;
+  --lh-h1:   1.06;
+  --lh-h2:   1.12;
+  --lh-h3:   1.28;
+  --lh-body: 1.62;
 
   --track-tight: -0.02em;
-  --track-overline: 0.12em;
+  --track-overline: 0.14em;
 
   /* Spacing */
   --space-1: 0.25rem;  --space-2: 0.5rem;   --space-3: 0.75rem;
@@ -87,15 +97,16 @@
   --space-7: 3rem;     --space-8: 4rem;     --space-9: 6rem;
   --space-10: 8rem;
 
-  /* Half a gap per side, so two adjacent sections give the 96 to 128 the
-     design calls for rather than doubling to 256. */
-  --section-y: clamp(3rem, 1.5rem + 3vw, 4rem);
+  /* Half a gap per side, so two adjacent sections give the intended 96 to 128
+     rather than doubling to 256. */
+  --section-y: clamp(3.25rem, 1.75rem + 3vw, 4.5rem);
 
   /* Layout */
-  --container: 1280px;
-  --container-narrow: 760px;
-  --gutter: clamp(1.25rem, 0.5rem + 2.4vw, 2.5rem);
-  --grid-gap: clamp(1.25rem, 0.75rem + 1.6vw, 2rem);
+  --container: 1320px;
+  --container-narrow: 780px;
+  --gutter: clamp(1.25rem, 0.5rem + 2.4vw, 3rem);
+  --grid-gap: clamp(1.5rem, 0.9rem + 1.8vw, 2.5rem);
+  --header-h: 76px;
 
   /* Shape. Square. */
   --radius-sm: 0;
@@ -103,7 +114,8 @@
   --radius-lg: 0;
   --radius-xl: 0;
 
-  /* Motion. Link underline only. */
-  --duration-fast: 120ms;
+  /* Motion. Restrained. */
+  --duration-fast: 140ms;
+  --duration: 240ms;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }

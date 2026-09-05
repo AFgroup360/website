@@ -2,11 +2,16 @@
 (function () {
   'use strict';
 
-  /* TODO Farid. Set this to a form service endpoint before going live.
-     Formspree looks like https://formspree.io/f/xxxxxxxx and Web3Forms like
+  /* Set this to a form service endpoint before going live. Formspree looks
+     like https://formspree.io/f/xxxxxxxx and Web3Forms like
      https://api.web3forms.com/submit (with an access_key field added to the
      form). Until it is set, the form explains where to send the message. */
   var CONTACT_ENDPOINT = '';
+
+  /* Set this to a scheduling link (Calendly, Google, Outlook). While it is
+     empty the "Pick a time" button is removed rather than left pointing
+     nowhere. */
+  var CALENDAR_URL = '';
 
   function initNav() {
     var toggle = document.querySelector('.nav-toggle');
@@ -24,7 +29,7 @@
     nav.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
 
-    var mq = window.matchMedia('(min-width: 901px)');
+    var mq = window.matchMedia('(min-width: 981px)');
     var onChange = function (e) { if (e.matches) setOpen(false); };
     if (mq.addEventListener) mq.addEventListener('change', onChange);
     else if (mq.addListener) mq.addListener(onChange);
@@ -36,8 +41,6 @@
       return last === '' ? 'index' : last;
     }
     var here = leaf(window.location.pathname);
-    // Articles sit under Our Thinking.
-    if (here.indexOf('thinking-') === 0) here = 'our-thinking';
     document.querySelectorAll('.nav__link').forEach(function (link) {
       if (leaf(link.getAttribute('href') || '') === here) link.setAttribute('aria-current', 'page');
     });
@@ -76,7 +79,7 @@
         .then(function (res) {
           if (!res.ok) throw new Error('Request failed');
           form.reset();
-          show('ok', 'Thank you. Farid will follow up shortly. If it is urgent, call +1 (416) 879-0969.');
+          show('ok', 'Thank you. We will come back to you shortly. If it is urgent, call +1 (416) 879-0969.');
         })
         .catch(function () {
           show('err', 'Something went wrong sending your message. Please email hello@ameri-group.ca or call +1 (416) 879-0969.');
@@ -87,8 +90,22 @@
     });
   }
 
+  function initCalendar() {
+    var link = document.querySelector('[data-placeholder="calendar"]');
+    if (!link) return;
+    if (CALENDAR_URL) {
+      link.setAttribute('href', CALENDAR_URL);
+      link.setAttribute('rel', 'noopener');
+      link.setAttribute('target', '_blank');
+      link.removeAttribute('data-placeholder');
+    } else {
+      link.parentNode.removeChild(link);
+    }
+  }
+
   function init() {
     initNav();
+    initCalendar();
     initCurrent();
     initContactForm();
   }

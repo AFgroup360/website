@@ -3,9 +3,8 @@
 # Pages in tools/pages/ may drop in these placeholders, which build.py expands:
 #   {{BREADCRUMB: Label}}                     one level under Home
 #   {{BREADCRUMB: Parent label > Label}}      two levels, parent links to PARENTS[label]
-#   {{JUMPTO: id=Label | id=Label | ...}}     the in page anchor row
 #   {{REVIEW}}                                the rendered sample review page
-#   {{LETS_CONNECT}}                          the details and one button, id="connect"
+#   {{LETS_CONNECT}}                          the closing navy call to action
 
 import re
 
@@ -32,16 +31,21 @@ HEAD = '''<!DOCTYPE html>
 <meta name="description" content="{description}">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ameri-group.ca{canonical}">
+<meta name="theme-color" content="#08162f">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="AmeriFinancial">
 <meta property="og:url" content="https://ameri-group.ca{canonical}">
 <meta property="og:image" content="https://ameri-group.ca/assets/img/opengraph.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{description}">
 <meta name="twitter:image" content="https://ameri-group.ca/assets/img/opengraph.jpg">
-<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/img/icon-512.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -53,27 +57,27 @@ HEAD = '''<!DOCTYPE html>
 <a class="skip-link" href="#main">Skip to content</a>
 '''
 
+# The real logo assets. "Financial" is white in the artwork, so every ground
+# the lockup sits on is navy.
+LOCKUP = '''<a class="brand" href="index.html" aria-label="AmeriFinancial, back to home">
+      <img class="brand__lockup" src="assets/img/logo-lockup.png"
+           alt="AmeriFinancial" width="1182" height="150" decoding="async">
+      <img class="brand__markonly" src="assets/img/logo-mark.png"
+           alt="AmeriFinancial" width="271" height="181" loading="lazy" decoding="async">
+    </a>'''
+
 
 def header():
     links = "\n".join(
-        '        <a class="nav__link" href="{file}">{label}</a>'.format(**item)
+        '      <a class="nav__link" href="{file}">{label}</a>'.format(**item)
         for item in NAV
     )
     return '''<header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href="index.html" aria-label="AmeriFinancial, back to home">
-      <svg class="brand__mark" viewBox="0 0 120 96" fill="currentColor" aria-hidden="true" focusable="false">
-        <path fill-rule="evenodd" d="M34 0 L52 0 L78 96 L60 96 L54.5 76 L23.5 76 L18 96 L0 96 Z M29 58 L49 58 L39 26 Z"/>
-        <path d="M62 0 L78 0 L78 96 L62 96 Z"/>
-        <path d="M78 0 L118 0 L108 18 L78 18 Z"/>
-        <path d="M78 38 L106 38 L97 56 L78 56 Z"/>
-      </svg>
-      <span class="brand__rule" aria-hidden="true"></span>
-      <span class="brand__word"><b>Ameri</b><i>Financial</i></span>
-    </a>
+    {lockup}
     <nav class="nav" id="primary-nav" aria-label="Primary">
 {links}
-        <a class="btn btn--primary nav__cta" href="contact.html">Book an introductory call</a>
+      <a class="btn btn--primary nav__cta" href="contact.html">Book an introductory call</a>
     </nav>
     <div class="header__actions">
       <a class="btn btn--primary" href="contact.html">Book an introductory call</a>
@@ -87,7 +91,7 @@ def header():
   </div>
 </header>
 <main id="main">
-'''.format(links=links)
+'''.format(links=links, lockup=LOCKUP)
 
 
 def breadcrumb(spec):
@@ -98,73 +102,66 @@ def breadcrumb(spec):
         items.append(f'<li><a href="{href}">{p}</a></li>')
     items.append(f'<li aria-current="page">{parts[-1]}</li>')
     inner = "\n    ".join(items)
-    return f'''<nav class="breadcrumb" aria-label="Breadcrumb">
+    return f'''<nav aria-label="Breadcrumb">
   <ol class="breadcrumb" role="list">
     {inner}
   </ol>
 </nav>'''
 
 
-def jumpto(spec):
-    links = []
-    for pair in spec.split("|"):
-        anchor, label = [s.strip() for s in pair.split("=", 1)]
-        links.append(f'<a href="#{anchor}">{label}</a>')
-    inner = "\n  ".join(links)
-    return f'''<nav class="jumpto" aria-label="Jump to">
-  <span class="jumpto__label">Jump to</span>
-  {inner}
-</nav>'''
-
-
-# Fictional company, fictional figures. Labelled as a sample on the page.
+# The sample review carries the format and the verdict, not figures. There are
+# no company specific numbers on it because there is no real company behind it.
 REVIEW = '''<figure class="review" role="img"
-        aria-label="The first page of a sample Financing Readiness Review for a fictional company. A verdict at the top, then three columns setting out what supports the case, what the conditions must address, and what makes it transaction ready.">
+        aria-label="The first page of a sample Financing Readiness Review. A verdict at the top with three possible outcomes and one of them marked, then three columns setting out what supports the position, what conditions would have to be met, and what was verified against source documents.">
   <div class="review__head">
     <div>
       <p class="review__kicker">Financing Readiness Review</p>
-      <p class="review__company">Northfield Packaging Systems Inc.</p>
+      <p class="review__company">Summary and verdict</p>
     </div>
-    <span class="review__tag">Sample</span>
+    <span class="review__tag">Sample format</span>
   </div>
   <div class="review__verdict">
     <p class="review__kicker">Readiness verdict</p>
-    <p>Financeable on specific, addressable conditions.</p>
+    <ul class="review__options" role="list">
+      <li>Financeable</li>
+      <li class="is-set">Financeable on conditions</li>
+      <li>Not financeable in the current position</li>
+    </ul>
   </div>
   <div class="review__cols">
     <div class="review__col">
-      <h4>What supports it</h4>
+      <h4>What supports the position</h4>
       <ul role="list">
-        <li>Operating cash positive in 9 of the last 12 months</li>
-        <li>Receivables largely current, institutional customers</li>
-        <li>Order book covers the coming two quarters</li>
+        <li>Operating cash flow over the period reviewed</li>
+        <li>Quality of the receivables book</li>
+        <li>Work already contracted</li>
       </ul>
     </div>
     <div class="review__col">
       <h4>What the conditions address</h4>
       <ul role="list">
-        <li>Supplier balances past 90 days</li>
-        <li>Tax arrears to be put on a schedule</li>
-        <li>Stabilisation amount to be validated</li>
+        <li>Obligations that rank ahead of new capital</li>
+        <li>Arrears to be put on a schedule</li>
+        <li>Amount sized to the measured gap</li>
       </ul>
     </div>
     <div class="review__col">
-      <h4>What makes it transaction ready</h4>
+      <h4>What was verified</h4>
       <ul role="list">
-        <li>Debt balances confirmed to source</li>
-        <li>Monthly controls in place before funding</li>
-        <li>Conditions met and evidenced</li>
+        <li>Balances confirmed to source documents</li>
+        <li>Method stated for each figure</li>
+        <li>Anything still open is disclosed</li>
       </ul>
     </div>
   </div>
   <div class="review__foot">
-    <span>Fictional company and figures, shown to illustrate the format</span>
-    <span>Page 1 of 5</span>
+    <span>Sample layout. No client information is shown.</span>
+    <span>Page 1</span>
   </div>
 </figure>'''
 
 
-LETS_CONNECT = f'''<section class="section" id="connect">
+LETS_CONNECT = f'''<section class="connect-band rays" id="connect">
   <div class="container">
     <div class="connect">
       <div>
@@ -187,29 +184,19 @@ LETS_CONNECT = f'''<section class="section" id="connect">
 def expand(body):
     """Replace the page placeholders with their blocks."""
     body = re.sub(r"\{\{BREADCRUMB:\s*(.+?)\s*\}\}", lambda m: breadcrumb(m.group(1)), body)
-    body = re.sub(r"\{\{JUMPTO:\s*(.+?)\s*\}\}", lambda m: jumpto(m.group(1)), body)
     body = body.replace("{{REVIEW}}", REVIEW)
     body = body.replace("{{LETS_CONNECT}}", LETS_CONNECT)
     return body
 
 
 FOOTER = f'''</main>
-<footer class="site-footer">
+<footer class="site-footer rays rays--soft">
   <div class="container">
     <div class="site-footer__grid">
       <div>
-        <a class="brand" href="index.html" aria-label="AmeriFinancial, back to home">
-        <svg class="brand__mark" viewBox="0 0 120 96" fill="currentColor" aria-hidden="true" focusable="false">
-          <path fill-rule="evenodd" d="M34 0 L52 0 L78 96 L60 96 L54.5 76 L23.5 76 L18 96 L0 96 Z M29 58 L49 58 L39 26 Z"/>
-          <path d="M62 0 L78 0 L78 96 L62 96 Z"/>
-          <path d="M78 0 L118 0 L108 18 L78 18 Z"/>
-          <path d="M78 38 L106 38 L97 56 L78 56 Z"/>
-        </svg>
-        <span class="brand__rule" aria-hidden="true"></span>
-        <span class="brand__word"><b>Ameri</b><i>Financial</i></span>
-    </a>
+        {LOCKUP}
         <p class="site-footer__blurb">Financial visibility, reporting and control for
-          owner led businesses and the people who fund them.</p>
+          owner led businesses and the people who finance them.</p>
       </div>
       <div>
         <h4>Pages</h4>
@@ -221,13 +208,12 @@ FOOTER = f'''</main>
         </ul>
       </div>
       <div>
-        <h4>What we do</h4>
+        <h4>The work</h4>
         <ul role="list">
-          <li><a href="what-we-do.html#cash-flow">Cash flow control</a></li>
-          <li><a href="what-we-do.html#reporting">Management reporting</a></li>
-          <li><a href="what-we-do.html#working-capital">Working capital</a></li>
-          <li><a href="what-we-do.html#financing">Financing readiness</a></li>
-          <li><a href="what-we-do.html#review">The Financing Readiness Review</a></li>
+          <li><a href="what-we-do.html#owners">For business owners</a></li>
+          <li><a href="what-we-do.html#capital">For capital providers</a></li>
+          <li><a href="what-we-do.html#review">Financing Readiness Review</a></li>
+          <li><a href="our-approach.html#month">How a month runs</a></li>
         </ul>
       </div>
       <div>

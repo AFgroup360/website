@@ -24,28 +24,28 @@ def t(page):
 PAGES = {
     "index": {
         "out": "index.html", "canonical": "/",
-        "title": f"{BRAND} | Financial control for owner led businesses",
-        "description": ("The financial control layer between bookkeeping and the decisions "
-                        "you run the business on. For owner led businesses and the people "
-                        "who fund them."),
+        "title": f"{BRAND} | Financial visibility, reporting and control",
+        "description": ("We put the reporting, forecasting and financial controls in place "
+                        "so owner led businesses, and the people financing them, know where "
+                        "the business stands and what it can do next."),
     },
     "who-we-are": {
         "out": "who-we-are.html", "canonical": "/who-we-are",
         "title": t("Who We Are"),
-        "description": ("A finance function you can hire by the month, for owner led "
-                        "businesses in Ontario."),
+        "description": ("A firm that goes into a business and builds the financial "
+                        "visibility, reporting and control the decisions depend on."),
     },
     "what-we-do": {
         "out": "what-we-do.html", "canonical": "/what-we-do",
         "title": t("What We Do"),
-        "description": ("Cash flow control, management reporting, working capital and "
-                        "financing readiness, run every month."),
+        "description": ("Engagement types for business owners, work before and after "
+                        "funding for capital providers, and the Financing Readiness Review."),
     },
     "our-approach": {
         "out": "our-approach.html", "canonical": "/our-approach",
         "title": t("Our Approach"),
-        "description": ("One idea read from two sides of the table. Better visibility and "
-                        "stronger financial control make a healthier business."),
+        "description": ("What we look at, how a month runs, and why better visibility "
+                        "and stronger financial control make a healthier business."),
     },
     "contact": {
         "out": "contact.html", "canonical": "/contact",

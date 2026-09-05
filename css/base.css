@@ -9,7 +9,7 @@ html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: calc(var(--header-h) + 16px);
 }
 
 body, h1, h2, h3, h4, p, figure, blockquote, dl, dd, ul, ol { margin: 0; }
@@ -74,6 +74,7 @@ a:hover { text-decoration: underline; text-underline-offset: 0.2em; text-decorat
   margin-inline: 0;
   padding-inline: 0;
 }
+.container--wide { max-width: 1440px; }
 
 /* Each section contributes half the gap on each side. Adjacent sections then
    add up to the intended 96 to 128, with no doubling. */
