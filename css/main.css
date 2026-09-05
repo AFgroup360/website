@@ -920,15 +920,6 @@ button.nav__link--parent {
 .cashgap__end--in,
 .cashgap__detail--in { text-align: right; }
 
-.cashgap__arrow {
-  width: 20px;
-  height: 20px;
-  display: block;
-  color: var(--accent-strong);
-  margin-bottom: var(--space-2);
-}
-.cashgap__end--in .cashgap__arrow { margin-left: auto; }
-
 .cashgap__what {
   font-family: var(--font-serif);
   font-size: clamp(1.15rem, 0.95rem + 0.9vw, 1.6rem);
@@ -1010,7 +1001,6 @@ button.nav__link--parent {
 
   .cashgap__end--in,
   .cashgap__detail--in { text-align: left; }
-  .cashgap__end--in .cashgap__arrow { margin-left: 0; }
   .cashgap__detail,
   .cashgap__detail--in { margin-left: 0; max-width: none; }
 }
