@@ -26,7 +26,7 @@ PAGES = {
             "keeps it current, for owner-led businesses and for the lenders and "
             "investors funding them."
         ),
-        "cta": True,
+        "cta": False,
     },
     "services": {
         "out": "services.html",
@@ -37,7 +37,7 @@ PAGES = {
             "packages: cash flow control, monthly reporting, working-capital discipline "
             "and financing readiness."
         ),
-        "cta": True,
+        "cta": False,
     },
     "for-owners": {
         "out": "for-owners.html",
@@ -48,14 +48,6 @@ PAGES = {
             "forward view of cash, and a clear answer on what the business can carry "
             "before taking on financing."
         ),
-        "cta": {
-            "eyebrow": "Where it starts",
-            "heading": "One call. We tell you what we would look at first.",
-            "body": ("Twenty minutes on the business, whatever numbers you've got, and "
-                     "what's actually keeping you up. If we're not the right fit, we'll "
-                     "say so on that call."),
-            "action": "Book an introductory call",
-        },
     },
     "for-capital-providers": {
         "out": "for-capital-providers.html",
@@ -66,7 +58,7 @@ PAGES = {
             "owner-led business, and monthly oversight for the life of the facility. "
             "Bank statement led analysis, not bookkeeping led."
         ),
-        "cta": True,
+        "cta": False,
     },
     "about": {
         "out": "about.html",
