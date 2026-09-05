@@ -80,28 +80,36 @@
       <h2>Most of it is just timing.</h2>
     </div>
 
-    <figure class="gap-figure gap-figure--bare reveal" style="margin:0">
-      <svg viewBox="0 32 820 152" role="img"
-           aria-label="Timeline: money leaves the business on day zero, customer payments arrive 30 to 45 days later, and the owner funds the window in between.">
-        <rect x="0" y="44" width="196" height="66" fill="#1a2947"/>
-        <text x="18" y="74" class="svg-label" fill="#ffffff">Money out</text>
-        <text x="18" y="95" class="svg-axis" fill="#b6c0d3">Day 0</text>
+    <figure class="cashgap reveal">
+      <div class="cashgap__chart">
+        <div class="cashgap__end">
+          <svg class="cashgap__arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M8 2v10M4 9l4 4 4-4" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="cashgap__what">Money out</p>
+          <p class="cashgap__when">Day 0</p>
+        </div>
 
-        <rect x="196" y="44" width="394" height="66" fill="#f7efe1"/>
-        <line x1="196" y1="44" x2="196" y2="110" stroke="#c89c51" stroke-width="2"/>
-        <line x1="590" y1="44" x2="590" y2="110" stroke="#c89c51" stroke-width="2"/>
-        <text x="393" y="83" class="svg-gap" text-anchor="middle">The window you fund yourself</text>
+        <div class="cashgap__end cashgap__end--in">
+          <svg class="cashgap__arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M8 14V4M4 7l4-4 4 4" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="cashgap__what">Money in</p>
+          <p class="cashgap__when">Day 30 to 45</p>
+        </div>
 
-        <rect x="590" y="44" width="230" height="66" fill="#253556"/>
-        <text x="608" y="74" class="svg-label" fill="#ffffff">Money in</text>
-        <text x="608" y="95" class="svg-axis" fill="#b6c0d3">Day 30 to 45</text>
+        <div class="cashgap__rail" role="img"
+             aria-label="A timeline running from day zero, when money leaves the business, to day thirty to forty-five, when customer payments arrive. The owner funds the stretch in between.">
+          <span class="cashgap__band">You fund this stretch</span>
+        </div>
 
-        <text x="0" y="146" class="svg-label">Deposits, payroll, suppliers</text>
-        <text x="0" y="168" class="svg-axis">Paid up front, often before the work happens</text>
-
-        <text x="820" y="146" class="svg-label" text-anchor="end">Customer payments land</text>
-        <text x="820" y="168" class="svg-axis" text-anchor="end">After the cost has already cleared your account</text>
-      </svg>
+        <p class="cashgap__detail">Deposits, payroll and suppliers. Usually before the
+          work has even happened.</p>
+        <p class="cashgap__detail cashgap__detail--in">Once the invoice is out and the
+          customer gets round to paying it.</p>
+      </div>
       <figcaption>You're not broke. You're early. You pay the deposit in week one and
         the money shows up in week six. Keep growing and that gap gets wider, until it's
         an overdraft, then a credit line, then a financing decision you're making in a
