@@ -169,6 +169,10 @@ def photo(spec):
                 f'  <img src="{src}" alt="{alt}" loading="lazy" decoding="async">\n'
                 f'  <figcaption><span>{caption}</span></figcaption>\n'
                 f'</figure>')
+    if mode == "bare":
+        return (f'<figure class="photo-band">\n'
+                f'  <img src="{src}" alt="{alt}" loading="lazy" decoding="async">\n'
+                f'</figure>')
     cap = f'\n  <figcaption>{caption}</figcaption>' if caption else ""
     return (f'<figure class="photo-band">\n'
             f'  <img src="{src}" alt="{alt}" loading="lazy" decoding="async">{cap}\n'
