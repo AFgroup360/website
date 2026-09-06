@@ -57,7 +57,7 @@ PAGES = {
         "out": "our-approach.html", "canonical": "/our-approach",
         "title": t("Our Approach"),
         "description": ("What we look at, how a month runs, and how a current view of "
-                        "the numbers gets the decision made in time rather than late."),
+                        "cash, margin and obligations gets the decision made in time."),
     },
     "contact": {
         "out": "contact.html", "canonical": "/contact",
