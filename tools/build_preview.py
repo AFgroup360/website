@@ -75,12 +75,17 @@ def inline_page(name: str) -> str:
     css = "\n".join(
         (ROOT / f).read_text() for f in ("css/tokens.css", "css/base.css", "css/main.css")
     )
-    html = re.sub(r'\s*<link rel="stylesheet" href="css/[^"]+">', "", html)
+    html = re.sub(r'\s*<link rel="stylesheet" href="(\.\./)?css/[^"]+">', "", html)
     html = html.replace("</head>", "<style>\n%s\n</style>\n</head>" % css)
 
     js = (ROOT / "js/main.js").read_text()
     html = html.replace('<script src="js/main.js" defer></script>',
                         "<script>\n%s\n</script>" % js)
+
+    # Sub folder pages point up a level for their assets; flatten those so the
+    # preview's asset lookup finds them.
+    html = html.replace('src="../assets/img/', 'src="assets/img/')
+    html = html.replace('href="../index.html"', 'href="index.html"')
 
     # Google Fonts is reachable from the published artifact, so the link stays.
     return html

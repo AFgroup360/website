@@ -221,7 +221,10 @@
       var href = a.getAttribute('href') || '';
       if (href.charAt(0) === '#' || /^(https?:|mailto:|tel:)/.test(href)) return;
 
-      var file = href.split('#')[0].split('/').pop();
+      var path = href.split('#')[0].split('?')[0].replace(/^\.\//, '');
+      // A link to a directory, such as portal/, has no filename to take.
+      var file = /\/$/.test(path) ? path + 'index.html' : path;
+      if (!PAGES[file]) file = file.split('/').pop();
       e.preventDefault();
       show(PAGES[file] ? file : '404.html');
     });

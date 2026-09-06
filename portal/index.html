@@ -11,9 +11,15 @@
 <link rel="stylesheet" href="../css/tokens.css">
 <link rel="stylesheet" href="../css/base.css">
 <link rel="stylesheet" href="../css/main.css">
-<link rel="stylesheet" href="../css/portal.css">
+
+<style>
+  .portal-main { padding-block: clamp(3rem, 2rem + 3vw, 5rem); }
+  .portal-card { background: var(--white); border: 1px solid var(--rule); padding: clamp(1.5rem, 1rem + 2vw, 2.25rem); }
+  .portal-help { margin-top: var(--space-5); font-size: var(--text-xs); color: var(--text-muted); }
+  .portal-help a, .portal-card .lede a { color: var(--accent-text); font-weight: 600; }
+</style>
 </head>
-<body class="portal-body">
+<body>
 <header class="site-header">
   <div class="container site-header__inner">
     <a class="brand" href="../index.html" aria-label="AmeriFinancial, back to the website">
@@ -23,7 +29,7 @@
   </div>
 </header>
 <main class="portal-main">
-  <section class="portal-signin">
+  <section class="section">
     <div class="container">
       <div class="portal-card" style="max-width:34rem">
         <span class="overline">Client portal</span>
