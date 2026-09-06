@@ -638,6 +638,14 @@
 .engagement > p { margin-top: var(--space-3); font-size: var(--text-sm); color: var(--text-muted); }
 .engagement ul { margin-top: var(--space-5); display: grid; }
 .engagement li { padding-block: var(--space-3); border-top: 1px solid var(--rule); font-size: var(--text-sm); }
+/* The three levels also appear inside the navy band on the capital page. */
+.band .engagements { border-top-color: var(--accent-on-dark); }
+.band .engagement + .engagement { border-left-color: var(--rule-dark-soft); }
+.band .engagement h3 { color: var(--white); }
+.band .engagement > p { color: var(--navy-100); }
+.band .engagement__depth i { background: rgb(255 255 255 / 0.22); }
+.band .engagement__depth i.on { background: var(--accent-on-dark); }
+
 @media (max-width: 900px) {
   .engagements { grid-template-columns: 1fr; }
   .engagement { padding-right: 0; }
