@@ -380,6 +380,9 @@
    Section archetypes. No section repeats the one directly above it.
    -------------------------------------------------------------------------- */
 .section--soft { background: var(--ground-soft); }
+/* First section on a page whose heading is already in the page top. */
+.section--flush { padding-top: clamp(2.5rem, 1.6rem + 2vw, 3.75rem); }
+.section--flush > .container > :first-child { margin-top: 0; }
 
 /* --- Statement. One sentence, with a short rail beside it. ---------------- */
 .statement { padding-block: var(--section-y); }
@@ -826,32 +829,6 @@
 /* --------------------------------------------------------------------------
    Cash gap timeline.
    -------------------------------------------------------------------------- */
-.cashgap { margin: 0; }
-.cashgap__chart { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(1.25rem, 0.5rem + 3vw, 4rem); align-items: end; }
-.cashgap__end--in, .cashgap__detail--in { text-align: right; }
-.cashgap__what { font-size: var(--text-h3); font-weight: 600; letter-spacing: var(--track-tight); color: var(--text-strong); line-height: 1.2; }
-.cashgap__when { font-size: var(--text-overline); font-weight: 600; letter-spacing: var(--track-overline); text-transform: uppercase; color: var(--text-muted); margin-top: var(--space-2); }
-.cashgap__rail { grid-column: 1 / -1; position: relative; height: 2px; background: var(--accent); margin-top: var(--space-5); }
-.cashgap__rail::before, .cashgap__rail::after { content: ""; position: absolute; top: 50%; width: 10px; height: 10px; background: var(--inverse); transform: translateY(-50%); }
-.cashgap__rail::before { left: 0; } .cashgap__rail::after { right: 0; }
-.cashgap__band { position: absolute; left: 0; right: 0; bottom: calc(100% + var(--space-3)); text-align: center; font-size: var(--text-xs); font-weight: 600; color: var(--accent-text); }
-.cashgap__detail { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--text-muted); max-width: 34ch; }
-.cashgap__detail--in { margin-left: auto; }
-.cashgap figcaption { margin-top: var(--space-6); font-size: var(--text-sm); color: var(--text-muted); max-width: 68ch; }
-@media (max-width: 620px) {
-  .cashgap__chart { grid-template-columns: minmax(0, 1fr); }
-  .cashgap__end { order: 1; } .cashgap__detail { order: 2; }
-  .cashgap__rail { order: 3; margin-block: calc(var(--space-6) * 1.75) var(--space-6); }
-  .cashgap__end--in { order: 4; } .cashgap__detail--in { order: 5; }
-  .cashgap__end--in, .cashgap__detail--in { text-align: left; }
-  .cashgap__detail, .cashgap__detail--in { margin-left: 0; max-width: none; }
-}
-.band .cashgap__detail, .band .cashgap__when { color: var(--text-inverse-muted); }
-.band .cashgap__what { color: var(--white); }
-.band .cashgap__rail { background: var(--accent-on-dark); }
-.band .cashgap__band { color: var(--accent-on-dark); }
-.band .cashgap__rail::before, .band .cashgap__rail::after { background: var(--white); }
-
 /* --------------------------------------------------------------------------
    Contact
    -------------------------------------------------------------------------- */
@@ -1247,6 +1224,19 @@ button:focus-visible {
 .side--dark .side__rows > div { border-top-color: var(--rule-dark-soft); }
 .side--dark .side__rows dt { color: var(--text-inverse-muted); }
 .side--dark .side__rows dd { color: var(--white); }
+/* The two cards on What We Do are the way through to their own pages. */
+.side--link {
+  display: block; text-decoration: none;
+  transition: border-color var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+.side--link:hover, .side--link:focus-visible {
+  text-decoration: none; border-color: var(--accent); transform: translateY(-2px);
+}
+.side--link .link-arrow { display: block; margin-top: var(--space-5); }
+.side--dark.side--link .link-arrow { color: var(--accent-on-dark); }
+.side--dark.side--link .link-arrow::after { background: var(--accent-on-dark); }
+
 @media (max-width: 820px) {
   .sides { grid-template-columns: 1fr; }
   .side__rows > div { grid-template-columns: 1fr; gap: var(--space-2); }
@@ -1298,12 +1288,3 @@ button:focus-visible {
   .flow__line { margin-top: var(--space-2); max-width: none; }
 }
 
-/* The cash gap on the home page: the heading beside the drawing rather than
-   above it, so the section stays shallow between two heavier blocks. */
-.gapstrip__grid {
-  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
-  gap: var(--grid-gap) clamp(2rem, 1rem + 4vw, 4.5rem);
-  align-items: center;
-}
-.gapstrip .cashgap__chart { align-items: end; }
-@media (max-width: 900px) { .gapstrip__grid { grid-template-columns: 1fr; } }

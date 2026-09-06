@@ -22,6 +22,8 @@ PAGES = [
     ("index.html", "Home"),
     ("who-we-are.html", "Who We Are"),
     ("what-we-do.html", "What We Do"),
+    ("for-business-owners.html", "For business owners"),
+    ("for-capital-providers.html", "For capital providers"),
     ("our-approach.html", "Our Approach"),
     ("contact.html", "Contact Us"),
     ("privacy.html", "Privacy"),

@@ -41,6 +41,18 @@ PAGES = {
         "description": ("Engagement types for business owners, work before and after "
                         "funding for capital providers, and the Financing Readiness Review."),
     },
+    "for-business-owners": {
+        "out": "for-business-owners.html", "canonical": "/for-business-owners",
+        "title": t("For business owners"),
+        "description": ("Three levels of involvement, from a clear monthly view to "
+                        "someone working in the numbers with you through the month."),
+    },
+    "for-capital-providers": {
+        "out": "for-capital-providers.html", "canonical": "/for-capital-providers",
+        "title": t("For capital providers"),
+        "description": ("Understanding a business before capital goes in, and keeping "
+                        "it visible and under control after it does."),
+    },
     "our-approach": {
         "out": "our-approach.html", "canonical": "/our-approach",
         "title": t("Our Approach"),

@@ -14,16 +14,16 @@ import re
 NAV = [
     {"file": "who-we-are.html", "label": "Who We Are"},
     {"file": "what-we-do.html", "label": "What We Do", "children": [
-        {"file": "what-we-do.html#owners", "label": "For business owners",
+        {"file": "for-business-owners.html", "label": "For business owners",
          "note": "Three levels of involvement"},
-        {"file": "what-we-do.html#capital", "label": "For capital providers",
+        {"file": "for-capital-providers.html", "label": "For capital providers",
          "note": "Before funding, and after"},
     ]},
     {"file": "our-approach.html", "label": "Our Approach"},
     {"file": "contact.html", "label": "Contact Us"},
 ]
 
-PARENTS = {}
+PARENTS = {"What We Do": "what-we-do.html"}
 
 EMAIL = "hello@ameri-group.ca"
 PHONE = "+1 (416) 879-0969"
@@ -312,8 +312,8 @@ FOOTER = f'''</main>
       <div>
         <h4>The work</h4>
         <ul role="list">
-          <li><a href="what-we-do.html#owners">For business owners</a></li>
-          <li><a href="what-we-do.html#capital">For capital providers</a></li>
+          <li><a href="for-business-owners.html">For business owners</a></li>
+          <li><a href="for-capital-providers.html">For capital providers</a></li>
           <li><a href="what-we-do.html#review">Financing Readiness Review</a></li>
           <li><a href="our-approach.html#month">How a month runs</a></li>
         </ul>

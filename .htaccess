@@ -10,9 +10,8 @@ ErrorDocument 404 /404.html
 
   # Retired pages.
   RewriteRule ^who-we-serve(\.html)?/?$ /our-approach.html [R=301,L]
-  RewriteRule ^for-lenders(\.html)?/?$ /our-approach.html [R=301,L]
-  RewriteRule ^for-owners(\.html)?/?$ /our-approach.html [R=301,L]
-  RewriteRule ^for-capital-providers(\.html)?/?$ /our-approach.html [R=301,L]
+  RewriteRule ^for-lenders(\.html)?/?$ /for-capital-providers.html [R=301,L]
+  RewriteRule ^for-owners(\.html)?/?$ /for-business-owners.html [R=301,L]
   RewriteRule ^services(\.html)?/?$ /what-we-do.html [R=301,L]
   RewriteRule ^about(\.html)?/?$ /who-we-are.html [R=301,L]
   RewriteRule ^our-work-[a-z-]+(\.html)?/?$ /who-we-are.html [R=301,L]
