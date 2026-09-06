@@ -1,5 +1,4 @@
-/* ==========================================================================
-   Components. AmeriFinancial.
+/* ===================================================================   Components. AmeriFinancial.
 
    Reads tokens only. The site alternates a white reading ground with deep
    navy sections carrying a very low opacity gold light. Gold appears as one
@@ -756,3 +755,143 @@
   color: var(--text-muted);
 }
 @media (max-width: 700px) { .photo-band img { aspect-ratio: 4 / 3; } }
+
+/* Premium refinement pass */
+/*
+   A restrained visual polish: more authority in the hero, clearer proof points,
+   and stronger interaction states without changing the site's navy/gold rules.
+*/
+html { scroll-behavior: smooth; }
+
+.hero {
+  min-height: min(760px, calc(100svh - var(--header-h)));
+  display: grid;
+  align-items: center;
+}
+
+.hero > .container { width: 100%; }
+
+.hero__inner {
+  min-height: clamp(34rem, 72vh, 46rem);
+  align-items: center;
+}
+
+.hero h1 {
+  max-width: 12ch;
+  text-wrap: balance;
+  letter-spacing: -0.045em;
+}
+
+.hero .lede {
+  max-width: 42ch;
+  text-wrap: pretty;
+}
+
+.hero__panel {
+  align-self: center;
+  padding: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+  background: rgb(20 41 77 / 0.74);
+  border: 1px solid rgb(232 188 85 / 0.25);
+}
+
+.hero__panel dl { gap: 0; }
+
+.hero__panel div {
+  padding-block: var(--space-5);
+  border-top: 1px solid rgb(255 255 255 / 0.14);
+}
+
+.hero__panel div:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.hero__panel div:last-child { padding-bottom: 0; }
+
+.hero__panel dt {
+  color: var(--accent-on-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.statement {
+  border-bottom: 1px solid var(--rule);
+}
+
+.statement__grid > p {
+  max-width: 14ch;
+  text-wrap: balance;
+  letter-spacing: -0.035em;
+}
+
+.index-list {
+  border-top: 1px solid var(--rule-strong);
+}
+
+.index-row {
+  transition: background-color 180ms ease, border-color 180ms ease, padding-inline 180ms ease;
+}
+
+.index-row:hover,
+.index-row:focus-within {
+  background: var(--ground-soft);
+  border-top-color: var(--accent);
+  padding-inline: var(--space-3);
+}
+
+.index-row__num {
+  font-variant-numeric: tabular-nums;
+}
+
+.sectors__list li {
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.sectors__list li:hover {
+  color: var(--accent-on-dark);
+  border-color: rgb(232 188 85 / 0.45);
+}
+
+.connect-band {
+  border-top: 1px solid rgb(232 188 85 / 0.22);
+}
+
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-on-dark);
+  outline-offset: 4px;
+}
+
+@media (max-width: 940px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero__inner {
+    min-height: auto;
+    padding-block: clamp(4.5rem, 12vw, 7rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .hero h1 { max-width: 13ch; }
+
+  .hero__panel {
+    padding: var(--space-5);
+  }
+
+  .statement__grid > p {
+    max-width: 16ch;
+  }
+
+  .index-row:hover,
+  .index-row:focus-within {
+    padding-inline: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .index-row,
+  .sectors__list li { transition: none; }
+}
