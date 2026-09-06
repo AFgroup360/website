@@ -62,7 +62,7 @@
 
 /* Section heads. The split variant puts the heading and its opening line side
    by side so the full width carries content instead of trailing off. */
-.section-head { margin-bottom: var(--space-7); }
+.section-head { margin-bottom: var(--space-6); }
 .section-head h2 { max-width: 20ch; }
 .section-head h2 + p, .section-head h1 + p { margin-top: var(--space-4); }
 .section-head--split {
@@ -73,7 +73,8 @@
 }
 .section-head--split .overline { grid-column: 1 / -1; margin-bottom: 0; }
 .section-head--split h2 { max-width: 18ch; }
-.section-head--split .lede { margin-top: 0; max-width: 46ch; padding-bottom: 0.35em; }
+.section-head--split .lede { margin-top: 0; max-width: 50ch; padding-bottom: 0.35em; }
+.section-head--split .lede .link-arrow { display: block; margin-top: var(--space-4); }
 @media (max-width: 860px) {
   .section-head--split { grid-template-columns: 1fr; align-items: start; }
   .section-head--split h2 { max-width: 22ch; }
@@ -290,11 +291,11 @@
     background:
       linear-gradient(90deg,
         var(--navy-800) 0%,
-        rgb(8 22 47 / 0.93) 30%,
-        rgb(8 22 47 / 0.34) 52%,
-        rgb(8 22 47 / 0.52) 74%,
-        rgb(8 22 47 / 0.80) 100%),
-      linear-gradient(180deg, rgb(8 22 47 / 0.14), rgb(8 22 47 / 0.44));
+        rgb(8 22 47 / 0.92) 28%,
+        rgb(8 22 47 / 0.40) 48%,
+        rgb(8 22 47 / 0.62) 70%,
+        rgb(8 22 47 / 0.86) 100%),
+      linear-gradient(180deg, rgb(8 22 47 / 0.16), rgb(8 22 47 / 0.46));
   }
   .hero:has(.hero__photo) .hero__inner {
     grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
@@ -308,11 +309,9 @@
 /* The three questions. No numbers; the gold marker carries the rhythm. */
 .hero__panel { border-top: 2px solid var(--accent-on-dark); }
 .hero:has(.hero__photo) .hero__panel {
-  border-top: 0;
-  padding: clamp(1.5rem, 1rem + 1.6vw, 2.25rem);
-  background: rgb(5 14 31 / 0.62);
-  backdrop-filter: blur(6px);
-  border-left: 2px solid var(--accent-on-dark);
+  padding: 0;
+  background: none;
+  border-top: 2px solid var(--accent-on-dark);
 }
 .hero__panel-list { display: grid; }
 .hero__panel-list li { padding-block: var(--space-5); }
@@ -337,10 +336,10 @@
 .section--soft { background: var(--ground-soft); }
 
 /* --- Statement. One sentence, with a short rail beside it. ---------------- */
-.statement { padding-block: clamp(3.5rem, 2rem + 3vw, 5rem); }
-.statement__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: var(--grid-gap) clamp(2rem, 1rem + 4vw, 5rem); align-items: center; }
+.statement { padding-block: var(--section-y); }
+.statement__grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--grid-gap) clamp(2rem, 1rem + 4vw, 4rem); align-items: start; }
 .statement p:not(.statement__note) {
-  font-size: var(--text-display); font-weight: 600;
+  font-size: var(--text-h1); font-weight: 600;
   letter-spacing: var(--track-tight); line-height: var(--lh-display);
   color: var(--text-strong); max-width: 20ch; text-wrap: balance;
 }
