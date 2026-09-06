@@ -42,7 +42,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
                                password_hash($pass, PASSWORD_DEFAULT), 'client',
                                $business, trim((string) ($_POST['notes'] ?? ''))]);
                 flash('ok', 'Client added. Their first password is ' . $pass
-                          . ' — send it to them and ask them to tell you once they are in.');
+                          . '. Send it to them and ask them to tell you once they are in.');
             }
         }
     }
