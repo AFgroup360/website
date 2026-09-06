@@ -233,7 +233,7 @@
       </div>
       <div class="offset__body">
         <figure class="review" role="img"
-        aria-label="The first page of a sample Financing Readiness Review. A verdict at the top with three possible outcomes and one of them marked, then three columns setting out what supports the position, what conditions would have to be met, and what was verified against source documents.">
+        aria-label="The first page of a sample Financing Readiness Review. A verdict with three possible outcomes and one of them marked, a chart of the cash position over the next thirteen weeks with the tightest week marked, a bar showing how much of the cash the business has already committed and how much is left to carry new capital, and three lines on how the figures were checked.">
   <div class="review__head">
     <div>
       <p class="review__kicker">Financing Readiness Review</p>
@@ -245,38 +245,52 @@
     <p class="review__kicker">Readiness verdict</p>
     <ul class="review__options" role="list">
       <li>Financeable</li>
-      <li class="is-set">Financeable on conditions</li>
-      <li>Not financeable in the current position</li>
+      <li class="is-set">On conditions</li>
+      <li>Not yet</li>
     </ul>
   </div>
-  <div class="review__cols">
-    <div class="review__col">
-      <h4>What supports the position</h4>
-      <ul role="list">
-        <li>Operating cash flow over the period reviewed</li>
-        <li>Quality of the receivables book</li>
-        <li>Work already contracted</li>
-      </ul>
+  <div class="review__panels">
+    <div class="review__panel">
+      <p class="review__kicker">Cash, next 13 weeks</p>
+      <div class="rvchart">
+      <span class="rvchart__bar" style="--h: 74%"></span>
+      <span class="rvchart__bar" style="--h: 66%"></span>
+      <span class="rvchart__bar" style="--h: 58%"></span>
+      <span class="rvchart__bar" style="--h: 63%"></span>
+      <span class="rvchart__bar" style="--h: 50%"></span>
+      <span class="rvchart__bar" style="--h: 42%"></span>
+      <span class="rvchart__bar" style="--h: 34%"></span>
+      <span class="rvchart__bar is-low" style="--h: 27%"></span>
+      <span class="rvchart__bar" style="--h: 40%"></span>
+      <span class="rvchart__bar" style="--h: 54%"></span>
+      <span class="rvchart__bar" style="--h: 62%"></span>
+      <span class="rvchart__bar" style="--h: 71%"></span>
+      <span class="rvchart__bar" style="--h: 79%"></span>
+      </div>
+      <p class="review__note">Tightest week marked</p>
     </div>
-    <div class="review__col">
-      <h4>What the conditions address</h4>
-      <ul role="list">
-        <li>Obligations that rank ahead of new capital</li>
-        <li>Arrears to be put on a schedule</li>
-        <li>Amount sized to the measured gap</li>
-      </ul>
-    </div>
-    <div class="review__col">
-      <h4>What was verified</h4>
-      <ul role="list">
-        <li>Balances confirmed to source documents</li>
-        <li>Method stated for each figure</li>
-        <li>Anything still open is disclosed</li>
-      </ul>
+    <div class="review__panel">
+      <p class="review__kicker">What it can carry</p>
+      <div class="rvbars">
+        <div class="rvbar">
+          <span>Already committed</span>
+          <span class="rvbar__track"><i style="--w: 68%"></i></span>
+        </div>
+        <div class="rvbar rvbar--free">
+          <span>Room for new capital</span>
+          <span class="rvbar__track"><i style="--w: 32%"></i></span>
+        </div>
+      </div>
+      <p class="review__note">Sized to the measured gap</p>
     </div>
   </div>
+  <ul class="review__points" role="list">
+    <li>Balances confirmed to source documents</li>
+    <li>Method stated for each figure</li>
+    <li>Anything still open is disclosed</li>
+  </ul>
   <div class="review__foot">
-    <span>Sample layout. No client information is shown.</span>
+    <span>Sample layout. No client figures are shown.</span>
     <span>Page 1</span>
   </div>
 </figure>
