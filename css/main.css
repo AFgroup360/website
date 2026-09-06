@@ -1206,6 +1206,58 @@ button:focus-visible {
    Comparison table. Two readings of the same work, side by side, so neither
    needs a paragraph explaining it.
    -------------------------------------------------------------------------- */
+/* --- Tiles. A grid of what we do, each one opening onto its detail. ------
+   Closed, the grid reads in a glance. Open, it carries the substance without
+   the page having to print all of it at once. ---------------------------- */
+.tiles {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4); margin-top: var(--space-7);
+}
+.tile {
+  background: var(--navy-800); color: var(--text-inverse);
+  border: 1px solid rgb(232 188 85 / 0.3);
+  transition: border-color var(--duration-fast) var(--ease);
+}
+.tile:hover { border-color: rgb(232 188 85 / 0.75); }
+.tile > summary {
+  list-style: none; cursor: pointer;
+  display: flex; flex-direction: column; gap: var(--space-3);
+  min-height: 12.5rem;
+  padding: var(--space-5);
+}
+.tile > summary::-webkit-details-marker { display: none; }
+.tile > summary:focus-visible { outline: 2px solid var(--accent-on-dark); outline-offset: -4px; }
+.tile__tag {
+  font-size: var(--text-overline); font-weight: 600; letter-spacing: var(--track-overline);
+  text-transform: uppercase; color: var(--accent-on-dark);
+}
+.tile__name {
+  font-size: var(--text-h4); font-weight: 600; line-height: 1.3;
+  letter-spacing: var(--track-tight); color: var(--white);
+}
+.tile__blurb { font-size: var(--text-sm); color: var(--navy-100); }
+.tile__more {
+  margin-top: auto; padding-top: var(--space-4);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  font-size: var(--text-overline); font-weight: 600; letter-spacing: var(--track-overline);
+  text-transform: uppercase; color: var(--accent-on-dark);
+}
+.tile__more i { position: relative; display: block; width: 14px; height: 14px; flex: none; }
+.tile__more i::before, .tile__more i::after {
+  content: ""; position: absolute; background: var(--accent-on-dark);
+  transition: opacity var(--duration-fast) var(--ease);
+}
+.tile__more i::before { left: 0; right: 0; top: 6px; height: 2px; }
+.tile__more i::after { top: 0; bottom: 0; left: 6px; width: 2px; }
+.tile[open] .tile__more i::after { opacity: 0; }
+.tile .tile__list { padding: 0 var(--space-5) var(--space-5); display: grid; }
+.tile__list li {
+  padding-block: var(--space-3); border-top: 1px solid rgb(255 255 255 / 0.14);
+  font-size: var(--text-sm); color: var(--navy-100);
+}
+@media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .tiles { grid-template-columns: 1fr; } .tile > summary { min-height: 0; } }
+
 /* --- Two sides. The owner's card and the funder's card, facing. --------- */
 .sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); margin-top: var(--space-6); }
 .side {
