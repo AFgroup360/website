@@ -80,9 +80,11 @@ def header():
     {lockup}
     <nav class="nav" id="primary-nav" aria-label="Primary">
 {links}
+      <a class="nav__link nav__link--portal" href="portal/">Client portal</a>
       <a class="btn btn--primary nav__cta" href="contact.html">Book an introductory call</a>
     </nav>
     <div class="header__actions">
+      <a class="header__portal" href="portal/">Client portal</a>
       <a class="btn btn--primary" href="contact.html">Book an introductory call</a>
       <button class="nav-toggle" type="button" aria-expanded="false"
               aria-controls="primary-nav" aria-label="Toggle menu">

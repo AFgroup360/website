@@ -173,7 +173,7 @@
 /* Between the desktop layout and the menu, the header CTA steps aside so the
    lockup keeps its size and the nav keeps its spacing. Contact Us is in the
    nav either way. */
-@media (max-width: 1199px) {
+@media (max-width: 1319px) {
   .header__actions .btn { display: none; }
   .brand__lockup { height: 36px; }
 }
@@ -957,4 +957,22 @@ button:focus-visible {
   left: -9999px;
   width: 1px; height: 1px;
   overflow: hidden;
+}
+
+/* Client portal. A quiet link in the header, so clients can find it without
+   it competing with the call to action. */
+.header__portal {
+  font-size: var(--text-sm); font-weight: 500;
+  color: rgb(255 255 255 / 0.78);
+  white-space: nowrap;
+  padding-left: var(--space-5);
+  border-left: 1px solid rgb(255 255 255 / 0.18);
+}
+.header__portal:hover { color: var(--accent-on-dark); text-decoration: none; }
+.nav__link--portal { display: none; }
+/* Below the desktop layout the header CTA steps aside, so the portal link
+   moves into the menu with everything else. */
+@media (max-width: 1319px) { .header__portal { display: none; } }
+@media (max-width: 980px) {
+  .nav__link--portal { display: block; color: var(--accent-on-dark); }
 }
