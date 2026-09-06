@@ -30,6 +30,7 @@ PAGES = [
     # The portal itself is PHP and cannot run here, so the preview carries the
     # static notice that explains that rather than a dead link.
     ("portal/index.html", "Client portal"),
+    ("portal/demo.html", "Portal demo"),
 ]
 
 OLD = []
