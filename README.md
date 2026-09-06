@@ -78,21 +78,23 @@ python3 tools/serve.py      # http://localhost:8300
   email or call.
 - `CALENDAR_URL` in `js/main.js` needs a scheduling link. Until it is set, the
   "Pick a time" button is removed rather than left pointing nowhere.
-- Photography of operating businesses. Four slots are wired and waiting. Drop
-  the files in `assets/img/` under these exact names and run
-  `python3 tools/build.py`:
+- Real photography of operating businesses. Five slots are filled with
+  placeholder images that should be replaced. Drop new files in `assets/img/`
+  under these exact names and run `python3 tools/build.py`:
 
   | File | Where it lands |
   |---|---|
-  | `hero.jpg` | behind the home page headline |
-  | `photo-home.jpg` | full width, under the four pillars |
+  | `hero.jpg` | the right half of the home page hero |
+  | `photo-home.jpg` | full width, under the audience section |
   | `photo-who-we-are.jpg` | full width, under the layer diagram |
-  | `photo-what-we-do.jpg` | full width, between owners and capital providers |
+  | `photo-what-we-do.jpg` | full width, after the engagement types |
+  | `photo-our-approach.jpg` | full width, before what we look at |
 
   `.jpeg`, `.png` and `.webp` also work. Nothing is emitted while a file is
   absent, so a missing photograph leaves no gap and never shows a placeholder.
-  The hero carries a navy scrim so the headline holds contrast over any
-  picture. Captions are set in `tools/pages/*.html` next to each slot.
+  The hero splits into a two column layout only when `hero.jpg` exists, and
+  falls back to the panel layout when it does not. Captions are set in
+  `tools/pages/*.html` next to each slot.
 - The original logo vector, if one exists. The header lockup is built from the
   supplied raster artwork.
 - Written permission before any client name or logo appears on the site.
