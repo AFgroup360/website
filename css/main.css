@@ -398,7 +398,7 @@
 .index-list { border-top: 2px solid var(--accent); }
 .index-row {
   display: grid;
-  grid-template-columns: 3rem minmax(0, 4fr) minmax(0, 6fr) auto;
+  grid-template-columns: 3rem minmax(0, 4fr) minmax(0, 6fr);
   gap: var(--space-3) var(--grid-gap);
   align-items: start;
   padding-block: var(--space-6);
@@ -408,21 +408,13 @@
 .index-row__title { font-size: var(--text-h3); font-weight: 600; letter-spacing: var(--track-tight); color: var(--text-strong); line-height: var(--lh-h3); }
 .index-row__body { padding-top: 0.15em; }
 .index-row__body p { color: var(--text-muted); max-width: 62ch; }
-.index-row__tag {
-  justify-self: end; align-self: start; white-space: nowrap; margin-top: 0.1em;
-  font-size: var(--text-overline); font-weight: 600; letter-spacing: var(--track-overline);
-  text-transform: uppercase; color: var(--accent-text);
-  border: 1px solid var(--rule-strong); padding: 4px 9px;
-}
-.index-row__tag--event { color: var(--navy-500); }
 @media (max-width: 1080px) {
-  .index-row { grid-template-columns: 3rem minmax(0, 1fr) auto; }
+  .index-row { grid-template-columns: 3rem minmax(0, 1fr); }
   .index-row__body { grid-column: 2; }
 }
 @media (max-width: 700px) {
   .index-row { grid-template-columns: 2.5rem minmax(0, 1fr); }
   .index-row__title, .index-row__body { grid-column: 2; }
-  .index-row__tag { grid-column: 2; justify-self: start; margin-top: var(--space-2); }
 }
 
 /* --- Offset split. Heading in the narrow column, content in the wide. ---- */
@@ -1107,28 +1099,6 @@ button:focus-visible {
     color: var(--accent-text); margin-bottom: 2px;
   }
 }
-
-/* --------------------------------------------------------------------------
-   Timing marks. Whether a pillar runs continuously or comes up as an event,
-   drawn rather than labelled.
-   -------------------------------------------------------------------------- */
-.timing { display: block; width: 6.5rem; height: 20px; position: relative; align-self: center; justify-self: end; }
-.timing::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 2px;
-  background: var(--rule-strong);
-}
-.timing--on::before { background: var(--accent); }
-.timing--event::after {
-  content: ""; position: absolute; left: 62%; top: 4px;
-  width: 11px; height: 11px; background: var(--accent); transform: rotate(45deg);
-}
-.timing__legend {
-  display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6);
-  margin-bottom: var(--space-4); font-size: var(--text-xs); color: var(--text-muted);
-}
-.timing__legend span { display: flex; align-items: center; gap: var(--space-3); }
-.timing__legend i { display: block; width: 2.5rem; height: 2px; background: var(--accent); }
-.timing__legend b { display: block; width: 9px; height: 9px; background: var(--accent); transform: rotate(45deg); }
 
 /* The cash gap on the home page: the heading beside the drawing rather than
    above it, so the section stays shallow between two heavier blocks. */
