@@ -319,18 +319,23 @@
     background:
       linear-gradient(90deg,
         var(--navy-800) 0%,
-        rgb(8 22 47 / 0.92) 28%,
-        rgb(8 22 47 / 0.40) 48%,
-        rgb(8 22 47 / 0.62) 70%,
-        rgb(8 22 47 / 0.86) 100%),
-      linear-gradient(180deg, rgb(8 22 47 / 0.16), rgb(8 22 47 / 0.46));
+        rgb(8 22 47 / 0.94) 42%,
+        rgb(8 22 47 / 0.74) 62%,
+        rgb(8 22 47 / 0.52) 80%,
+        rgb(8 22 47 / 0.62) 100%),
+      linear-gradient(180deg, rgb(8 22 47 / 0.18), rgb(8 22 47 / 0.44));
   }
+  /* The words run across the picture rather than being penned into a column
+     beside it. balance keeps every line the same length however wide the box
+     is, so the heading is told to fill each line instead. */
   .hero:has(.hero__photo) .hero__inner {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-columns: minmax(0, 1fr);
     align-items: center;
-    min-height: clamp(21rem, 42vh, 26rem);
+    min-height: clamp(30rem, 58vh, 36rem);
   }
-  .hero:has(.hero__photo) .hero__inner > div:first-child { max-width: 34rem; }
+  .hero:has(.hero__photo) .hero__inner > div:first-child { max-width: none; }
+  .hero:has(.hero__photo) h1 { max-width: 26ch; text-wrap: normal; }
+  .hero:has(.hero__photo) .lede { max-width: 60ch; }
 }
 
 /* The three questions the work answers. Their own band under the hero, on the
