@@ -275,7 +275,9 @@
   display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: var(--space-5) var(--grid-gap); align-items: end;
 }
-.page-title--split h1 { max-width: 16ch; }
+.page-title--split h1 { max-width: 17ch; }
+/* Spans in a page title are sentence breaks, kept on their own lines. */
+.page-title h1 span { display: block; }
 .page-title--split .lede { max-width: 44ch; padding-bottom: 0.4em; }
 .page-title h1 + p { margin-top: var(--space-5); }
 @media (max-width: 900px) {
