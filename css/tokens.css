@@ -63,9 +63,12 @@
 
   /* Gold light. Used at very low opacity behind navy sections only. Never
      as a glow on type, never as a border, never as a metallic fill. */
-  --ray-1: rgb(232 188 85 / 0.075);
-  --ray-2: rgb(232 188 85 / 0.045);
-  --ray-3: rgb(120 165 230 / 0.055);
+  --ray-1: rgb(232 188 85 / 0.14);
+  --ray-2: rgb(232 188 85 / 0.085);
+  --ray-3: rgb(120 165 230 / 0.10);
+  /* The same beams on a white ground, where far less carries further. */
+  --ray-light-1: rgb(201 150 47 / 0.055);
+  --ray-light-2: rgb(201 150 47 / 0.032);
 
   /* Type. One family. */
   --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto,

@@ -1,7 +1,7 @@
 # AmeriFinancial - Apache config for GoDaddy static hosting.
 
 Options -Indexes
-DirectoryIndex index.html index.php
+DirectoryIndex index.php index.html
 ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
