@@ -56,8 +56,8 @@ PAGES = {
     "our-approach": {
         "out": "our-approach.html", "canonical": "/our-approach",
         "title": t("Our Approach"),
-        "description": ("What we look at, how a month runs, and why better visibility "
-                        "and stronger financial control make a healthier business."),
+        "description": ("What we look at, how a month runs, and how a current view of "
+                        "the numbers gets the decision made in time rather than late."),
     },
     "contact": {
         "out": "contact.html", "canonical": "/contact",
