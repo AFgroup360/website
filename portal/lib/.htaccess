@@ -1,0 +1,7 @@
+# Nothing in here is ever requested directly. Denying it means a server that
+# stops executing PHP cannot hand out config.php with the database password.
+Require all denied
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>

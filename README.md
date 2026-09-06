@@ -102,6 +102,39 @@ python3 tools/serve.py      # http://localhost:8300
   supplied raster artwork.
 - Written permission before any client name or logo appears on the site.
 
+## Client portal
+
+`portal/` is a document exchange: AmeriFinancial requests documents, the client
+uploads them, and each item flips to received the moment a file lands. It runs
+on PHP and MySQL, both of which GoDaddy shared hosting already includes, so it
+needs no separate service and costs nothing extra to run.
+
+```
+portal/index.php     Sign in, then the client's checklist and upload
+portal/admin.php     Clients, document requests, statuses, recent uploads
+portal/download.php  The only route out for an uploaded file, ownership checked
+portal/lib/          Database, sessions, uploads, page shell
+portal/storage/      Uploaded documents. Closed to the web, random filenames.
+```
+
+### Setting it up on GoDaddy
+
+1. In cPanel, MySQL Databases: create a database and a user, and give that user
+   all privileges on it.
+2. Copy `portal/lib/config.example.php` to `portal/lib/config.php`, fill in the
+   database name, user and password, and set `bootstrap_admin` to your email
+   and a password you choose.
+3. Upload everything. The tables are created automatically on the first visit.
+4. Go to `/portal/`, sign in as that first admin, and change the password.
+5. Add a client. The dashboard shows their first password once; send it to them.
+
+`config.php` is not in the repository, because it holds the database password.
+Uploaded documents are not either.
+
+If your hosting lets you write above `public_html`, point `storage` in
+`config.php` there instead. The default location is protected by its own
+`.htaccess`, but outside the web root is better.
+
 ## Deploying
 
 Upload the repo root to `public_html` on GoDaddy. Back up whatever is there

@@ -10,3 +10,8 @@ preview/
 
 # Python
 __pycache__/
+
+# Portal secrets and uploaded client documents. Never in the repository.
+portal/lib/config.php
+portal/storage/*
+!portal/storage/.htaccess

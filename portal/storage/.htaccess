@@ -1,0 +1,7 @@
+# Uploaded client documents. Never served directly; portal/download.php checks
+# who is asking before it sends anything.
+Require all denied
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>

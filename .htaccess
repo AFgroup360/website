@@ -1,7 +1,7 @@
 # AmeriFinancial - Apache config for GoDaddy static hosting.
 
 Options -Indexes
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
 ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
@@ -16,7 +16,6 @@ ErrorDocument 404 /404.html
   RewriteRule ^services(\.html)?/?$ /what-we-do.html [R=301,L]
   RewriteRule ^about(\.html)?/?$ /who-we-are.html [R=301,L]
   RewriteRule ^our-work-[a-z-]+(\.html)?/?$ /who-we-are.html [R=301,L]
-  RewriteRule ^portal(\.html)?/?$ /contact.html [R=301,L]
   RewriteRule ^our-thinking(\.html)?/?$ /our-approach.html [R=301,L]
   RewriteRule ^thinking-[a-z-]+(\.html)?/?$ /our-approach.html [R=301,L]
 
