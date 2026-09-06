@@ -779,6 +779,33 @@
    The sample review page. Navy blocks, no company specific figures.
    -------------------------------------------------------------------------- */
 .band .review p, .band .review li, .band .review span { color: inherit; }
+/* The verdict, on its own, where the full sample sheet would be too much. */
+.verdict {
+  margin: 0; padding: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem);
+  background: var(--navy-800); color: var(--text-inverse);
+  border-top: 3px solid var(--accent);
+}
+.verdict__kicker {
+  font-size: var(--text-overline); font-weight: 600; letter-spacing: var(--track-overline);
+  text-transform: uppercase; color: var(--accent-on-dark);
+}
+.verdict__options { margin-top: var(--space-5); display: grid; gap: var(--space-4); }
+.verdict .verdict__options li {
+  display: flex; align-items: center; gap: var(--space-4);
+  font-size: var(--text-h4); color: rgb(255 255 255 / 0.55);
+}
+.verdict__options li::before {
+  content: ""; flex: none; width: 14px; height: 14px;
+  border: 1px solid rgb(255 255 255 / 0.4);
+}
+.verdict .verdict__options li.is-set { color: var(--white); font-weight: 600; }
+.verdict__options li.is-set::before { background: var(--accent-on-dark); border-color: var(--accent-on-dark); }
+.verdict__note {
+  margin-top: var(--space-5); padding-top: var(--space-4);
+  border-top: 1px solid rgb(232 188 85 / 0.3);
+  font-size: var(--text-sm); color: var(--navy-100);
+}
+
 .review {
   background: var(--white); color: var(--text-strong);
   border: 1px solid var(--rule); padding: var(--space-6);
