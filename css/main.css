@@ -989,3 +989,12 @@ button:focus-visible {
 
 /* The audience split belongs in its own section, not in the opening line. */
 .audience-section .perspectives { margin-top: var(--space-7); }
+
+/* A field only a bot fills in. Hidden from people and from screen readers,
+   without using display:none, which some bots check for. */
+.field--trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}

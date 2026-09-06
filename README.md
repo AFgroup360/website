@@ -73,9 +73,12 @@ python3 tools/serve.py      # http://localhost:8300
 
 ## Still outstanding
 
-- `CONTACT_ENDPOINT` in `js/main.js` needs a form service (Formspree, Web3Forms)
-  before the contact form can send. Until it is set, the form tells visitors to
-  email or call.
+- The contact form posts to `contact.php`, which emails `hello@ameri-group.ca`.
+  GoDaddy shared hosting runs PHP, so it works once `contact.php` is in
+  `public_html` and needs no third party service. It will not work on GitHub
+  Pages, which cannot run PHP; there the form falls back to showing the email
+  address and phone number. To use a form service instead, put its URL in
+  `CONTACT_ENDPOINT` in `js/main.js` and delete `contact.php`.
 - `CALENDAR_URL` in `js/main.js` needs a scheduling link. Until it is set, the
   "Pick a time" button is removed rather than left pointing nowhere.
 - Real photography of operating businesses. Five slots are filled with

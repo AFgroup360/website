@@ -2,11 +2,12 @@
 (function () {
   'use strict';
 
-  /* Set this to a form service endpoint before going live. Formspree looks
-     like https://formspree.io/f/xxxxxxxx and Web3Forms like
-     https://api.web3forms.com/submit (with an access_key field added to the
-     form). Until it is set, the form explains where to send the message. */
-  var CONTACT_ENDPOINT = '';
+  /* contact.php sits next to index.html and emails hello@ameri-group.ca.
+     GoDaddy shared hosting runs PHP, so nothing else is needed. On hosting
+     without PHP (GitHub Pages, for instance) the request will not come back
+     as JSON, and the form falls back to showing the email and phone number.
+     To use a form service instead, put its URL here and delete contact.php. */
+  var CONTACT_ENDPOINT = 'contact.php';
 
   /* Set this to a scheduling link (Calendly, Google, Outlook). While it is
      empty the "Pick a time" button is removed rather than left pointing
@@ -76,8 +77,11 @@
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       })
-        .then(function (res) {
-          if (!res.ok) throw new Error('Request failed');
+        .then(function (res) { return res.json().catch(function () { return null; }); })
+        .then(function (data) {
+          /* A host without PHP returns the file itself, not JSON, so only a
+             real { ok: true } counts as sent. */
+          if (!data || data.ok !== true) throw new Error(data && data.error ? data.error : 'Request failed');
           form.reset();
           show('ok', 'Thank you. We will come back to you shortly. If it is urgent, call +1 (416) 879-0969.');
         })
