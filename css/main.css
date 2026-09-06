@@ -300,9 +300,13 @@
   .hero:has(.hero__photo) .hero__inner {
     grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
     gap: clamp(2rem, 5vw, 5rem);
-    align-items: center;
-    min-height: clamp(30rem, 66vh, 40rem);
+    /* Both columns start on the same line. Centring each one separately is
+       what made the list look like it was floating. */
+    align-items: start;
+    min-height: clamp(28rem, 58vh, 34rem);
   }
+  /* The rule at the top of the list sits level with the overline opposite. */
+  .hero:has(.hero__photo) .hero__panel { margin-top: 0.35rem; }
   .hero:has(.hero__photo) .hero__inner > div:first-child { max-width: 34rem; }
 }
 
@@ -822,7 +826,6 @@ html { scroll-behavior: smooth; }
   text-wrap: pretty;
 }
 
-.hero__panel { align-self: center; }
 
 .statement {
   border-bottom: 1px solid var(--rule);
@@ -972,6 +975,68 @@ button:focus-visible {
 /* Below the desktop layout the header CTA steps aside, so the portal link
    moves into the menu with everything else. */
 @media (max-width: 1319px) { .header__portal { display: none; } }
+/* In the nav row it needs to read as a way in, not a fifth page. */
+@media (max-width: 1319px) {
+  .nav__link--portal {
+    display: block;
+    color: var(--accent-on-dark);
+    padding-left: var(--space-5);
+    border-left: 1px solid rgb(255 255 255 / 0.18);
+  }
+  .nav__link--portal::after { display: none; }
+}
 @media (max-width: 980px) {
-  .nav__link--portal { display: block; color: var(--accent-on-dark); }
+  .nav__link--portal { padding-left: 0; border-left: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   Navigation submenu. What We Do has two ways in, so it opens rather than
+   sending everyone to the top of one long page.
+   -------------------------------------------------------------------------- */
+.nav__group { position: relative; display: flex; align-items: center; gap: var(--space-1); }
+.nav__caret {
+  width: 18px; height: 18px; padding: 0; flex: none;
+  background: transparent; border: 0; cursor: pointer;
+  display: grid; place-items: center;
+}
+.nav__caret::before {
+  content: ""; width: 9px; height: 9px;
+  border-right: 1.6px solid rgb(255 255 255 / 0.7);
+  border-bottom: 1.6px solid rgb(255 255 255 / 0.7);
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform var(--duration-fast) var(--ease), border-color var(--duration-fast) var(--ease);
+}
+.nav__group:hover .nav__caret::before,
+.nav__caret[aria-expanded="true"]::before { border-color: var(--accent-on-dark); }
+.nav__caret[aria-expanded="true"]::before { transform: translateY(2px) rotate(225deg); }
+
+.nav__menu {
+  position: absolute; top: 100%; left: -1rem; z-index: 20;
+  min-width: 19rem;
+  display: none;
+  background: var(--navy-900);
+  border: 1px solid rgb(232 188 85 / 0.28);
+  border-top: 2px solid var(--accent-on-dark);
+  padding: var(--space-2) 0;
+}
+.nav__group:hover .nav__menu,
+.nav__group:focus-within .nav__menu,
+.nav__menu.is-open { display: block; }
+
+.nav__sub { display: block; padding: var(--space-3) var(--space-5); }
+.nav__sub:hover { background: var(--navy-700); text-decoration: none; }
+.nav__sub strong { display: block; font-size: var(--text-sm); font-weight: 600; color: var(--white); }
+.nav__sub span { display: block; margin-top: 2px; font-size: var(--text-xs); color: var(--text-inverse-muted); }
+.nav__sub:hover strong { color: var(--accent-on-dark); }
+
+/* In the stacked menu the two ways in are simply listed under the page. */
+@media (max-width: 980px) {
+  .nav__group { display: block; }
+  .nav__group .nav__link { display: block; }
+  .nav__caret { display: none; }
+  .nav__menu {
+    position: static; display: block; min-width: 0;
+    background: none; border: 0; padding: 0 0 var(--space-4) var(--space-5);
+  }
+  .nav__sub { padding: var(--space-3) 0; }
 }

@@ -30,6 +30,24 @@
     nav.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
 
+    /* The submenu opens on hover and on keyboard focus through CSS. The caret
+       is here for touch, where there is no hover. */
+    document.querySelectorAll('.nav__caret').forEach(function (caret) {
+      var menu = document.getElementById(caret.getAttribute('aria-controls'));
+      if (!menu) return;
+      caret.addEventListener('click', function () {
+        var open = caret.getAttribute('aria-expanded') === 'true';
+        caret.setAttribute('aria-expanded', String(!open));
+        menu.classList.toggle('is-open', !open);
+      });
+      document.addEventListener('click', function (e) {
+        if (!caret.parentNode.contains(e.target)) {
+          caret.setAttribute('aria-expanded', 'false');
+          menu.classList.remove('is-open');
+        }
+      });
+    });
+
     var mq = window.matchMedia('(min-width: 981px)');
     var onChange = function (e) { if (e.matches) setOpen(false); };
     if (mq.addEventListener) mq.addEventListener('change', onChange);
@@ -42,7 +60,7 @@
       return last === '' ? 'index' : last;
     }
     var here = leaf(window.location.pathname);
-    document.querySelectorAll('.nav__link').forEach(function (link) {
+    document.querySelectorAll('.nav > .nav__link, .nav__group > .nav__link').forEach(function (link) {
       if (leaf(link.getAttribute('href') || '') === here) link.setAttribute('aria-current', 'page');
     });
   }

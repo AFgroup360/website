@@ -41,7 +41,16 @@
     </a>
     <nav class="nav" id="primary-nav" aria-label="Primary">
       <a class="nav__link" href="who-we-are.html">Who We Are</a>
-      <a class="nav__link" href="what-we-do.html">What We Do</a>
+      <div class="nav__group">
+        <a class="nav__link" href="what-we-do.html">What We Do</a>
+        <button class="nav__caret" type="button" aria-expanded="false"
+                aria-controls="nav-menu-1"
+                aria-label="Show What We Do sections"></button>
+        <div class="nav__menu" id="nav-menu-1">
+          <a class="nav__sub" href="what-we-do.html#owners"><strong>For business owners</strong><span>Three levels of involvement</span></a>
+          <a class="nav__sub" href="what-we-do.html#capital"><strong>For capital providers</strong><span>Before funding, and after</span></a>
+        </div>
+      </div>
       <a class="nav__link" href="our-approach.html">Our Approach</a>
       <a class="nav__link" href="contact.html">Contact Us</a>
       <a class="nav__link nav__link--portal" href="portal/">Client portal</a>
@@ -140,6 +149,34 @@
   </div>
 </section>
 
+<section class="band rays">
+  <div class="container">
+    <div class="sectors">
+      <div>
+        <span class="overline">Built for owner led businesses</span>
+        <h2>When the business moves faster than the finance function.</h2>
+        <p class="lede">The company is growing but the financial picture is a step
+          behind. We build the structure that lets the owner see what is happening
+          and decide what to do next.</p>
+      </div>
+      <div>
+        <ul class="sectors__list" role="list">
+          <li>Reports arrive too late to use</li>
+          <li>Cash surprises keep happening</li>
+          <li>Decisions rest on incomplete information</li>
+          <li>There is no reliable forward view</li>
+          <li>Financing becomes reactive</li>
+          <li>The owner is filling the finance gap</li>
+        </ul>
+        <p class="sectors__common">
+          <span>Construction</span><span>Restoration</span><span>Field service</span>
+          <span>Warehousing</span><span>Distribution</span><span>Light manufacturing</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section--soft audience-section">
   <div class="container">
     <div class="section-head section-head--split">
@@ -178,35 +215,7 @@
 
 
 
-<section class="band rays">
-  <div class="container">
-    <div class="sectors">
-      <div>
-        <span class="overline">Built for owner led businesses</span>
-        <h2>When the business moves faster than the finance function.</h2>
-        <p class="lede">The company is growing but the financial picture is a step
-          behind. We build the structure that lets the owner see what is happening
-          and decide what to do next.</p>
-      </div>
-      <div>
-        <ul class="sectors__list" role="list">
-          <li>Reports arrive too late to use</li>
-          <li>Cash surprises keep happening</li>
-          <li>Decisions rest on incomplete information</li>
-          <li>There is no reliable forward view</li>
-          <li>Financing becomes reactive</li>
-          <li>The owner is filling the finance gap</li>
-        </ul>
-        <p class="sectors__common">
-          <span>Construction</span><span>Restoration</span><span>Field service</span>
-          <span>Warehousing</span><span>Distribution</span><span>Light manufacturing</span>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--soft">
+<section class="section">
   <div class="container">
     <div class="offset">
       <div class="offset__aside">

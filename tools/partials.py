@@ -13,7 +13,12 @@ import re
 
 NAV = [
     {"file": "who-we-are.html", "label": "Who We Are"},
-    {"file": "what-we-do.html", "label": "What We Do"},
+    {"file": "what-we-do.html", "label": "What We Do", "children": [
+        {"file": "what-we-do.html#owners", "label": "For business owners",
+         "note": "Three levels of involvement"},
+        {"file": "what-we-do.html#capital", "label": "For capital providers",
+         "note": "Before funding, and after"},
+    ]},
     {"file": "our-approach.html", "label": "Our Approach"},
     {"file": "contact.html", "label": "Contact Us"},
 ]
@@ -70,11 +75,30 @@ LOCKUP = '''<a class="brand" href="index.html" aria-label="AmeriFinancial, back 
     </a>'''
 
 
-def header():
-    links = "\n".join(
-        '      <a class="nav__link" href="{file}">{label}</a>'.format(**item)
-        for item in NAV
+def nav_item(item, index):
+    """One navigation entry, with a submenu when the page has two ways in."""
+    if not item.get("children"):
+        return '      <a class="nav__link" href="{file}">{label}</a>'.format(**item)
+
+    menu_id = f"nav-menu-{index}"
+    kids = "\n".join(
+        '          <a class="nav__sub" href="{file}"><strong>{label}</strong>'
+        '<span>{note}</span></a>'.format(**child)
+        for child in item["children"]
     )
+    return f'''      <div class="nav__group">
+        <a class="nav__link" href="{item["file"]}">{item["label"]}</a>
+        <button class="nav__caret" type="button" aria-expanded="false"
+                aria-controls="{menu_id}"
+                aria-label="Show {item["label"]} sections"></button>
+        <div class="nav__menu" id="{menu_id}">
+{kids}
+        </div>
+      </div>'''
+
+
+def header():
+    links = "\n".join(nav_item(item, i) for i, item in enumerate(NAV))
     return '''<header class="site-header">
   <div class="container site-header__inner">
     {lockup}
