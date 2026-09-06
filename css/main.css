@@ -276,7 +276,7 @@
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(2rem, 1rem + 4vw, 5rem);
   align-items: center;
-  padding-block: clamp(2.75rem, 1.5rem + 3vw, 4rem) clamp(2rem, 1.2rem + 2vw, 3rem);
+  padding-block: clamp(2.5rem, 1.4rem + 2.4vw, 3.5rem);
 }
 .hero h1 { color: var(--text-inverse); max-width: 15ch; }
 .hero .lede { margin-top: var(--space-5); color: var(--text-inverse-muted); max-width: 46ch; font-size: var(--text-lead); line-height: 1.5; }
@@ -285,81 +285,27 @@
   .hero__inner { grid-template-columns: 1fr; gap: var(--space-8); }
 }
 
-/* The hero photograph, when one has been supplied. It sits under a navy scrim
-   heavy enough on the left that the heading never loses contrast, and lighter
-   on the right so the business behind it is still legible. Stacking order is
-   photograph, scrim, gold light, content. */
+/* The hero photograph. A real image in the second column at its own
+   proportions, not a backdrop stretched behind the whole section, so the hero
+   is only as tall as its content and the picture keeps its shape. */
 .hero__photo {
-  position: absolute; inset: 0; z-index: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center 55%;
+  width: 100%;
+  max-width: 27rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center 52%;
+  justify-self: end;
+  border-top: 2px solid var(--accent-on-dark);
 }
-.hero__scrim {
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background:
-    linear-gradient(93deg, var(--navy-800) 0%, rgb(8 22 47 / 0.94) 38%, rgb(8 22 47 / 0.66) 100%),
-    linear-gradient(180deg, rgb(8 22 47 / 0.55), rgb(8 22 47 / 0.80));
-}
-.hero.rays::before { z-index: 2; }
-.hero > .container { position: relative; z-index: 3; }
-@media (max-width: 940px) {
-  /* Stacked, the heading runs over the middle of the frame, so the scrim
-     goes flat instead of leaning left. */
-  .hero__scrim { background: linear-gradient(180deg, rgb(8 22 47 / 0.80), rgb(8 22 47 / 0.90)); }
-}
-
-/* With a photograph the hero splits: words on the left, and the three
-   questions stacked on the right, sitting over the picture rather than under
-   it. The scrim is heaviest on the left, lifts across the middle so the
-   photograph reads, and firms up again behind the panel so the list stays
-   legible. Without a photograph the hero keeps its original layout, so an
-   empty slot never leaves a hole. */
 @media (min-width: 941px) {
-  .hero:has(.hero__photo) .hero__scrim {
-    background:
-      linear-gradient(90deg,
-        var(--navy-800) 0%,
-        rgb(8 22 47 / 0.92) 28%,
-        rgb(8 22 47 / 0.40) 48%,
-        rgb(8 22 47 / 0.62) 70%,
-        rgb(8 22 47 / 0.86) 100%),
-      linear-gradient(180deg, rgb(8 22 47 / 0.16), rgb(8 22 47 / 0.46));
-  }
   .hero:has(.hero__photo) .hero__inner {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     align-items: center;
-    min-height: clamp(21rem, 42vh, 26rem);
   }
-  .hero:has(.hero__photo) .hero__inner > div:first-child { max-width: 34rem; }
 }
-
-/* A strip along the foot of the hero, so the lower half of the picture carries
-   something instead of trailing off. */
-.hero__strip {
-  position: relative; z-index: 3;
-  display: flex; flex-wrap: wrap; align-items: baseline;
-  gap: var(--space-3) clamp(1.25rem, 2.4vw, 2.25rem);
-  padding-top: var(--space-5); padding-bottom: var(--space-6);
-  border-top: 1px solid rgb(255 255 255 / 0.16);
+@media (max-width: 940px) {
+  .hero__photo { max-width: none; aspect-ratio: 16 / 10; justify-self: stretch; }
 }
-.hero__strip-label {
-  font-size: var(--text-overline); font-weight: 600;
-  letter-spacing: var(--track-overline); text-transform: uppercase;
-  color: var(--accent-on-dark);
-}
-.hero__strip ul {
-  display: flex; flex-wrap: wrap;
-  gap: var(--space-3) clamp(1.25rem, 2.4vw, 2.25rem);
-}
-.hero__strip li {
-  font-size: var(--text-sm); font-weight: 500; color: rgb(255 255 255 / 0.88);
-  display: flex; align-items: baseline; gap: var(--space-2);
-}
-.hero__strip li::before {
-  content: ""; width: 5px; height: 5px; flex: none;
-  background: var(--accent-on-dark); transform: rotate(45deg) translateY(-2px);
-}
-@media (max-width: 700px) { .hero__strip { padding-bottom: var(--space-5); } }
 
 /* The three questions the work answers. Their own band under the hero, on the
    deepest navy, so nothing sits on top of a photograph. */
@@ -853,18 +799,9 @@
 */
 html { scroll-behavior: smooth; }
 
-.hero {
-  min-height: min(760px, calc(100svh - var(--header-h)));
-  display: grid;
-  align-items: center;
-}
 
 .hero > .container { width: 100%; }
 
-.hero__inner {
-  min-height: clamp(34rem, 72vh, 46rem);
-  align-items: center;
-}
 
 .hero h1 {
   max-width: 12ch;
