@@ -3,6 +3,8 @@
 # Pages in tools/pages/ may drop in these placeholders, which build.py expands:
 #   {{BREADCRUMB: Label}}                     one level under Home
 #   {{BREADCRUMB: Parent label > Label}}      two levels, parent links to PARENTS[label]
+#   {{HERO_PHOTO}}                            the hero photograph, if supplied
+#   {{PHOTO: slug | caption}}                 a full bleed photograph, if supplied
 #   {{REVIEW}}                                the rendered sample review page
 #   {{LETS_CONNECT}}                          the closing navy call to action
 
@@ -103,12 +105,44 @@ def hero_photo():
     absent, so the hero is plain navy rather than a placeholder.
     """
     root = pathlib.Path(__file__).resolve().parent.parent
-    for name in ("hero.jpg", "hero.jpeg", "hero.png", "hero.webp"):
-        if (root / "assets" / "img" / name).exists():
-            return (f'<img class="hero__photo" src="assets/img/{name}" alt="" '
-                    'aria-hidden="true" fetchpriority="high">\n'
-                    '    <span class="hero__scrim" aria-hidden="true"></span>')
-    return ""
+    src = _find("hero")
+    if not src:
+        return ""
+    return (f'<img class="hero__photo" src="{src}" alt="" '
+            'aria-hidden="true" fetchpriority="high">\n'
+            '    <span class="hero__scrim" aria-hidden="true"></span>')
+
+
+PHOTO_EXTS = ("jpg", "jpeg", "png", "webp")
+
+
+def _find(slug):
+    """The supplied photograph for a slot, if there is one."""
+    root = pathlib.Path(__file__).resolve().parent.parent
+    for ext in PHOTO_EXTS:
+        if (root / "assets" / "img" / f"{slug}.{ext}").exists():
+            return f"assets/img/{slug}.{ext}"
+    return None
+
+
+def photo(spec):
+    """A full bleed photograph, if the file for that slot has been supplied.
+
+    Used as {{PHOTO: slug | caption}}. Drop the picture at
+    assets/img/<slug>.jpg and rebuild. Nothing is emitted while the file is
+    absent, so a missing photograph leaves no gap and no placeholder.
+    """
+    parts = [x.strip() for x in spec.split("|")]
+    slug = parts[0]
+    caption = parts[1] if len(parts) > 1 else ""
+    src = _find(slug)
+    if not src:
+        return ""
+    cap = f'\n  <figcaption>{caption}</figcaption>' if caption else ""
+    alt = caption or "An operating business at work"
+    return (f'<figure class="photo-band">\n'
+            f'  <img src="{src}" alt="{alt}" loading="lazy" decoding="async">{cap}\n'
+            f'</figure>')
 
 
 def breadcrumb(spec):
@@ -201,6 +235,7 @@ LETS_CONNECT = f'''<section class="connect-band rays" id="connect">
 def expand(body):
     """Replace the page placeholders with their blocks."""
     body = re.sub(r"\{\{BREADCRUMB:\s*(.+?)\s*\}\}", lambda m: breadcrumb(m.group(1)), body)
+    body = re.sub(r"\{\{PHOTO:\s*(.+?)\s*\}\}", lambda m: photo(m.group(1)), body)
     body = body.replace("{{HERO_PHOTO}}", hero_photo())
     body = body.replace("{{REVIEW}}", REVIEW)
     body = body.replace("{{LETS_CONNECT}}", LETS_CONNECT)
