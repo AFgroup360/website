@@ -173,7 +173,7 @@
   padding: 0.5rem 0.7rem;
   font-size: var(--text-sm); font-weight: 500; color: rgb(255 255 255 / 0.86);
   white-space: nowrap;
-  border: 1px solid transparent;
+  border: 1px solid rgb(232 188 85 / 0.3);
   transition: color var(--duration-fast) var(--ease),
               border-color var(--duration-fast) var(--ease),
               background-color var(--duration-fast) var(--ease);
@@ -186,13 +186,13 @@
 }
 .nav__link:hover {
   color: var(--white);
-  border-color: rgb(232 188 85 / 0.42);
-  background: rgb(232 188 85 / 0.06);
+  border-color: rgb(232 188 85 / 0.7);
+  background: rgb(232 188 85 / 0.08);
 }
 .nav__link[aria-current="page"] {
   color: var(--white); font-weight: 600;
-  border-color: rgb(232 188 85 / 0.55);
-  background: rgb(232 188 85 / 0.09);
+  border-color: var(--accent-on-dark);
+  background: rgb(232 188 85 / 0.12);
 }
 .nav__link[aria-current="page"]::after { background: transparent; }
 .nav__cta { display: none; }
@@ -228,7 +228,8 @@
     padding: var(--space-3) var(--gutter) var(--space-6);
   }
   .nav.is-open { display: flex; }
-  .nav__link { padding: var(--space-4) 0; font-size: var(--text-body); border-bottom: 1px solid rgb(255 255 255 / 0.1); }
+  .nav__link { padding: var(--space-4) 0; font-size: var(--text-body); border: 0; border-bottom: 1px solid rgb(255 255 255 / 0.1); background: none; }
+  .nav__link[aria-current="page"] { background: none; border-color: rgb(255 255 255 / 0.1); color: var(--accent-on-dark); }
   .nav__link::after { display: none; }
   .nav__cta { display: inline-flex; margin-top: var(--space-5); align-self: flex-start; }
   .header__actions .btn { display: none; }
@@ -1116,12 +1117,18 @@ button:focus-visible {
    it competing with the call to action. */
 .header__portal {
   font-size: var(--text-sm); font-weight: 500;
-  color: rgb(255 255 255 / 0.78);
+  color: var(--accent-on-dark);
   white-space: nowrap;
-  padding-left: var(--space-5);
-  border-left: 1px solid rgb(255 255 255 / 0.18);
+  margin-left: var(--space-4);
+  padding: 0.5rem 0.7rem;
+  border: 1px solid rgb(232 188 85 / 0.45);
+  transition: border-color var(--duration-fast) var(--ease),
+              background-color var(--duration-fast) var(--ease);
 }
-.header__portal:hover { color: var(--accent-on-dark); text-decoration: none; }
+.header__portal:hover {
+  color: var(--accent-on-dark); text-decoration: none;
+  border-color: var(--accent-on-dark); background: rgb(232 188 85 / 0.1);
+}
 .nav__link--portal { display: none; }
 /* Below the desktop layout the header CTA steps aside, so the portal link
    moves into the menu with everything else. */
@@ -1131,8 +1138,7 @@ button:focus-visible {
   .nav__link--portal {
     display: block;
     color: var(--accent-on-dark);
-    padding-left: var(--space-5);
-    border-left: 1px solid rgb(255 255 255 / 0.18);
+    margin-left: var(--space-3);
   }
   .nav__link--portal::after { display: none; }
 }
@@ -1144,7 +1150,20 @@ button:focus-visible {
    Navigation submenu. What We Do has two ways in, so it opens rather than
    sending everyone to the top of one long page.
    -------------------------------------------------------------------------- */
-.nav__group { position: relative; display: flex; align-items: center; gap: var(--space-1); }
+.nav__group {
+  position: relative; display: flex; align-items: center; gap: 2px;
+  padding-right: 0.45rem;
+  border: 1px solid rgb(232 188 85 / 0.3);
+  transition: border-color var(--duration-fast) var(--ease),
+              background-color var(--duration-fast) var(--ease);
+}
+.nav__group:hover, .nav__group:focus-within {
+  border-color: rgb(232 188 85 / 0.7); background: rgb(232 188 85 / 0.08);
+}
+/* Inside the group the box is drawn once, around the link and its caret. */
+.nav__group .nav__link { border-color: transparent; }
+.nav__group .nav__link:hover,
+.nav__group .nav__link[aria-current="page"] { background: none; border-color: transparent; }
 .nav__caret {
   width: 18px; height: 18px; padding: 0; flex: none;
   background: transparent; border: 0; cursor: pointer;
@@ -1182,7 +1201,7 @@ button:focus-visible {
 
 /* In the stacked menu the two ways in are simply listed under the page. */
 @media (max-width: 980px) {
-  .nav__group { display: block; }
+  .nav__group { display: block; border: 0; padding-right: 0; background: none; }
   .nav__group .nav__link { display: block; }
   .nav__caret { display: none; }
   .nav__menu {
