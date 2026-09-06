@@ -1210,7 +1210,7 @@ button:focus-visible {
 
 .nav__menu {
   position: absolute; top: 100%; left: -1rem; z-index: 20;
-  min-width: 19rem;
+  min-width: 15rem;
   display: none;
   background: var(--navy-900);
   border: 1px solid rgb(232 188 85 / 0.28);
@@ -1221,7 +1221,7 @@ button:focus-visible {
 .nav__group:focus-within .nav__menu,
 .nav__menu.is-open { display: block; }
 
-.nav__sub { display: block; padding: var(--space-3) var(--space-5); }
+.nav__sub { display: block; padding: var(--space-4) var(--space-5); }
 .nav__sub:hover { background: var(--navy-700); text-decoration: none; }
 .nav__sub strong { display: block; font-size: var(--text-sm); font-weight: 600; color: var(--white); }
 .nav__sub span { display: block; margin-top: 2px; font-size: var(--text-xs); color: var(--text-inverse-muted); }

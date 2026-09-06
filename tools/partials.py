@@ -14,10 +14,8 @@ import re
 NAV = [
     {"file": "who-we-are.html", "label": "Who We Are"},
     {"file": "what-we-do.html", "label": "What We Do", "children": [
-        {"file": "for-business-owners.html", "label": "For business owners",
-         "note": "Three levels of involvement"},
-        {"file": "for-capital-providers.html", "label": "For capital providers",
-         "note": "Before funding, and after"},
+        {"file": "for-business-owners.html", "label": "For business owners"},
+        {"file": "for-capital-providers.html", "label": "For capital providers"},
     ]},
     {"file": "our-approach.html", "label": "Our Approach"},
     {"file": "contact.html", "label": "Contact Us"},
@@ -82,8 +80,7 @@ def nav_item(item, index):
 
     menu_id = f"nav-menu-{index}"
     kids = "\n".join(
-        '          <a class="nav__sub" href="{file}"><strong>{label}</strong>'
-        '<span>{note}</span></a>'.format(**child)
+        '          <a class="nav__sub" href="{file}"><strong>{label}</strong></a>'.format(**child)
         for child in item["children"]
     )
     return f'''      <div class="nav__group">
