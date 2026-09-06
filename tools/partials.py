@@ -159,11 +159,17 @@ def photo(spec):
     parts = [x.strip() for x in spec.split("|")]
     slug = parts[0]
     caption = parts[1] if len(parts) > 1 else ""
+    mode = parts[2] if len(parts) > 2 else ""
     src = _find(slug)
     if not src:
         return ""
-    cap = f'\n  <figcaption>{caption}</figcaption>' if caption else ""
     alt = caption or "An operating business at work"
+    if mode == "overlay":
+        return (f'<figure class="photo-band photo-band--overlay">\n'
+                f'  <img src="{src}" alt="{alt}" loading="lazy" decoding="async">\n'
+                f'  <figcaption><span>{caption}</span></figcaption>\n'
+                f'</figure>')
+    cap = f'\n  <figcaption>{caption}</figcaption>' if caption else ""
     return (f'<figure class="photo-band">\n'
             f'  <img src="{src}" alt="{alt}" loading="lazy" decoding="async">{cap}\n'
             f'</figure>')

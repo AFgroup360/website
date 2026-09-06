@@ -913,10 +913,37 @@
 .photo-band { margin-block: var(--section-y); }
 .photo-band img {
   width: 100%;
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 3 / 1;
   object-fit: cover;
-  object-position: center 55%;
+  object-position: center 32%;
   border-block: 1px solid rgb(232 188 85 / 0.32);
+}
+
+/* A band that carries its line over the picture rather than under it. */
+.photo-band--overlay { position: relative; }
+.photo-band--overlay::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgb(5 14 31 / 0.82) 0%, rgb(5 14 31 / 0.62) 42%, rgb(5 14 31 / 0.12) 78%);
+}
+.photo-band--overlay figcaption {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; align-items: center;
+  padding: 0;
+}
+.photo-band--overlay figcaption span {
+  display: block;
+  width: 100%; max-width: var(--container);
+  margin-inline: auto; padding-inline: var(--gutter);
+  font-size: var(--text-h2); font-weight: 600; line-height: var(--lh-h2);
+  letter-spacing: var(--track-tight); color: var(--white);
+}
+.photo-band--overlay figcaption span::before {
+  content: ""; display: block;
+  width: 3rem; height: 2px; margin-bottom: var(--space-4);
+  background: var(--accent-on-dark);
+}
+@media (max-width: 700px) {
+  .photo-band--overlay figcaption span { font-size: var(--text-h4); }
 }
 .photo-band figcaption {
   width: 100%;
