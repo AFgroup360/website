@@ -276,7 +276,7 @@
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(2rem, 1rem + 4vw, 5rem);
   align-items: center;
-  padding-block: clamp(3rem, 1.5rem + 3.5vw, 4.5rem);
+  padding-block: clamp(2.75rem, 1.5rem + 3vw, 4rem) clamp(2rem, 1.2rem + 2vw, 3rem);
 }
 .hero h1 { color: var(--text-inverse); max-width: 15ch; }
 .hero .lede { margin-top: var(--space-5); color: var(--text-inverse-muted); max-width: 46ch; font-size: var(--text-lead); line-height: 1.5; }
@@ -332,6 +332,34 @@
   }
   .hero:has(.hero__photo) .hero__inner > div:first-child { max-width: 34rem; }
 }
+
+/* A strip along the foot of the hero, so the lower half of the picture carries
+   something instead of trailing off. */
+.hero__strip {
+  position: relative; z-index: 3;
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: var(--space-3) clamp(1.25rem, 2.4vw, 2.25rem);
+  padding-top: var(--space-5); padding-bottom: var(--space-6);
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+}
+.hero__strip-label {
+  font-size: var(--text-overline); font-weight: 600;
+  letter-spacing: var(--track-overline); text-transform: uppercase;
+  color: var(--accent-on-dark);
+}
+.hero__strip ul {
+  display: flex; flex-wrap: wrap;
+  gap: var(--space-3) clamp(1.25rem, 2.4vw, 2.25rem);
+}
+.hero__strip li {
+  font-size: var(--text-sm); font-weight: 500; color: rgb(255 255 255 / 0.88);
+  display: flex; align-items: baseline; gap: var(--space-2);
+}
+.hero__strip li::before {
+  content: ""; width: 5px; height: 5px; flex: none;
+  background: var(--accent-on-dark); transform: rotate(45deg) translateY(-2px);
+}
+@media (max-width: 700px) { .hero__strip { padding-bottom: var(--space-5); } }
 
 /* The three questions the work answers. Their own band under the hero, on the
    deepest navy, so nothing sits on top of a photograph. */
