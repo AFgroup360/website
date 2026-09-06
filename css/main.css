@@ -77,6 +77,16 @@
    by side so the full width carries content instead of trailing off. */
 .section-head { margin-bottom: var(--space-6); }
 .section-head h2 { max-width: 20ch; }
+/* A head with nothing beside it should use the width rather than leave a hole:
+   the heading itself grows to carry the room. */
+.section-head:not(.section-head--split):not(:has(p)) h2 {
+  font-size: var(--text-h1);
+  line-height: var(--lh-display);
+  max-width: 26ch;
+}
+@media (max-width: 700px) {
+  .section-head:not(.section-head--split):not(:has(p)) h2 { font-size: var(--text-h2); }
+}
 .section-head h2 + p, .section-head h1 + p { margin-top: var(--space-4); }
 .section-head--split {
   display: grid;
