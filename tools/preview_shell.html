@@ -197,8 +197,11 @@
     sizeEl.textContent = width + 'px' + (scale < 1 ? '  \u00B7  ' + Math.round(scale * 100) + '%' : '');
   }
 
-  function show(file) {
+  var pendingHash = '';
+
+  function show(file, hash) {
     current = file;
+    pendingHash = hash || '';
 
     Array.prototype.forEach.call(tabs.children, function (btn) {
       btn.setAttribute('aria-selected', String(btn.dataset.file === file));
@@ -210,23 +213,33 @@
   }
 
   // Links inside the preview drive the tabs rather than dead-ending.
+  function jump(doc, hash) {
+    var target = doc.getElementById(hash);
+    if (target) target.scrollIntoView({ block: 'start' });
+  }
+
   frame.addEventListener('load', function () {
     var doc;
     try { doc = frame.contentDocument; } catch (e) { return; }
     if (!doc) return;
 
+    if (pendingHash) { jump(doc, pendingHash); pendingHash = ''; }
+
     doc.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a');
       if (!a) return;
       var href = a.getAttribute('href') || '';
-      if (href.charAt(0) === '#' || /^(https?:|mailto:|tel:)/.test(href)) return;
+      if (href.charAt(0) === '#') { e.preventDefault(); jump(doc, href.slice(1)); return; }
+      if (/^(https?:|mailto:|tel:)/.test(href)) return;
 
+      var hash = href.indexOf('#') > 0 ? href.slice(href.indexOf('#') + 1) : '';
       var path = href.split('#')[0].split('?')[0].replace(/^\.\//, '');
       // A link to a directory, such as portal/, has no filename to take.
       var file = /\/$/.test(path) ? path + 'index.html' : path;
       if (!PAGES[file]) file = file.split('/').pop();
       e.preventDefault();
-      show(PAGES[file] ? file : '404.html');
+      if (PAGES[file] && file === current && hash) { jump(doc, hash); return; }
+      show(PAGES[file] ? file : '404.html', hash);
     });
   });
 
