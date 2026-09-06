@@ -789,6 +789,12 @@
 .review .review__options li.is-set { color: var(--white); font-weight: 600; }
 .review__options li.is-set::before { background: var(--accent-on-dark); border-color: var(--accent-on-dark); }
 
+.review .review__verdict-line {
+  margin-top: var(--space-4); padding-top: var(--space-3);
+  border-top: 1px solid rgb(232 188 85 / 0.3);
+  font-size: 0.8125rem; font-weight: 600; color: var(--white);
+}
+
 /* The two drawings on the sample sheet. Shape only: the sample carries no
    client figures, so nothing is labelled with a number. */
 .review__panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); margin-top: var(--space-3); }
