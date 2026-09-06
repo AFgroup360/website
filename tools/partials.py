@@ -133,7 +133,8 @@ def hero_photo():
     if not src:
         return ""
     return (f'<img class="hero__photo" src="{src}" alt="" '
-            'aria-hidden="true" fetchpriority="high" width="1536" height="1536">')
+            'aria-hidden="true" fetchpriority="high">\n'
+            '    <span class="hero__scrim" aria-hidden="true"></span>')
 
 
 PHOTO_EXTS = ("jpg", "jpeg", "png", "webp")
